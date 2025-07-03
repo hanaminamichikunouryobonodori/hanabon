@@ -1,7 +1,7 @@
+import styles from '@/app/news/[slug]/post.module.scss';
 import ContentRenderer from '@/components/common/ContentRenderer';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { getHomeContentById } from '@/libs/microcms';
-import styles from '@/app/news/[slug]/post.module.scss';
 
 const PrivacyPolicy = async () => {
   const data = await getHomeContentById('a37ykm12l');

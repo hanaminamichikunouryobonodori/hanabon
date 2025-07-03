@@ -1,7 +1,7 @@
 import '@/styles/main.scss';
-
 import type { ReactNode } from 'react';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
 import { Murecho, Zen_Old_Mincho } from 'next/font/google';
 
@@ -54,6 +54,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
       </head>
       <body className={`${murecho.variable} ${ZenOldMincho.variable}`} id='outerContainer'>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
