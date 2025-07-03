@@ -71,6 +71,9 @@
 
 .active {
   color: var(--sub-color);
+  @media (max-width: var.$breakpoint-lg) {
+    color: inherit;
+  }
 }
 
 .hamburger {
@@ -102,7 +105,7 @@
       opacity 0.3s ease-in-out,
       visibility 0.3s ease-in-out;
     a {
-      color: var(--foreground);
+      color: var(--foreground) !important;
     }
   }
 
