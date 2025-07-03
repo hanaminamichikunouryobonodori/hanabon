@@ -9,8 +9,8 @@ import NewsArticle from './NewsArticle';
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const revalidate = 60;
@@ -26,8 +26,8 @@ async function getPostData(slug: string, draftKey?: string) {
 }
 
 export default async function NewsPage(props: Props) {
-  const params = props.params;
-  const draftKey = props.searchParams?.draftKey as string | undefined;
+  const params = (await props.params);
+  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
   const currentPostData = await getPostData(params.slug, draftKey);
 
   if (!currentPostData) {
@@ -46,8 +46,8 @@ export default async function NewsPage(props: Props) {
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = props.params;
-  const draftKey = props.searchParams?.draftKey as string | undefined;
+  const params = (await props.params);
+  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
   const data = await getPostData(params.slug, draftKey);
 
   if (!data) {
