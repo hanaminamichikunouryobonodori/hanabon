@@ -2,7 +2,7 @@ import Hero from '@/app/_components/HeroSection';
 import HomeClient from '@/app/HomeClient';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
-import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microcms';
+import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { HomePageProps } from '@/types';
 
 import styles from './page.module.scss';

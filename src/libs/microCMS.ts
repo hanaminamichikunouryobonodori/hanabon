@@ -39,11 +39,12 @@ export const getNewsList = async (type: 'home' | 'all') => {
   }
 };
 
-export const getNewsContentById = async (contentId: string) => {
+export const getNewsContentById = async (contentId: string, draftKey?: string) => {
   try {
     const data: NewsData = await client.get({
       endpoint: 'news',
       contentId,
+      queries: { draftKey: draftKey },
     });
     return data;
   } catch (error) {

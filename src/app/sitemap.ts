@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-import { getNewsList } from '@/libs/microcms';
+import { getNewsList } from '@/libs/microCMS';
 import { NewsData } from '@/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN || 'https://hanabon.vercel.app';
