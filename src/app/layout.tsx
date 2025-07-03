@@ -18,6 +18,9 @@ export type Props = {
   children: ReactNode;
 };
 
+const isProduction = process.env.NODE_ENV === 'production';
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 const montserrat = Montserrat({
   weight: ['400', '700'],
   subsets: ['latin'],
@@ -56,7 +59,6 @@ async function getTheme(): Promise<Theme> {
 const RootLayout: NextPage<Props> = async ({ children }) => {
   const theme = await getTheme();
   const { mainColor, subColor } = theme;
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
   const { isEnabled } = await draftMode();
 
   return (
@@ -65,10 +67,10 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
         className={`${montserrat.variable} ${ZenKakuGothic.variable} ${ZenOldMincho.variable}`}
         id='outerContainer'
       >
-        {gaId && <GoogleAnalytics gaId={gaId} />}
         <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
         {children}
         <SpeedInsights />
+        {isProduction && gaId && <GoogleAnalytics gaId={gaId} />}
         {isEnabled && (
           <div
             style={{
