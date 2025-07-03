@@ -14,14 +14,15 @@ export const revalidate = 180;
 export type Props = {
   children: ReactNode;
 };
-export const murecho = Murecho({
+
+const murecho = Murecho({
   weight: ['400', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-murecho',
 });
 
-export const ZenOldMincho = Zen_Old_Mincho({
+const ZenOldMincho = Zen_Old_Mincho({
   weight: '900',
   subsets: ['latin'],
   display: 'swap',
@@ -49,10 +50,8 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
 
   return (
     <html lang='ja'>
-      <head>
-        <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
-      </head>
       <body className={`${murecho.variable} ${ZenOldMincho.variable}`} id='outerContainer'>
+        <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
         {children}
         <SpeedInsights />
       </body>
