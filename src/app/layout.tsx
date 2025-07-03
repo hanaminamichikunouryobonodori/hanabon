@@ -1,10 +1,10 @@
 import '@/styles/main.scss';
 import type { ReactNode } from 'react';
-import { GoogleAnalytics } from '@next/third-parties/google';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
-import { Murecho, Zen_Old_Mincho } from 'next/font/google';
+import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/google';
 
 import { defaultMetadata } from '@/constants/defaultMetadata';
 import { client } from '@/libs/client';
@@ -16,11 +16,11 @@ export type Props = {
   children: ReactNode;
 };
 
-const murecho = Murecho({
+const ZenKakuGothic = Zen_Kaku_Gothic_New({
   weight: ['400', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-murecho',
+  variable: '--font-zen-kaku-gothic-new',
 });
 
 const ZenOldMincho = Zen_Old_Mincho({
@@ -52,7 +52,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
 
   return (
     <html lang='ja'>
-      <body className={`${murecho.variable} ${ZenOldMincho.variable}`} id='outerContainer'>
+      <body className={`${ZenKakuGothic.variable} ${ZenOldMincho.variable}`} id='outerContainer'>
         {gaId && <GoogleAnalytics gaId={gaId} />}
         <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
         {children}
