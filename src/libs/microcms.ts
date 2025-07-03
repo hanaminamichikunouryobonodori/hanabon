@@ -1,7 +1,8 @@
 import { MicroCMSQueries } from 'microcms-js-sdk';
 
-import { client } from './client';
 import { NewsData, NewsListData, PageData } from '@/types';
+
+import { client } from './client';
 
 export const getHomeContentById = async (contentId: string) => {
   try {

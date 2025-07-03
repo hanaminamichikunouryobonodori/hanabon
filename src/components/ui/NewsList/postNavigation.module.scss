@@ -4,15 +4,15 @@
   max-width: var.$breakpoint-lg;
   padding: 3px;
   margin: 3rem auto;
-  font-size: .9rem;
+  font-size: 0.9rem;
   @media screen and (max-width: var.$breakpoint-lg) {
     max-width: 480px;
   }
 }
 
 .navItem {
-  padding: 0.5rem 1rem;
   min-height: var.$spacing-xxl;
+  padding: 0.5rem 1rem;
   text-align: center;
   background-color: var(--background);
 }
