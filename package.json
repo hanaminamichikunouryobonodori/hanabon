@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@next/third-parties": "^15.3.4",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^24",
     "@types/nodemailer": "^6.4.17",

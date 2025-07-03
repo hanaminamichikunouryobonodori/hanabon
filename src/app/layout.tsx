@@ -1,5 +1,6 @@
 import '@/styles/main.scss';
 import type { ReactNode } from 'react';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
@@ -47,10 +48,12 @@ async function getTheme(): Promise<Theme> {
 const RootLayout: NextPage<Props> = async ({ children }) => {
   const theme = await getTheme();
   const { mainColor, subColor } = theme;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <html lang='ja'>
       <body className={`${murecho.variable} ${ZenOldMincho.variable}`} id='outerContainer'>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
         <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
         {children}
         <SpeedInsights />
