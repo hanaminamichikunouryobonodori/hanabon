@@ -40,9 +40,24 @@
 .breadcrumbItem {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
+  &:last-child {
+    flex: 1;
+    min-width: 0;
+  }
+}
+.breadcrumbItem:last-child > span {
+
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .separator {
   flex-shrink: 0;
   margin-inline: 0.5em;
+  color: var(--lineColor);
 }
