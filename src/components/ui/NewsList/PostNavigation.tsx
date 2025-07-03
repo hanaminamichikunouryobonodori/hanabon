@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import { NewsData, NewsListData, PageData } from '@/types';
-import { EndPoints } from '@/types/microCMS/news-types';
+import { NewsData, NewsListData } from '@/types';
 
 import styles from './postNavigation.module.scss';
 

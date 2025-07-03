@@ -1,13 +1,10 @@
 @use 'styles/abstracts/variables' as var;
 
 .postNavigation {
-  gap: 3px !important;
   max-width: var.$breakpoint-lg;
   padding: 3px;
   margin: 3rem auto;
-  background-color: var(--lineColor);
-  border: 1px solid var(--lineColor);
-  border-radius: 4px;
+  font-size: .9rem;
   @media screen and (max-width: var.$breakpoint-lg) {
     max-width: 480px;
   }
@@ -15,6 +12,10 @@
 
 .navItem {
   padding: 0.5rem 1rem;
+  min-height: var.$spacing-xxl;
   text-align: center;
   background-color: var(--background);
+}
+.navItem:not(:has(> :not(br):not(span):not(i))) {
+  background-color: transparent;
 }
