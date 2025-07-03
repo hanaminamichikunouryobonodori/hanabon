@@ -1,5 +1,5 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
-import { PageData } from '@/types/microCMS';
+import { PageData } from '@/types';
 
 const SponsorshipSection = ({ data }: { data: PageData }) => {
   return (

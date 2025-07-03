@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getNewsContentById, getNewsList } from '@/libs/microcms';
-import { NewsData, NewsListData } from '@/types/microCMS';
+import { NewsData, NewsListData } from '@/types';
 
 import NewsArticle from './NewsArticle';
 

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
-import { PageData } from '@/types/microCMS';
+import { PageData } from '@/types';
 
 const Gallery = ({ data }: { data: PageData }) => {
   const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {

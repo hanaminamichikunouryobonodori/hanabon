@@ -7,7 +7,7 @@ import ContentRenderer from '@/components/common/ContentRenderer';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import PostNavigation from '@/components/ui/NewsList/PostNavigation';
 import PublishedDate from '@/components/ui/PublishedDate';
-import { NewsListData, NewsData } from '@/types/microCMS';
+import { NewsListData, NewsData } from '@/types';
 
 import styles from './post.module.scss';
 

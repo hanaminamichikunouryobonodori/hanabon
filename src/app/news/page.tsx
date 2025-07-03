@@ -1,7 +1,7 @@
 import PageHeader from '@/components/common/PageHeader';
 import SearchableNewsList from '@/components/features/SearchableNewsList';
 import { getNewsList } from '@/libs/microcms';
-import { NewsListData } from '@/types/microCMS';
+import { NewsListData } from '@/types';
 
 const News = async () => {
   const data: NewsListData = await getNewsList('all');

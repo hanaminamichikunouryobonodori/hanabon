@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
-import { NewsData } from '@/types/microCMS';
+import { NewsData } from '@/types';
 
 import styles from './joinCommittee.module.scss';
 

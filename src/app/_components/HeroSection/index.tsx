@@ -1,4 +1,4 @@
-import { PageData } from '@/types/microCMS';
+import { PageData } from '@/types';
 
 import styles from './hero.module.scss';
 import HeroCarouselComponent from './HeroCarousel';

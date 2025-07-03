@@ -1,6 +1,6 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
-import { PageData } from '@/types/microCMS';
+import { PageData } from '@/types';
 
 const AccessSection = ({ data }: { data: PageData }) => {
   return (

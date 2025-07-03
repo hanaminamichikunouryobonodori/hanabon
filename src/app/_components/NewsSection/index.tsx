@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import NewsList from '@/components/ui/NewsList';
-import { NewsListData } from '@/types/microCMS';
+import { NewsListData } from '@/types';
 
 const NewsSection = ({ data }: { data: NewsListData }) => {
   return (

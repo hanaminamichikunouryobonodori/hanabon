@@ -6,7 +6,7 @@ import Fuse, { type IFuseOptions } from 'fuse.js';
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import NewsList from '@/components/ui/NewsList';
-import { NewsData, NewsListData } from '@/types/microCMS';
+import { NewsData, NewsListData } from '@/types';
 
 type Props = {
   allNews: NewsListData;

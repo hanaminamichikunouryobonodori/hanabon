@@ -6,7 +6,7 @@ import { Element } from 'react-scroll';
 import dynamic from 'next/dynamic';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
-import { HomePageProps } from '@/types/microCMS';
+import { HomePageProps } from '@/types';
 
 const EventDateSection = dynamic(() => import('@/app/_components/EventDateSection'));
 const AboutSection = dynamic(() => import('@/app/_components/AboutSection'));

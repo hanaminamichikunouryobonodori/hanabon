@@ -3,7 +3,7 @@ import HomeClient from '@/app/HomeClient';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microcms';
-import { HomePageProps } from '@/types/microCMS';
+import { HomePageProps } from '@/types';
 
 import styles from './page.module.scss';
 
@@ -24,21 +24,11 @@ export default async function Home() {
   const promiseKeys = Object.keys(dataPromises) as Array<keyof typeof dataPromises>;
 
   const results = await Promise.all(Object.values(dataPromises));
-
-  const fetchedData = promiseKeys.reduce((acc, key, index) => {
-    acc[key] = results[index];
-    return acc;
-  }, {} as HomePageProps);
+  const entries = promiseKeys.map((key, index) => [key, results[index]]);
+  const fetchedData = Object.fromEntries(entries) as HomePageProps;
 
   const pages: HomePageProps = {
-    hero: fetchedData.hero,
-    eventDate: fetchedData.eventDate,
-    about: fetchedData.about,
-    gallery: fetchedData.gallery,
-    news: fetchedData.news,
-    joinCommittee: fetchedData.joinCommittee,
-    access: fetchedData.access,
-    sponsorship: fetchedData.sponsorship,
+    ...fetchedData,
     contact: null,
   };
 

@@ -1,6 +1,6 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
-import { PageData } from '@/types/microCMS';
+import { PageData } from '@/types';
 
 import styles from './about.module.scss';
 

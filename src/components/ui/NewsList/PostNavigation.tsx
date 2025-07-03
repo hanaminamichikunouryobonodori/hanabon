@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import { PageData } from '@/types/microCMS';
+import { NewsData, NewsListData, PageData } from '@/types';
 import { EndPoints } from '@/types/microCMS/news-types';
 
 import styles from './postNavigation.module.scss';
 
 type Props = {
-  allPosts: EndPoints['gets']['news']['contents'];
-  currentPost: PageData['news']['contents'][0];
+  allPosts: NewsListData['contents'];
+  currentPost: NewsData;
 };
 
 const PostNavigation = ({ allPosts, currentPost }: Props) => {

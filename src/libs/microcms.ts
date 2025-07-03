@@ -1,12 +1,11 @@
 import { MicroCMSQueries } from 'microcms-js-sdk';
 
-import { NewsContentProps, NewsListProps, PagesProps } from '@/types/microCMS';
-
 import { client } from './client';
+import { NewsData, NewsListData, PageData } from '@/types';
 
 export const getHomeContentById = async (contentId: string) => {
   try {
-    const data: PagesProps = await client.get({
+    const data: PageData = await client.get({
       endpoint: 'pages',
       contentId: contentId,
     });
@@ -27,7 +26,7 @@ export const getNewsList = async (type: 'home' | 'all') => {
     if (type === 'home') {
       queries.limit = 3;
     }
-    const data: NewsListProps = await client.get({
+    const data: NewsListData = await client.get({
       endpoint: 'news',
       queries: queries,
     });
@@ -41,7 +40,7 @@ export const getNewsList = async (type: 'home' | 'all') => {
 
 export const getNewsContentById = async (contentId: string) => {
   try {
-    const data: NewsContentProps = await client.get({
+    const data: NewsData = await client.get({
       endpoint: 'news',
       contentId,
     });
