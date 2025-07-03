@@ -1,6 +1,5 @@
 import PageHeader from '@/components/common/PageHeader';
 import SearchableNewsList from '@/components/features/SearchableNewsList';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { getNewsList } from '@/libs/microcms';
 import { NewsListData } from '@/types/microCMS';
 

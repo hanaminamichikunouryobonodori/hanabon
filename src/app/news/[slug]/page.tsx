@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getNewsContentById, getNewsList } from '@/libs/microcms';
@@ -35,20 +36,35 @@ export default async function NewsPage(props: Props) {
   }
 }
 
-export async function generateMetadata(props: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    if (!props.params.slug) {
-      return {};
-    }
-    const data = await getNewsContentById(props.params.slug);
+    const data = await getNewsContentById(params.slug);
 
     if (!data || !data.id) {
       throw new Error('ページが存在しません');
     }
+    const featuredImageUrl = data.featuredImage?.url;
 
+    // ▼▼▼ 修正点2: OGP画像のURLを正しく設定 ▼▼▼
+    const ogpImageUrl = featuredImageUrl
+      ? featuredImageUrl
+      : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`;
     return {
       title: `${data.title} | ${process.env.SITE_NAME}`,
-      description: data.title,
+      twitter: {
+        title: `${data.title} | ${process.env.SITE_NAME}`,
+        images: [ogpImageUrl],
+      },
+      openGraph: {
+        type: 'article',
+        url: process.env.NEXT_PUBLIC_DOMAIN,
+        title: `${data.title} | ${process.env.SITE_NAME}`,
+        images: [
+          {
+            url: ogpImageUrl,
+          },
+        ],
+      },
     };
   } catch (error) {
     console.error('Error fetching news data:', error);
