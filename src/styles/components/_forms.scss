@@ -1,0 +1,15 @@
+@use 'styles/abstracts/placeholders';
+
+.c-input {
+  @extend %form-control-base;
+}
+
+.c-textarea {
+  @extend %form-control-base;
+  min-height: 150px;
+  resize: vertical;
+}
+
+.c-search-input {
+  @extend %form-control-base;
+}

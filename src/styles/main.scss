@@ -1,0 +1,36 @@
+// 1. 変数やMixinなど、他のすべてのファイルの基盤
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/placeholders';
+
+// 2. 基本的なスタイル（リセットなど）
+@use 'base/reset';
+@use 'base/theme';
+@use 'base/typography';
+
+// 3. サイトの骨格となるレイアウト
+@use 'layout/container';
+@use 'layout/grid';
+@use 'layout/section';
+
+// 4. 具体的なUIパーツ
+@use 'components/boxes';
+@use 'components/button';
+@use 'components/forms';
+@use 'components/minchoheading';
+@use 'components/filled-block';
+
+// 5. ユーティリティ（他のスタイルを上書きできるように最後に）
+@use 'utils/flexbox';
+@use 'utils/spacing';
+@use 'utils/radius';
+@use 'utils/background';
+@use 'utils/sizing';
+@use 'utils/text';
+@use 'utils/svg';
+@use 'utils/image';
+@use 'utils/animations';
+
+main {
+  margin-block-start: 80px;
+}

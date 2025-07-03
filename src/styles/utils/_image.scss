@@ -1,0 +1,23 @@
+@use 'styles/abstracts/variables' as var;
+
+.u-responsive-image {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+}
+
+.u-image-rounded-sm {
+  border-radius: var.$border-radius-sm;
+}
+
+.u-image-rounded-md {
+  border-radius: var.$border-radius-md;
+}
+
+.u-image-rounded-lg {
+  border-radius: var.$border-radius-lg;
+}
+
+.u-image-rounded-full {
+  border-radius: var.$border-radius-circle;
+}

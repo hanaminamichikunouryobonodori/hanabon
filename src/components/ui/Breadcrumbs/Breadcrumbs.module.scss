@@ -1,0 +1,51 @@
+.breadcrumbs {
+  padding-block: 1em;
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+  a,
+  span {
+    display: inline-flex;
+    gap: 0.25em;
+    align-items: center;
+    :global(svg) {
+      transform: translateY(1px);
+    }
+  }
+
+  a {
+    color: var(--main-color);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: var(--foreground);
+  }
+}
+.breadcrumbs {
+}
+
+//
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+}
+
+.separator {
+  flex-shrink: 0;
+  margin-inline: 0.5em;
+}

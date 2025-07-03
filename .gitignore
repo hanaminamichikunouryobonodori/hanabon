@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prettie
+.prettie*
+
+# textlinc
+.textlint*
+
+.stylelint*
+
+eslint.config.mjs
+
+schema

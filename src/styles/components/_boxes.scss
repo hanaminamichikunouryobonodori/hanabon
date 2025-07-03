@@ -1,0 +1,85 @@
+@use 'styles/abstracts/variables' as var;
+
+%box-base {
+  display: flex;
+  align-items: flex-start;
+  padding: var.$spacing-lg;
+  margin-block: var.$spacing-lg;
+  border-radius: var.$border-radius-md;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-block: 0.5em;
+  }
+}
+
+.c-simple-box {
+  @extend %box-base;
+  background-color: color-mix(in srgb, var(--background) 90%, black 10%);
+  border: 1px solid var(--foreground);
+  @media (prefers-color-scheme: dark) {
+    background-color: color-mix(in srgb, var(--background) 90%, white 10%);
+  }
+}
+
+.c-sticky-box {
+  @extend %box-base;
+  padding: 2em;
+  margin: 0 auto 2em;
+  background-color: color-mix(in srgb, var(--background) 100%, var(--main-color) 5%);
+  border: 1px solid var(--lineColor);
+  border-left: solid var.$spacing-md var(--main-color);
+  border-radius: inherit;
+  box-shadow: var.$box-shadow-base;
+  p {
+    margin: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    background-color: color-mix(in srgb, var(--background) 100%, var(--main-color) 5%);
+  }
+}
+
+@mixin icon-box-variant($color, $icon-char) {
+  display: flex;
+  grid-gap: 0 0.7em;
+  align-items: center;
+  padding: 1em;
+  margin: var.$spacing-md auto;
+  background-color: color-mix(in srgb, $color 30%, black 0%);
+  border: 1px solid $color;
+  border-radius: var.$border-radius-md;
+
+  &::before {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var.$spacing-lg;
+    height: var.$spacing-lg;
+    font-size: calc(var.$spacing-lg - 2px);
+    font-weight: var.$font-weight-bold;
+    color: color-mix(in srgb, #e9e9e9 100%, $color 5%);
+    content: $icon-char;
+    background-color: color-mix(in srgb, $color 50%, var(--background) 5%);
+    border-radius: var.$border-radius-circle;
+    filter: drop-shadow(-1px 1px 3px color-mix(in srgb, $color 100%, var(--background) 5%));
+  }
+}
+
+.c-info-box {
+  @extend %box-base;
+  @include icon-box-variant(var(--color-blue), 'i'); // 青系の色と 'i' を渡す
+}
+
+.c-question-box {
+  @extend %box-base;
+  @include icon-box-variant(var(--color-pink), '?'); // アクセントカラーと '?' を渡す
+}
+
+.c-alert-box {
+  @extend %box-base;
+  @include icon-box-variant(var(--color-red), '!'); // 赤系の色と '!' を渡す
+}

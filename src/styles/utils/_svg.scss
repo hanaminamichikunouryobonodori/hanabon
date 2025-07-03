@@ -1,0 +1,32 @@
+.u-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  margin: 0;
+
+  svg {
+    width: 120px;
+    height: 120px;
+    color: #fff;
+  }
+}
+
+.u-svg-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--sub-color);
+      transform: (1.1);
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+    }
+  }
+}

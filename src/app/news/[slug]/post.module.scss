@@ -1,0 +1,91 @@
+@use 'styles/abstracts/variables' as var;
+
+.container {
+  padding-inline: var.$spacing-lg;
+  background-color: var(--background-secondary);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: var.$font-weight-bold;
+  }
+  h1 {
+    position: relative;
+    margin-block-end: var.$spacing-lg;
+
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      display: block;
+      width: 50px;
+      height: 5px;
+      content: '';
+      background-color: var(--foreground);
+      transform: translate(-50%);
+    }
+  }
+}
+.featuredImageContainer {
+  position: relative;
+  width: 100%;
+  max-width: var.$breakpoint-md;
+  aspect-ratio: 1.91/1;
+  overflow: hidden;
+  border-radius: var.$border-radius-md;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: var.$breakpoint-md) {
+    width: 100vw;
+    margin: 0 calc(50% - 50vw);
+    border-radius: 0;
+  }
+}
+
+.content {
+  padding-block: var.$spacing-xl;
+
+  h2 {
+    width: 100%;
+    padding: 0.7em 0.9em;
+    margin-block: var.$spacing-lg;
+    color: var(--foreground);
+    background-color: var(--background);
+    border-bottom: 3px solid var(--line-color);
+    border-left: var.$border-radius-md solid var(--main-color);
+  }
+  h3,
+  h4 {
+    margin-block-end: var.$spacing-md;
+  }
+  h3 {
+    width: 100%;
+    padding: 0.2em 0.5em 0.4em;
+    color: var(--foreground);
+    background-color: var(--background);
+    border-bottom: 3px solid var(--main-color);
+  }
+  h5,
+  h6 {
+    margin-block-end: var.$spacing-sm;
+  }
+  ul,
+  ol,
+  p {
+    margin-block-end: var.$spacing-md;
+  }
+  table {
+    p {
+      margin-block-end: 0;
+    }
+  }
+  img {
+    margin-block: var.$spacing-md;
+  }
+}

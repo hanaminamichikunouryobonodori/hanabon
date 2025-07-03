@@ -1,0 +1,28 @@
+@use '../abstracts/variables' as var;
+
+.c-heading {
+  margin-block-end: var.$spacing-xl;
+  font-family: var.$font-family-serif;
+  font-weight: var.$font-weight-black;
+  text-align: center;
+
+  &--h2 {
+    font-size: clamp(1.8rem, calc(1.25vw + 1.5rem), 2.8rem);
+  }
+
+  &--h3 {
+    font-size: clamp(2.2rem, calc(2.2rem + 0.5vw), 2.5rem);
+  }
+
+  &--h4 {
+    font-size: clamp(1.8rem, calc(1.8rem + 1.2vw), 2.5rem);
+  }
+
+  &--h5 {
+    font-size: clamp(1.6rem, calc(1.6rem + 0.8vw), 2rem);
+  }
+
+  &--h6 {
+    font-size: clamp(1.3rem, calc(1.3rem + 0.4vw), 1.5rem);
+  }
+}

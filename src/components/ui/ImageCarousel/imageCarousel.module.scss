@@ -1,0 +1,28 @@
+@use 'styles/abstracts/variables' as var;
+
+.slideContent {
+  position: relative;
+  width: 100%;
+  max-width: 490px;
+  padding-block-start: 56.25%;
+  margin-inline: auto;
+  &--poster {
+    max-width: 390px;
+    padding-block-start: 142%;
+  }
+  &--4-3 {
+    padding-block-start: 75%;
+  }
+  @media (max-width: var.$breakpoint-md) {
+    max-width: inherit;
+    &--poster {
+      max-width: inherit;
+    }
+  }
+  @media (max-width: var.$breakpoint-sm) {
+    max-width: inherit;
+    &--poster {
+      max-width: inherit;
+    }
+  }
+}

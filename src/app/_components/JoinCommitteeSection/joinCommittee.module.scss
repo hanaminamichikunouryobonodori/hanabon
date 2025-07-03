@@ -1,0 +1,12 @@
+@use 'styles/utils/animations';
+
+.container {
+  a {
+    color: var(--foreground);
+    @media (hover: hover) {
+      &:hover {
+        @include animations.anim-transition-base;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+import { NextPage } from 'next';
+
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+
+import { Props } from '../layout';
+
+const PrivacyLayout: NextPage<Props> = async ({ children }) => {
+  return (
+    <main>
+      <Header />
+      {children}
+      <Footer />
+    </main>
+  );
+};
+
+export default PrivacyLayout;

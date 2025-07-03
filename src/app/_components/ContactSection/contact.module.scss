@@ -1,0 +1,28 @@
+@use 'styles/abstracts/variables' as var;
+
+.atSymbol::before {
+  content: '@';
+}
+
+.notesSection {
+  ul {
+    padding-inline-start: 0;
+    list-style: none;
+    li {
+      position: relative;
+      padding-left: 1.5em;
+      line-height: 1.6;
+      li {
+        margin-top: 0.5rem;
+      }
+    }
+    li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-weight: bold;
+      color: var(--sub-color);
+      content: '※';
+    }
+  }
+}

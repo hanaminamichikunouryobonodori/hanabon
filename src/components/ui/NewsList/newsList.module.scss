@@ -1,0 +1,41 @@
+@use 'styles/abstracts/variables' as var;
+@use 'styles/utils/animations';
+
+.container {
+  width: 100%;
+}
+
+.container ol {
+  padding: 0;
+  list-style: none;
+  .date {
+    text-align: right;
+  }
+  h3,
+  p {
+    font-family: inherit;
+  }
+  h3 {
+    text-align: left;
+  }
+  a {
+    color: var(--foreground);
+    @media (hover: hover) {
+      &:hover {
+        @include animations.anim-transition-base;
+      }
+    }
+  }
+}
+
+.listText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: var.$breakpoint-lg) {
+  .newsList {
+    width: 100%;
+  }
+}

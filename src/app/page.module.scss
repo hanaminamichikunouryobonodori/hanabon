@@ -1,0 +1,32 @@
+@use 'styles/abstracts/variables' as var;
+
+.root {
+  height: max-content;
+  section {
+    p {
+      line-height: 2;
+    }
+    h2 {
+      margin-block-end: var.$spacing-lg;
+    }
+    h3,
+    h4 {
+      margin-block-end: var.$spacing-md;
+    }
+    h5,
+    h6 {
+      margin-block-end: var.$spacing-sm;
+    }
+    ul,
+    ol {
+      margin-block-end: var.$spacing-md;
+    }
+  }
+  @media (max-width: var.$breakpoint-lg) {
+    display: flex;
+    flex-direction: column;
+    p {
+      line-height: 1.5;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use 'styles/abstracts/variables' as var;
+
+// --- ① 角丸スケールの定義 ---
+// どのサイズ指定子（sm, mdなど）がどの変数/値に対応するかを定義します
+// ここがプロジェクトの角丸設定の「唯一の正しい情報源」になります
+$radius-sizes: (
+  'none': 0,
+  'sm': var.$border-radius-sm,
+  // 例: 4px
+  'md': var.$border-radius-md,
+  // 例: 8px
+  'lg': var.$border-radius-lg,
+  // 例: 16px
+  'xl': var.$border-radius-xl,
+  // 例: 24px
+  'full': 9999px, // 円形やカプセル形を作るための非常に大きい値
+);
+
+// --- ② クラスの自動生成 ---
+// @eachループを使って、角丸クラスを全て生成します
+@each $size-key, $size-value in $radius-sizes {
+  // 例: .rounded-md { border-radius: 8px; }
+  .rounded-#{$size-key} {
+    border-radius: $size-value;
+  }
+
+  // --- 上下左右、個別の角丸クラスも生成 ---
+
+  // 例: .rounded-t-md { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+  .rounded-t-#{$size-key} {
+    border-top-left-radius: $size-value;
+    border-top-right-radius: $size-value;
+  }
+
+  // 例: .rounded-b-md { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+  .rounded-b-#{$size-key} {
+    border-bottom-right-radius: $size-value;
+    border-bottom-left-radius: $size-value;
+  }
+
+  // 例: .rounded-l-md { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+  .rounded-l-#{$size-key} {
+    border-top-left-radius: $size-value;
+    border-bottom-left-radius: $size-value;
+  }
+
+  // 例: .rounded-r-md { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+  .rounded-r-#{$size-key} {
+    border-top-right-radius: $size-value;
+    border-bottom-right-radius: $size-value;
+  }
+}

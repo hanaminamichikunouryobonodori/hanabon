@@ -1,0 +1,57 @@
+// src/styles/base/_reset.scss
+
+// 1. 全ての要素でborder-boxを適用し、直感的なサイジングを可能に
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// 2. デフォルトのマージンを削除
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+// 3. リストのスタイルをリセット
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+// 4. 画像をレスポンシブ対応の基本に
+img,
+picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// 5. フォーム要素のフォントを継承
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+// 6. メディア要素のクリックイベントをiOSで有効化
+a,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

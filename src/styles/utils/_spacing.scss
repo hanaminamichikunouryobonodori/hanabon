@@ -1,0 +1,72 @@
+@use '../abstracts/variables' as var;
+
+// --- ① Spacingスケールの定義 ---
+// どのサイズ指定子（sm, mdなど）がどの変数に対応するかを定義します
+$spacing-sizes: (
+  '0': 0,
+  'xs': var.$spacing-xs,
+  // 4px
+  'sm': var.$spacing-sm,
+  // 8px
+  'md': var.$spacing-md,
+  // 16px
+  'lg': var.$spacing-lg,
+  // 24px
+  'xl': var.$spacing-xl,
+  // 40px
+  'xxl': var.$spacing-xxl, // 64px
+);
+
+// --- ② クラスの自動生成 ---
+// @eachループを使って、marginとpaddingのクラスを全て生成します
+$properties: (
+  'm': 'margin',
+  'p': 'padding',
+);
+
+@each $prop-key, $prop-value in $properties {
+  @each $size-key, $size-value in $spacing-sizes {
+    // 例: .m-md { margin: 16px; }
+    .#{$prop-key}-#{$size-key} {
+      #{$prop-value}: $size-value;
+    }
+
+    // 例: .my-md { margin-top: 16px; margin-bottom: 16px; }
+    .#{$prop-key}y-#{$size-key} {
+      #{$prop-value}-top: $size-value;
+      #{$prop-value}-bottom: $size-value;
+    }
+
+    // 例: .mx-md { margin-left: 16px; margin-right: 16px; }
+    .#{$prop-key}x-#{$size-key} {
+      #{$prop-value}-left: $size-value;
+      #{$prop-value}-right: $size-value;
+    }
+
+    // 例: .mt-md { margin-top: 16px; }
+    .#{$prop-key}t-#{$size-key} {
+      #{$prop-value}-top: $size-value;
+    }
+
+    // 例: .mb-md { margin-bottom: 16px; }
+    .#{$prop-key}b-#{$size-key} {
+      #{$prop-value}-bottom: $size-value;
+    }
+
+    // 例: .ml-md { margin-left: 16px; }
+    .#{$prop-key}l-#{$size-key} {
+      #{$prop-value}-left: $size-value;
+    }
+
+    // 例: .mr-md { margin-right: 16px; }
+    .#{$prop-key}r-#{$size-key} {
+      #{$prop-value}-right: $size-value;
+    }
+  }
+}
+
+// autoマージン用の特別なユーティリティ
+.mx-auto {
+  margin-right: auto;
+  margin-left: auto;
+}

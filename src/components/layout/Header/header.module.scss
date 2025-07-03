@@ -1,0 +1,167 @@
+@use 'styles/abstracts/variables' as var;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding-inline: var.$spacing-md;
+  background-color: rgb(247 247 247 / 70%);
+  border-bottom: 1px var(--lineColor) solid;
+  border-bottom: 2px solid transparent; // ★ホバー時にガタつかないように、透明なボーダーを予め設定
+  backdrop-filter: blur(2px);
+  transform: translateZ(0);
+  transition:
+    color 0.3s ease,
+    border-bottom-color 0.3s ease;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  margin-inline-start: var.$spacing-md;
+  font-family: var.$font-family-serif;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  margin: 0;
+
+  text-shadow:
+    1px 1px 0 rgb(247 247 247 / 30%),
+    -1px -1px 0 rgb(247 247 247 / 30%),
+    -1px 1px 0 rgb(247 247 247 / 30%),
+    1px -1px 0 rgb(247 247 247 / 30%),
+    0 1px 0 rgb(247 247 247 / 30%),
+    0 -1px 0 rgb(247 247 247 / 30%),
+    -1px 0 0 rgb(247 247 247 / 30%),
+    1px 0 0 rgb(247 247 247 / 30%);
+  list-style: none;
+}
+
+.navLink {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: none;
+      opacity: 0.5;
+    }
+  }
+  &:visited {
+    color: #333;
+    text-decoration: none;
+  }
+}
+
+.active {
+  color: var(--sub-color);
+}
+
+.hamburger {
+  z-index: 100;
+  display: none;
+  margin: 1.5rem;
+}
+
+@media (max-width: var.$breakpoint-lg) {
+  .navList {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    visibility: hidden;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 320px;
+    height: 100vh;
+    padding-top: 100px;
+    text-shadow: none;
+    background-color: rgb(from var(--background) r g b / 0.8);
+    opacity: 0;
+    backdrop-filter: blur(5px);
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+    a {
+      color: var(--foreground);
+    }
+  }
+
+  .navLink {
+    font-size: 1.2rem;
+  }
+
+  .hamburger {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 22px;
+    appearance: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+
+    span {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #333;
+      transition: all 0.3s ease-in-out;
+    }
+
+    span:nth-child(1) {
+      top: 0;
+    }
+    span:nth-child(2) {
+      top: 10px;
+    }
+    span:nth-child(3) {
+      top: 20px;
+    }
+  }
+
+  .headerNav.open {
+    .hamburger {
+      span {
+        background-color: var(--foreground);
+      }
+      span:nth-child(1) {
+        top: 10px;
+        transform: rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        top: 10px;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .navList {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

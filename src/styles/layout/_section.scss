@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as var;
+
+.l-section {
+  width: 100%;
+  padding-block: 120px;
+  padding-inline: 32px;
+
+  @media (max-width: var.$breakpoint-lg) {
+    padding-block: 80px;
+    padding-inline: 20px;
+  }
+}

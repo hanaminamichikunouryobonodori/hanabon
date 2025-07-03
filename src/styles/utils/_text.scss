@@ -1,0 +1,52 @@
+@use 'styles/abstracts/variables' as var;
+
+.u-text-subtle {
+  opacity: 0.8;
+}
+
+.u-text-center {
+  display: block;
+  text-align: center;
+}
+.u-text-right {
+  display: block;
+  text-align: right;
+}
+.u-text-left {
+  display: block;
+  text-align: left;
+}
+
+@mixin u-highlight-base($color-value) {
+  padding-inline: 0.2em;
+  background: linear-gradient(transparent 60%, $color-value 60% 90%, transparent 90%);
+  border-radius: 2px;
+}
+
+// 黄色ハイライト
+.u-highlight {
+  @include u-highlight-base(color-mix(in srgb, var(--color-yellow) 50%, transparent));
+}
+
+// ピンクハイライト
+.u-highlight-pink {
+  @include u-highlight-base(color-mix(in srgb, var(--color-pink) 50%, transparent));
+}
+
+// 青ハイライト
+.u-highlight-blue {
+  @include u-highlight-base(color-mix(in srgb, var(--color-blue) 50%, transparent));
+}
+
+.u-highlight-green {
+  @include u-highlight-base(color-mix(in srgb, var(--color-green) 50%, transparent));
+}
+
+.u-highlight-red {
+  @include u-highlight-base(color-mix(in srgb, var(--color-red) 50%, transparent));
+}
+
+// 太字用のユーティリティ
+.u-font-bold {
+  font-weight: var.$font-weight-bold;
+}
