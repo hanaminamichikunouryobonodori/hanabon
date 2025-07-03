@@ -22,6 +22,8 @@ export const defaultMetadata: Metadata = {
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`,
+        width: 1200,
+        height: 630,
       },
     ],
   },
