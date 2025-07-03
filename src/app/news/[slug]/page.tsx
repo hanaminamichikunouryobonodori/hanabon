@@ -26,7 +26,7 @@ async function getPostData(slug: string, draftKey?: string) {
 }
 
 export default async function NewsPage(props: Props) {
-  const params = (await props.params);
+  const params = await props.params;
   const draftKey = (await props.searchParams)?.draftKey as string | undefined;
   const currentPostData = await getPostData(params.slug, draftKey);
 
@@ -46,7 +46,7 @@ export default async function NewsPage(props: Props) {
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = (await props.params);
+  const params = await props.params;
   const draftKey = (await props.searchParams)?.draftKey as string | undefined;
   const data = await getPostData(params.slug, draftKey);
 

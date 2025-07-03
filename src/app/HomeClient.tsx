@@ -3,19 +3,16 @@
 import { JSX } from 'react';
 import { Element } from 'react-scroll';
 
-import dynamic from 'next/dynamic';
-
+import AboutSection from '@/app/_components/AboutSection';
+import AccessSection from '@/app/_components/AccessSection';
+import ContactSection from '@/app/_components/ContactSection';
+import EventDateSection from '@/app/_components/EventDateSection';
+import GallerySection from '@/app/_components/GallerySection';
+import JoinCommitteeSection from '@/app/_components/JoinCommitteeSection';
+import NewsSection from '@/app/_components/NewsSection';
+import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import { HomePageProps } from '@/types';
-
-const EventDateSection = dynamic(() => import('@/app/_components/EventDateSection'));
-const AboutSection = dynamic(() => import('@/app/_components/AboutSection'));
-const GallerySection = dynamic(() => import('@/app/_components/GallerySection'));
-const SponsorshipSection = dynamic(() => import('@/app/_components/SponsorshipSection'));
-const NewsSection = dynamic(() => import('@/app/_components/NewsSection'));
-const JoinCommitteeSection = dynamic(() => import('@/app/_components/JoinCommitteeSection'));
-const AccessSection = dynamic(() => import('@/app/_components/AccessSection'));
-const ContactSection = dynamic(() => import('@/app/_components/ContactSection'));
 
 type Section = {
   id: keyof HomePageProps;

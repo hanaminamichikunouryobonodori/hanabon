@@ -5,7 +5,7 @@ import { FadeInComponent } from '@/components/animations/FadeIn';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types';
 
-const Gallery = ({ data }: { data: PageData }) => {
+const GallerySection = ({ data }: { data: PageData }) => {
   const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {
     ssr: false,
   });
@@ -20,4 +20,4 @@ const Gallery = ({ data }: { data: PageData }) => {
   );
 };
 
-export default Gallery;
+export default GallerySection;
