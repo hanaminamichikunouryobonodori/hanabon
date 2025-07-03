@@ -13,12 +13,12 @@
   margin: 0.5rem;
   font-size: 1rem;
   font-weight: var.$font-weight-bold;
+  color: var(--foreground);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   border-radius: var.$border-radius-md;
   transition: all 0.2s ease-in-out;
-
   &:focus-visible {
     outline: 3px solid var(--main-color);
     outline-offset: 3px;
@@ -31,6 +31,9 @@
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
+  }
+  &:visited {
+    color: var(--foreground);
   }
 
   &--primary {
