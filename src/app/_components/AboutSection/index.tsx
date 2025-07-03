@@ -4,7 +4,7 @@ import { PageData } from '@/types/microCMS';
 
 import styles from './about.module.scss';
 
-const AboutSection = ({ data }: { data: PageData['about'] }) => {
+const AboutSection = ({ data }: { data: PageData }) => {
   return (
     <div className={styles.container}>
       <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>

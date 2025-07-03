@@ -3,7 +3,7 @@ import { PageData } from '@/types/microCMS';
 import styles from './hero.module.scss';
 import HeroCarouselComponent from './HeroCarousel';
 
-const HeroSection = ({ data }: { data: PageData['hero'] }) => {
+const HeroSection = ({ data }: { data: PageData }) => {
   let imageUrls: string[] = [];
   let logoImageData;
 

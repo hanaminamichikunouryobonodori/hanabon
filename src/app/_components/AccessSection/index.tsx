@@ -2,7 +2,7 @@ import ContentRenderer from '@/components/common/ContentRenderer';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types/microCMS';
 
-const AccessSection = ({ data }: { data: PageData['access'] }) => {
+const AccessSection = ({ data }: { data: PageData }) => {
   return (
     <>
       <MinchoHeadingComponent level={2}>アクセス</MinchoHeadingComponent>

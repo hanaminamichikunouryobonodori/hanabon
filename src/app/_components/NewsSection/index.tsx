@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import NewsList from '@/components/ui/NewsList';
-import { PageData } from '@/types/microCMS';
+import { NewsListData } from '@/types/microCMS';
 
-const NewsSection = ({ data }: { data: PageData['news'] }) => {
+const NewsSection = ({ data }: { data: NewsListData }) => {
   return (
     <>
       <MinchoHeadingComponent level={2}>お知らせ</MinchoHeadingComponent>

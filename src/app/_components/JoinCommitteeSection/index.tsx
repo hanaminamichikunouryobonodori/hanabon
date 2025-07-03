@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
-import { PageData } from '@/types/microCMS';
+import { NewsData } from '@/types/microCMS';
 
 import styles from './joinCommittee.module.scss';
 
-const JoinCommitteeSection = ({ data }: { data: PageData['joinCommittee'] }) => {
+const JoinCommitteeSection = ({ data }: { data: NewsData }) => {
   return (
     <div className={`${styles.container} u-flex-center-column`}>
       <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>

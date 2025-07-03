@@ -5,7 +5,7 @@ import { FadeInComponent } from '@/components/animations/FadeIn';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types/microCMS';
 
-const Gallery = ({ data }: { data: PageData['gallery'] }) => {
+const Gallery = ({ data }: { data: PageData }) => {
   const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {
     ssr: false,
   });

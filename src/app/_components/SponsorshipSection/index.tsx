@@ -1,7 +1,7 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
 import { PageData } from '@/types/microCMS';
 
-const SponsorshipSection = ({ data }: { data: PageData['sponsorship'] }) => {
+const SponsorshipSection = ({ data }: { data: PageData }) => {
   return (
     <>
       <ContentRenderer content={data.content} id='sponsorship' />
