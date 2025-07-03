@@ -82,11 +82,16 @@ h5 {
 h6 {
   font-size: clamp(0.9rem, calc(0.9rem + 0.8cqw), 1rem);
 }
+.table-wrapper {
+  width: 100%;
+  max-width: 95vw;
+  margin-block: var.$spacing-lg;
+  overflow-x: auto;
+}
 
 table {
   width: 100%;
-  margin-block: var.$spacing-lg;
-  font-size: 0.9rem;
+  min-width: 480px;
   line-height: 1.6;
   text-align: left;
   border-spacing: 0;
@@ -105,6 +110,9 @@ td {
 th {
   font-weight: var.$font-weight-bold;
   background-color: var(--main-color);
+  p {
+    white-space: nowrap;
+  }
 }
 
 caption {

@@ -20,14 +20,10 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
   }
   const options: HTMLReactParserOptions = {
     replace: (domNode) => {
-      // domNodeがElement型でなければ何もしない
       if (!(domNode instanceof Element)) return;
 
-      // <a>タグの置き換え処理
       if (domNode.name === 'a') {
         const { href, target } = domNode.attribs;
-
-        // target="_blank"を持つ外部リンクは、通常の<a>タグとして扱う
         if (target === '_blank') {
           return (
             <a href={href} rel='noopener noreferrer' target='_blank'>
@@ -35,10 +31,16 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
             </a>
           );
         }
-        // それ以外のリンクはNext.jsの<Link>コンポーネントに変換
         if (href) {
           return <Link href={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>;
         }
+      }
+      if (domNode.name === 'table') {
+        return (
+          <div className='table-wrapper'>
+            <table {...domNode.attribs}>{domToReact(domNode.children as DOMNode[], options)}</table>
+          </div>
+        );
       }
     },
   };
