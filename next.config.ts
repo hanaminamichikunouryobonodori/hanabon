@@ -12,28 +12,7 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config: {
-    module: {
-      rules: {
-        test: RegExp;
-        use: { loader: string; options: { limit: number } }[];
-      }[];
-    };
-  }) => {
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|svg)$/i,
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-          },
-        },
-      ],
-    });
 
-    return config;
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'src')],
   },
