@@ -24,18 +24,10 @@
 
   &--thirds {
     grid-template-columns: 1fr 1fr 1fr;
-
-    @media (max-width: var.$breakpoint-lg) {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 
   &--fourths {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    @media (max-width: var.$breakpoint-lg) {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 
   &--2-8 {
@@ -50,7 +42,21 @@
     grid-template-columns: 3fr 7fr;
   }
 
+  @media (max-width: var.$breakpoint-lg) {
+    &--thirds,
+    &--fourths {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @media (max-width: var.$breakpoint-md) {
-    grid-template-columns: 1fr;
+    &--half,
+    &--thirds,
+    &--fourths,
+    &--2-8,
+    &--8-2,
+    &--3-7 {
+      grid-template-columns: 1fr;
+    }
   }
 }
