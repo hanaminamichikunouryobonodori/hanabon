@@ -27,6 +27,13 @@
       transform: translate(-50%);
     }
   }
+
+  @media (max-width: var.$breakpoint-md) {
+    padding-inline: var.$spacing-md;
+  }
+  @media (max-width: var.$breakpoint-sm) {
+    padding-inline: var.$spacing-sm;
+  }
 }
 .featuredImageContainer {
   position: relative;

@@ -1,7 +1,6 @@
 'use client';
 
 import { JSX } from 'react';
-import { Element } from 'react-scroll';
 
 import AboutSection from '@/app/_components/AboutSection';
 import AccessSection from '@/app/_components/AccessSection';
@@ -24,17 +23,9 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
     { id: 'eventDate', component: <EventDateSection data={pages.eventDate} /> },
     {
       id: 'about',
-      component: (
-        <>
-          <Element className='l-container--full' name='about'>
-            <AboutSection data={pages.about} />
-          </Element>
-          <Element className='l-container--full' name='gallery'>
-            <GallerySection data={pages.gallery} />
-          </Element>
-        </>
-      ),
+      component: <AboutSection data={pages.about} />,
     },
+    { id: 'gallery', component: <GallerySection data={pages.gallery} /> },
     { id: 'news', component: <NewsSection data={pages.news} /> },
     {
       id: 'joinCommittee',
@@ -57,8 +48,8 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
         const isEven = (index + 1) % 2 === 0;
         return (
           <FadeInComponent key={section.id}>
-            <section className={`py-xxl n ${isEven ? 'u-bg-secondary' : ''}`} id={section.id}>
-              <div className='l-container u-min-h-screen u-flex-center-column'>
+            <section className={`py-xxl n ${isEven ? 'u-bg-secondary' : ''}`}>
+              <div className='l-container u-min-h-screen u-flex-center-column' id={section.id}>
                 {section.component}
               </div>
             </section>

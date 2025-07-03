@@ -1,7 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
 
-import { FadeInComponent } from '@/components/animations/FadeIn';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types';
 
@@ -11,12 +10,10 @@ const GallerySection = ({ data }: { data: PageData }) => {
   });
 
   return (
-    <FadeInComponent>
-      <article className='l-section' id='gallery'>
-        <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>
-        <ContentRenderer className='l-container l-container--full' content={data.content} />
-      </article>
-    </FadeInComponent>
+    <div className='l-section' id='gallery'>
+      <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>
+      <ContentRenderer className='l-container l-container--full' content={data.content} />
+    </div>
   );
 };
 

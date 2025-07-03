@@ -8,6 +8,7 @@ import { Montserrat, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/googl
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
+import { AnchorLinkHandler } from '@/components/utils/AnchorLinkHandler';
 import { defaultMetadata } from '@/constants/defaultMetadata';
 import { client } from '@/libs/client';
 import { Theme } from '@/types/microCMS/theme-response';
@@ -94,6 +95,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
             </Link>
           </div>
         )}
+        <AnchorLinkHandler />
       </body>
     </html>
   );

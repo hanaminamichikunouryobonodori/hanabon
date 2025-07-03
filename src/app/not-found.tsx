@@ -10,8 +10,6 @@ import NewsList from '@/components/ui/NewsList';
 import { getNewsList } from '@/libs/microCMS';
 import { NewsListData } from '@/types';
 
-
-
 const NotFound = async () => {
   const data: NewsListData = await getNewsList('home');
 
