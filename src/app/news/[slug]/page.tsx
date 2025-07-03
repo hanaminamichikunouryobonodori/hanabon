@@ -9,7 +9,7 @@ import NewsArticle from './NewsArticle';
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export const revalidate = 60;
@@ -25,7 +25,8 @@ async function getPostData(slug: string) {
   }
 }
 
-export default async function NewsPage({ params }: Props) {
+export default async function NewsPage(props: Props) {
+  const params = await props.params;
   const currentPostData = await getPostData(params.slug);
   if (!currentPostData) {
     return notFound();
@@ -42,7 +43,8 @@ export default async function NewsPage({ params }: Props) {
   return <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const data = await getPostData(params.slug);
 
   if (!data) {
