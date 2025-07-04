@@ -2,6 +2,7 @@ import Hero from '@/app/_components/HeroSection';
 import HomeClient from '@/app/HomeClient';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { client } from '@/libs/client';
 import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { HomePageProps } from '@/types';
 
@@ -10,15 +11,19 @@ import styles from './page.module.scss';
 export const revalidate = 60;
 
 export default async function Home() {
+  const homepageData = await client.getObject<HomePageProps>({
+    endpoint: 'homepage',
+  });
+
   const dataPromises = {
-    hero: getHomeContentById('cet87w1qfnqi'),
-    eventDate: getHomeContentById('av-ykq9lgd'),
-    about: getHomeContentById('6dcij7mdi'),
-    gallery: getHomeContentById('fwutln7-vv65'),
+    hero: getHomeContentById(homepageData.hero.id),
+    eventDate: getHomeContentById(homepageData.eventDate.id),
+    about: getHomeContentById(homepageData.about.id),
+    gallery: getHomeContentById(homepageData.gallery.id),
     news: getNewsList('home'),
-    joinCommittee: getNewsContentById('v10odqxz0'),
-    access: getHomeContentById('1aqvnomonyj'),
-    sponsorship: getHomeContentById('uoln1k6t8q'),
+    joinCommittee: getNewsContentById(homepageData.joinCommittee.id),
+    access: getHomeContentById(homepageData.access.id),
+    sponsorship: getHomeContentById(homepageData.sponsorship.id),
   };
 
   const promiseKeys = Object.keys(dataPromises) as Array<keyof typeof dataPromises>;
