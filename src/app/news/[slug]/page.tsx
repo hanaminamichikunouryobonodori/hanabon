@@ -6,6 +6,7 @@ import { getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { NewsData, NewsListData } from '@/types';
 
 import NewsArticle from './NewsArticle';
+import { JsonLd } from '@/components/common/JsonLd';
 
 export const dynamic = 'force-dynamic';
 
@@ -42,8 +43,27 @@ export default async function NewsPage(props: Props) {
   if (!allPosts.contents || !allPosts.contents.length) {
     throw new Error('記事がありません');
   }
+  const jsonLd = {
+    '@context': 'http://googleusercontent.com/schema.org/',
+    '@type': 'NewsArticle',
+    headline: currentPostData.title,
+    image: [
+      currentPostData.featuredImage?.url || `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP.png`,
+    ],
+    datePublished: currentPostData.publishedAt,
+    dateModified: currentPostData.revisedAt,
+    author: {
+      '@type': 'Organization', // または 'Person'
+      name: '花南地区納涼盆踊り実行委員会',
+    },
+  };
 
-  return <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
+    </>
+  );
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
