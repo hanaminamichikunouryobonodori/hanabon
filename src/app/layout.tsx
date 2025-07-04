@@ -114,6 +114,6 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   ...defaultMetadata,
   verification: {
-    google: 'google2daa6d3b5481defa.html',
+    google: 'oz0FyMC3obhVe117KXxkQEGBHglnZW-EaFi9lUXGUJA',
   },
 };
