@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HiChevronRight, HiHome } from 'react-icons/hi';
 
+import { JsonLd } from '@/components/common/JsonLd';
+
 import styles from './Breadcrumbs.module.scss';
 
 const breadcrumbNameMap: { [key: string]: string } = {
@@ -42,24 +44,38 @@ const Breadcrumbs = ({ title }: Props) => {
     lastItem.label = title;
   }
 
-  return (
-    <nav aria-label='パンくずリスト' className={styles.breadcrumbs}>
-      <ol>
-        {items.map((item, index) => (
-          <li className={styles.breadcrumbItem} key={item.href}>
-            {index < items.length - 1 ? (
-              <Link href={item.href}>{item.label}</Link>
-            ) : (
-              <span aria-current='page'>{item.label}</span>
-            )}
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: typeof item.label === 'string' ? item.label : 'ホーム',
+      item: `https://hanabon.vercel.app${item.href}`,
+    })),
+  };
 
-            {index < items.length - 1 && (
-              <HiChevronRight aria-hidden='true' className={styles.separator} />
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <nav aria-label='パンくずリスト' className={styles.breadcrumbs}>
+        <ol>
+          {items.map((item, index) => (
+            <li className={styles.breadcrumbItem} key={item.href}>
+              {index < items.length - 1 ? (
+                <Link href={item.href}>{item.label}</Link>
+              ) : (
+                <span aria-current='page'>{item.label}</span>
+              )}
+
+              {index < items.length - 1 && (
+                <HiChevronRight aria-hidden='true' className={styles.separator} />
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </>
   );
 };
 

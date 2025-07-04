@@ -11,6 +11,7 @@ import JoinCommitteeSection from '@/app/_components/JoinCommitteeSection';
 import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
+import { JsonLd } from '@/components/common/JsonLd';
 import { HomePageProps } from '@/types';
 
 type Section = {
@@ -39,8 +40,25 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
     },
   ];
 
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: 'https://hanabon.vercel.app/',
+    name: '花南地区納涼盆踊り',
+
+    publisher: {
+      '@type': 'Organization',
+      name: '花南地区納涼盆踊り実行委員会',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://hanabon.vercel.app/images/hanabonLogo.png',
+      },
+    },
+  };
+
   return (
     <>
+      <JsonLd data={jsonLdData} />
       {sections.map((section, index) => {
         const componentData = pages[section.id];
         if (section.id !== 'contact' && !componentData) return null;

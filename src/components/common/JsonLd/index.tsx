@@ -4,6 +4,6 @@ type Props = {
 
 export const JsonLd = ({ data }: Props) => {
   return (
-    <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} type='application/ld+json' />
   );
 };
