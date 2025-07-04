@@ -21,9 +21,7 @@ export default function NewsArticle({ currentPostData, allPosts }: Props) {
     <article className={`l-container l-container--narrow ${styles.container}`}>
       <Breadcrumbs title={currentPostData.title} />
       <h1>{currentPostData.title}</h1>
-      <div>
-        <PublishedDate dateString={currentPostData.publishedAt} />
-      </div>
+      <PublishedDate className='u-flex-right mx-sm' dateString={currentPostData.publishedAt} />
       <div className={styles.featuredImageContainer}>
         <Image
           alt={currentPostData.title}

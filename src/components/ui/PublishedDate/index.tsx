@@ -25,10 +25,12 @@ const PublishedDate = ({ dateString, className, id }: Props) => {
 
   return (
     <p className={className}>
-      <span className='u-inline-flex-center-y'>
-        <FaCalendarAlt className='mr-sm' />
-        <time dateTime={dateString}>{formattedDate}</time>
-      </span>
+      <small>
+        <span className='u-inline-flex-center-y'>
+          <FaCalendarAlt className='mr-sm' />
+          <time dateTime={dateString}>{formattedDate}</time>
+        </span>
+      </small>
     </p>
   );
 };
