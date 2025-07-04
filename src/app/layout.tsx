@@ -111,9 +111,4 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
-export const metadata: Metadata = {
-  ...defaultMetadata,
-  verification: {
-    google: 'oz0FyMC3obhVe117KXxkQEGBHglnZW-EaFi9lUXGUJA',
-  },
-};
+export const metadata: Metadata = defaultMetadata;
