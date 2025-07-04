@@ -1,3 +1,4 @@
+import { convert } from 'html-to-text';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -57,14 +58,40 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const ogpImageUrl = featuredImageUrl
     ? featuredImageUrl
     : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`;
+
+  const textBlocks = data.content
+    .map((block) => {
+      if (block.fieldId === 'rich_text' && block.rich_text) return block.rich_text;
+      if (block.fieldId === 'heading' && block.heading_content) return block.heading_content;
+      if (block.fieldId === 'boxes' && block.box_content) return block.box_content;
+      return '';
+    })
+    .filter((text) => text)
+    .join(' ');
+
+  let description = '';
+  if (textBlocks) {
+    const plainText = convert(textBlocks, {
+      wordwrap: false,
+      selectors: [{ selector: 'a', options: { ignoreHref: true } }], // aタグのURLを非表示に
+    });
+
+    description = plainText.substring(0, 120).replace(/\s+$/, '') + '...';
+  } else {
+    description = data.title;
+  }
+
   return {
     title: `${data.title} | ${process.env.SITE_NAME}`,
+    description: description,
     twitter: {
       title: `${data.title} | ${process.env.SITE_NAME}`,
       images: [ogpImageUrl],
+      description: description,
     },
     openGraph: {
       type: 'article',
+      description: description,
       url: process.env.NEXT_PUBLIC_DOMAIN,
       title: `${data.title} | ${process.env.SITE_NAME}`,
       images: [
