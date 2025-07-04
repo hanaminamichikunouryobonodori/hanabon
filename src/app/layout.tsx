@@ -1,7 +1,7 @@
 import '@/styles/main.scss';
 import type { ReactNode } from 'react';
 
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/google';
@@ -20,7 +20,6 @@ export type Props = {
 };
 
 const isProduction = process.env.NODE_ENV === 'production';
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const montserrat = Montserrat({
   weight: ['400', '700'],
@@ -61,6 +60,10 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
   const theme = await getTheme();
   const { mainColor, subColor } = theme;
   const { isEnabled } = await draftMode();
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  if (!gtmId) {
+    throw new Error('GTM_ID is not defined');
+  }
 
   return (
     <html lang='ja'>
@@ -71,7 +74,6 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
         <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
         {children}
         <SpeedInsights />
-        {isProduction && gaId && <GoogleAnalytics gaId={gaId} />}
         {isEnabled && (
           <div
             style={{
@@ -97,6 +99,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
         )}
         <AnchorLinkHandler />
       </body>
+      {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}
     </html>
   );
 };
