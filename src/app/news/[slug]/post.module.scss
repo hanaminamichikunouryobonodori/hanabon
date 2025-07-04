@@ -26,6 +26,9 @@
       background-color: var(--foreground);
       transform: translate(-50%);
     }
+    @media (max-width: var.$breakpoint-md) {
+      font-size: inherit;
+    }
   }
 
   @media (max-width: var.$breakpoint-md) {
@@ -81,6 +84,15 @@
   h5,
   h6 {
     margin-block-end: var.$spacing-sm;
+  }
+  @media (max-width: var.$breakpoint-md) {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+    }
   }
   ul,
   ol,
