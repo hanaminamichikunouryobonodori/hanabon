@@ -3,6 +3,8 @@
 import { createContext, useState, type ReactNode, useCallback } from 'react';
 
 import Lightbox, { Slide } from 'yet-another-react-lightbox';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
+
 import 'yet-another-react-lightbox/styles.css';
 
 type LightboxContextType = {
@@ -43,6 +45,7 @@ export const LightboxProvider = ({ children }: { children: ReactNode }) => {
         }}
         index={index}
         open={open}
+        plugins={[Zoom]}
         render={{
           buttonPrev: slides.length <= 1 ? () => null : undefined,
           buttonNext: slides.length <= 1 ? () => null : undefined,
