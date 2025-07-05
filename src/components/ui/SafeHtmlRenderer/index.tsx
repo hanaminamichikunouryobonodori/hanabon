@@ -1,10 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import eventDateStyles from '@/app/_components/EventDateSection/eventDate.module.scss';
+import { LightboxContext } from '@/contexts/LightboxContext';
 
 import style from './microCMS.module.scss';
 
@@ -15,9 +17,11 @@ interface Props {
 }
 
 const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
+  const { openLightbox } = useContext(LightboxContext);
   if (!htmlContent) {
     return null;
   }
+
   const options: HTMLReactParserOptions = {
     replace: (domNode) => {
       if (!(domNode instanceof Element)) return;
@@ -34,6 +38,36 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         if (href) {
           return <Link href={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>;
         }
+      }
+      if (domNode.name === 'img') {
+        const { src, alt, width, height } = domNode.attribs;
+        const parent = domNode.parent;
+        const isLinked = parent instanceof Element && parent.name === 'a';
+
+        const imageComponent = (
+          <Image
+            alt={alt || ''}
+            height={Number(height) || 300}
+            src={src || ''}
+            style={{ width: '100%', height: 'auto' }}
+            width={Number(width) || 400}
+          />
+        );
+
+        if (!isLinked) {
+          return (
+            <button
+              aria-label='画像を拡大表示'
+              className='c-reset-button'
+              onClick={() => openLightbox([{ src: src || '' }])}
+            >
+              {imageComponent}
+            </button>
+          );
+        }
+
+        // リンク付き画像ならそのまま表示
+        return imageComponent;
       }
       if (domNode.name === 'table') {
         return (

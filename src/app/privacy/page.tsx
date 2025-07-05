@@ -1,19 +1,13 @@
-import styles from '@/app/news/[slug]/post.module.scss';
-import ContentRenderer from '@/components/common/ContentRenderer';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { getHomeContentById } from '@/libs/microCMS';
 
-const PrivacyPolicy = async () => {
-  const data = await getHomeContentById('a37ykm12l');
+import PrivacyClient from './PrivacyClient';
 
-  return (
-    <article className={`${styles.container} l-container l-container--narrow`} id='policy'>
-      <Breadcrumbs />
-      <h1>プライバシーポリシー</h1>
-      <ContentRenderer className={styles.content} content={data.content} />
-      <Breadcrumbs />
-    </article>
-  );
+export const metadata = {
+  title: 'プライバシーポリシー',
 };
 
-export default PrivacyPolicy;
+export default async function PrivacyPage() {
+  const data = await getHomeContentById('a37ykm12l');
+
+  return <PrivacyClient data={data} />;
+}

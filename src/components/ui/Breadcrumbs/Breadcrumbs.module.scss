@@ -58,6 +58,6 @@
 .separator {
   flex-shrink: 0;
   margin-inline: 0.5em;
-  color:color-mix(in srgb, var(--foreground) 70%, var(--background) 5%);
-  transform:translateY(1px);
+  color: color-mix(in srgb, var(--foreground) 70%, var(--background) 5%);
+  transform: translateY(1px);
 }

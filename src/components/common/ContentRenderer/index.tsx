@@ -1,15 +1,18 @@
-import React, { JSX } from 'react';
+import React, { JSX, useContext } from 'react';
 
 import Image from 'next/image';
 
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
+import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
 
 type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
 type NewsContentBlock = NonNullable<news<'get'>['content']>[number];
+type InferredMediaType = NonNullable<news<'get'>['featuredImage']>;
+type ImageContentType = InferredMediaType & { alt?: string };
 
 type Props = {
   content: PagesContentBlock[] | NewsContentBlock[];
@@ -28,6 +31,8 @@ const sizeMap = {
 type JapaneseSize = keyof typeof sizeMap;
 
 const ContentRenderer = ({ content, id, className }: Props) => {
+  const { openLightbox } = useContext(LightboxContext);
+
   if (!content) {
     return null;
   }
@@ -59,18 +64,28 @@ const ContentRenderer = ({ content, id, className }: Props) => {
           }
 
           // 2. 画像
-          case 'image':
-            return block.image_content ? (
+          case 'image': {
+            if (!block.image_content) return null;
+            const imageContent = block.image_content as ImageContentType;
+            return (
               <figure key={key}>
-                <Image
-                  alt=''
-                  className='u-responsive-image u-image-rounded-md'
-                  height={block.image_content.height}
-                  src={block.image_content.url}
-                  width={block.image_content.width}
-                />
+                <button
+                  aria-label='画像を拡大表示'
+                  className='c-reset-button'
+                  onClick={() => openLightbox([{ src: imageContent.url }])}
+                >
+                  <Image
+                    alt={imageContent.alt || ''}
+                    className='u-responsive-image u-image-rounded-md'
+                    height={imageContent.height}
+                    onClick={() => openLightbox([{ src: imageContent.url }])}
+                    src={imageContent.url}
+                    width={imageContent.width}
+                  />
+                </button>
               </figure>
-            ) : null;
+            );
+          }
 
           // 3. ギャラリー
           case 'gallery': {

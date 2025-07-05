@@ -8,8 +8,10 @@ import { Montserrat, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/googl
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AnchorLinkHandler } from '@/components/utils/AnchorLinkHandler';
 import { defaultMetadata } from '@/constants/defaultMetadata';
+import { LightboxProvider } from '@/contexts/LightboxContext';
 import { client } from '@/libs/client';
 import { Theme } from '@/types/microCMS/theme-response';
 
@@ -66,37 +68,41 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
   }
 
   return (
-    <html lang='ja'>
+    <html lang='ja' suppressHydrationWarning>
       <body
         className={`${montserrat.variable} ${ZenKakuGothic.variable} ${ZenOldMincho.variable}`}
-        id='outerContainer'
+        id='top'
       >
-        <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
-        {children}
+        <ThemeProvider>
+          <LightboxProvider>
+            <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
+            {children}
+            {isEnabled && (
+              <div
+                style={{
+                  position: 'fixed',
+                  bottom: 0,
+                  left: 0,
+                  width: '100%',
+                  background: 'black',
+                  color: 'white',
+                  padding: '1rem',
+                  textAlign: 'center',
+                  zIndex: 9999,
+                }}
+              >
+                現在プレビューモードで表示しています。{' '}
+                <Link
+                  href='/api/disable-preview'
+                  style={{ color: 'cyan', textDecoration: 'underline' }}
+                >
+                  プレビューを終了
+                </Link>
+              </div>
+            )}
+          </LightboxProvider>
+        </ThemeProvider>
         <SpeedInsights />
-        {isEnabled && (
-          <div
-            style={{
-              position: 'fixed',
-              bottom: 0,
-              left: 0,
-              width: '100%',
-              background: 'black',
-              color: 'white',
-              padding: '1rem',
-              textAlign: 'center',
-              zIndex: 9999,
-            }}
-          >
-            現在プレビューモードで表示しています。{' '}
-            <Link
-              href='/api/disable-preview'
-              style={{ color: 'cyan', textDecoration: 'underline' }}
-            >
-              プレビューを終了
-            </Link>
-          </div>
-        )}
         <AnchorLinkHandler />
       </body>
       {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}

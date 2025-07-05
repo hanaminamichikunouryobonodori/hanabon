@@ -1,11 +1,9 @@
-import { NextPage } from 'next';
+import type { ReactNode } from 'react';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 
-import { Props } from '../layout';
-
-const PrivacyLayout: NextPage<Props> = async ({ children }) => {
+export default function PrivacyLayout({ children }: { children: ReactNode }) {
   return (
     <main>
       <Header />
@@ -13,6 +11,4 @@ const PrivacyLayout: NextPage<Props> = async ({ children }) => {
       <Footer />
     </main>
   );
-};
-
-export default PrivacyLayout;
+}
