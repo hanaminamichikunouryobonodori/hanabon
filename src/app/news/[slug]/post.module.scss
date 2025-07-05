@@ -66,7 +66,7 @@
     padding: 0.7em 0.9em;
     margin-block: var.$spacing-lg;
     color: var(--foreground);
-    background-color: var(--background);
+    background-color: color-mix(in srgb, var(--background) 70%, var(--main-color) 5%);
     border-bottom: 3px solid var(--line-color);
     border-left: var.$border-radius-md solid var(--main-color);
   }
@@ -78,12 +78,23 @@
     width: 100%;
     padding: 0.2em 0.5em 0.4em;
     color: var(--foreground);
-    background-color: var(--background);
+    background-color: color-mix(in srgb, var(--background) 70%, var(--main-color) 5%);
     border-bottom: 3px solid var(--main-color);
+  }
+  h4 {
+    width: 100%;
+    padding: 0.3rem 0;
+    background-image: linear-gradient(90deg, var(--main-color) 0 50%, color-mix(in srgb, var(--background) 70%, var(--main-color) 5%) 20%);
+    background-repeat: no-repeat;
+    background-size: 100% 10%;
+    background-position: bottom;
   }
   h5,
   h6 {
     margin-block-end: var.$spacing-sm;
+  }
+  h5{
+    border-bottom: 3px solid var(--main-color);
   }
   @media (max-width: var.$breakpoint-md) {
     h2,
