@@ -42,6 +42,7 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
               priority={index === 0}
               sizes='100vw'
               src={imageUrl}
+              style={{ objectFit: 'cover' }}
             />
           </SwiperSlide>
         ))}
