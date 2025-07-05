@@ -2,6 +2,7 @@ import { convert } from 'html-to-text';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { FadeInComponent } from '@/components/animations/FadeIn';
 import { getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { NewsData, NewsListData } from '@/types';
 
@@ -43,7 +44,11 @@ export default async function NewsPage(props: Props) {
     throw new Error('記事がありません');
   }
 
-  return <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
+  return (
+    <FadeInComponent>
+      <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />
+    </FadeInComponent>
+  );
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
