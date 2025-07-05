@@ -12,12 +12,12 @@ type Props = {
 
 export default function PrivacyClient({ data }: Props) {
   return (
-    <FadeInComponent>
-      <article className={`${styles.container} l-container l-container--narrow`} id='policy'>
+    <article className={`${styles.container} l-container l-container--narrow`} id='policy'>
+      <FadeInComponent>
         <Breadcrumbs />
         <h1>{data.title}</h1>
         <ContentRenderer className={styles.content} content={data.content} />
-      </article>
-    </FadeInComponent>
+      </FadeInComponent>
+    </article>
   );
 }

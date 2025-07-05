@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
-import { menuItems, footerLinks, newsCategories } from '@/libs/navigation';
+import { menuItems, footerLinks } from '@/libs/navigation';
 
 import styles from './footer.module.scss';
 
@@ -29,13 +29,11 @@ export const Footer = () => {
           <div className={styles.contentWrapper}>
             <h4 className={styles.sitemapTitle}>記事</h4>
             <ul className={styles.sitemapList}>
-              {newsCategories.map((link) => (
-                <li key={link.to}>
-                  <Link className={styles.sitemapLink} href={link.to}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link className={styles.sitemapLink} href='/news'>
+                  お知らせ一覧
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
