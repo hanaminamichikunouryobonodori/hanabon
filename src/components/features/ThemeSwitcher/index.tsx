@@ -7,9 +7,10 @@ import { HiSun, HiMoon } from 'react-icons/hi2';
 
 interface ThemeSwitcherProps {
   className?: string;
+  onClick?: () => void;
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className, onClick }) => {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -30,6 +31,9 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
   const toggleTheme = () => {
     const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
     handleThemeChange(newTheme);
+    if (onClick) {
+      onClick();
+    }
   };
 
   if (!mounted) {

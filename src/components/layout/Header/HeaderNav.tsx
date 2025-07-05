@@ -93,7 +93,7 @@ const HeaderNav = () => {
         <ul className={styles.navList}>
           {menuList}
           <li>
-            <ThemeSwitcher className={styles.navLink} />
+            <ThemeSwitcher className={styles.navLink} onClick={closeMenu} />
           </li>
         </ul>
       </nav>
