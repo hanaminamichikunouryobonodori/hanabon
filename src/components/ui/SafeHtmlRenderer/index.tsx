@@ -1,9 +1,11 @@
 'use client';
 import React, { useContext } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import eventDateStyles from '@/app/_components/EventDateSection/eventDate.module.scss';
 import { LightboxContext } from '@/contexts/LightboxContext';
@@ -17,6 +19,7 @@ interface Props {
 }
 
 const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
+  const pathname = usePathname();
   const { openLightbox } = useContext(LightboxContext);
   if (!htmlContent) {
     return null;
@@ -28,6 +31,9 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
 
       if (domNode.name === 'a') {
         const { href, target } = domNode.attribs;
+
+        if (!href) return <>{domToReact(domNode.children as DOMNode[], options)}</>;
+
         if (target === '_blank') {
           return (
             <a href={href} rel='noopener noreferrer' target='_blank'>
@@ -35,9 +41,32 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
             </a>
           );
         }
-        if (href) {
-          return <Link href={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>;
+
+        if (href.startsWith('/#')) {
+          const targetId = href.substring(2);
+          if (pathname === '/') {
+            return (
+              <ScrollLink
+                duration={500}
+                offset={-80}
+                smooth={true}
+                style={{ cursor: 'pointer' }}
+                to={targetId}
+              >
+                {domToReact(domNode.children as DOMNode[], options)}
+              </ScrollLink>
+            );
+          }
+          // 別のページにいる場合 -> ホームページに遷移してからスクロール
+          else {
+            return (
+              <Link href={href} scroll={false}>
+                {domToReact(domNode.children as DOMNode[], options)}
+              </Link>
+            );
+          }
         }
+        return <Link href={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>;
       }
       if (domNode.name === 'img') {
         const { src, alt, width, height } = domNode.attribs;

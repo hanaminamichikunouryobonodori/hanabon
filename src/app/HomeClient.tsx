@@ -1,6 +1,7 @@
 'use client';
 
-import { JSX } from 'react';
+import { JSX, useEffect, useState } from 'react';
+import { scroller } from 'react-scroll';
 
 import AboutSection from '@/app/_components/AboutSection';
 import AccessSection from '@/app/_components/AccessSection';
@@ -12,6 +13,7 @@ import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import { JsonLd } from '@/components/common/JsonLd';
+import LoadingScreen from '@/components/ui/LoadingScreen';
 import { HomePageProps } from '@/types';
 
 type Section = {
@@ -20,6 +22,34 @@ type Section = {
 };
 
 const HomeClient = ({ pages }: { pages: HomePageProps }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          scroller.scrollTo(targetId, {
+            duration: 800,
+            smooth: 'easeInOutQuad',
+          });
+        }
+      }, 100);
+    }
+  }, [isLoading]);
+
   const sections: Section[] = [
     { id: 'eventDate', component: <EventDateSection data={pages.eventDate} /> },
     {
@@ -55,6 +85,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       },
     },
   };
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <>
