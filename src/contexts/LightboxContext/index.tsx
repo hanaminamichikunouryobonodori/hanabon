@@ -53,6 +53,7 @@ export const LightboxProvider = ({ children }: { children: ReactNode }) => {
         slides={slides}
         styles={{
           container: { backgroundColor: 'rgba(0, 0, 0, 0.8)' },
+          toolbar: { top: '4rem' },
         }}
       />
     </LightboxContext.Provider>
