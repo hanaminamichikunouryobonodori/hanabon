@@ -50,3 +50,12 @@
     }
   }
 }
+html[data-theme='dark'] {
+  .program {
+    table {
+      tr {
+        background-color: inherit;
+      }
+    }
+  }
+}

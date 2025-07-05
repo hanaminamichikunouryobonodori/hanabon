@@ -38,7 +38,7 @@ export default async function Home() {
   };
 
   return (
-    <main className={styles.root} id='top'>
+    <main className={styles.root}>
       <Hero data={pages.hero} />
       <Header />
       <HomeClient pages={pages} />

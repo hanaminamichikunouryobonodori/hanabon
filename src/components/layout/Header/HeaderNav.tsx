@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { ThemeSwitcher } from '@/components/features/ThemeSwitcher';
 import { menuItems } from '@/libs/navigation';
 
 import styles from './header.module.scss';
@@ -89,7 +90,12 @@ const HeaderNav = () => {
           <span></span>
         </button>
         {/* ナビゲーションリスト */}
-        <ul className={styles.navList}>{menuList}</ul>
+        <ul className={styles.navList}>
+          {menuList}
+          <li>
+            <ThemeSwitcher className={styles.navLink} />
+          </li>
+        </ul>
       </nav>
     </>
   );

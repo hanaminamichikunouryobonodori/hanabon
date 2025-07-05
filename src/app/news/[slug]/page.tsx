@@ -43,11 +43,7 @@ export default async function NewsPage(props: Props) {
     throw new Error('記事がありません');
   }
 
-  return (
-    <>
-      <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
-    </>
-  );
+  return <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

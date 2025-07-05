@@ -23,30 +23,30 @@
   // エラー (Error) - 赤系
   --color-red: #dc3545; // 濃い赤
   --color-red-bg: #f8d7da; // 薄い赤
+}
 
-  // --- ダークモードの定義 ---
-  @media (prefers-color-scheme: dark) {
-    --background: #1a1a1a;
-    --background-secondary: #0a0a0a;
-    --foreground: #ededed;
-    --lineColor: #444;
-    --main-color: color-mix(in srgb, var(--main-color-base) 85%, black 30%);
-    --sub-color: color-mix(in srgb, var(--sub-color-base) 85%, black 30%);
-    // 情報 (Info) - 青系
-    --color-blue: #58a6ff; // 明るい青
-    --color-blue-bg: #1f2c3d; // 暗い青の背景
-    // 警告 (Warning) - 黄色系
-    --color-yellow: #e7b621; // 明るい黄色
-    --color-yellow-bg: #3a2e0c; // 暗い黄色の背景
-    --color-yellow-text: #f0e6d2; // 暗い背景でも読みやすい黄色系の文字
-    // 質問 (Question) - ピンク系
-    --color-pink: #f781c1; // 明るいピンク
-    --color-pink-bg: #3c192b; // 暗いピンクの背景
-    // 成功 (Success) - 緑系
-    --color-green: #56d364; // 明るい緑
-    --color-green-bg: #1c3d2e; // 暗い緑の背景
-    // エラー (Error) - 赤系
-    --color-red: #f87171; // 明るい赤
-    --color-red-bg: #4d1c23; // 暗い赤の背景
-  }
+// --- ダークモードの定義 ---
+html[data-theme='dark'] {
+  --background: #1a1a1a;
+  --background-secondary: #0a0a0a;
+  --foreground: #ededed;
+  --lineColor: #444;
+  --main-color: color-mix(in srgb, var(--main-color-base) 85%, black 30%);
+  --sub-color: color-mix(in srgb, var(--sub-color-base) 85%, black 30%);
+  // 情報 (Info) - 青系
+  --color-blue: #58a6ff; // 明るい青
+  --color-blue-bg: #1f2c3d; // 暗い青の背景
+  // 警告 (Warning) - 黄色系
+  --color-yellow: #e7b621; // 明るい黄色
+  --color-yellow-bg: #3a2e0c; // 暗い黄色の背景
+  --color-yellow-text: #f0e6d2; // 暗い背景でも読みやすい黄色系の文字
+  // 質問 (Question) - ピンク系
+  --color-pink: #f781c1; // 明るいピンク
+  --color-pink-bg: #3c192b; // 暗いピンクの背景
+  // 成功 (Success) - 緑系
+  --color-green: #56d364; // 明るい緑
+  --color-green-bg: #1c3d2e; // 暗い緑の背景
+  // エラー (Error) - 赤系
+  --color-red: #f87171; // 明るい赤
+  --color-red-bg: #4d1c23; // 暗い赤の背景
 }
