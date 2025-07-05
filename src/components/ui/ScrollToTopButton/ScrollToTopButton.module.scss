@@ -1,0 +1,38 @@
+@use 'styles/abstracts/variables' as var;
+
+.button {
+  position: absolute;
+  top: calc(-1 * (var.$spacing-xl - 1rem));
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: -2rem;
+  font-size: 2rem;
+  font-weight: var.$font-weight-black;
+  color: var(--foreground);
+  cursor: pointer;
+  background-color: var(--background);
+  border: 0;
+  border-radius: 0 20px 0 0;
+  transform: rotate(-45deg);
+  transition: all 0.2s ease-out;
+  svg {
+    transform: rotate(45deg);
+  }
+  @media (max-width: var.$breakpoint-lg) {
+    right: 50%;
+    transform: translateX(50%) rotate(-45deg);
+    svg {
+      transform: rotate(45deg);
+    }
+  }
+  @media (hover: hover) {
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+}

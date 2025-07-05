@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 import { menuItems, footerLinks, newsCategories } from '@/libs/navigation';
 
 import styles from './footer.module.scss';
@@ -55,10 +56,11 @@ export const Footer = () => {
         </div>
       </div>
       <div className={styles.copyright}>
-        <p>
+        <p className={styles.copyrightText}>
           Copyright © 2019 - {year} <Link href=''>花南地区納涼盆踊り</Link> – by
           花南地区納涼盆踊り実行委員会
         </p>
+        <ScrollToTopButton />
       </div>
     </footer>
   );

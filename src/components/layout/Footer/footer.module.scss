@@ -8,7 +8,8 @@
 
 .container {
   max-width: var.$breakpoint-lg;
-  margin: 1.5rem auto;
+  margin: var.$spacing-xl auto;
+
 }
 
 .sitemap,
@@ -53,13 +54,18 @@
 }
 
 .copyright {
+  position: relative;
+  z-index: 5;
   width: 100%;
-  padding-block: var.$spacing-lg;
+  padding-block: var.$spacing-xl;
   font-size: 0.8rem;
   text-align: center;
   background-color: var(--background);
-  border-top: 1px solid var(--lineColor);
   opacity: 0.8;
+  .copyrightText {
+    position: relative;
+    z-index: 100;
+  }
   a {
     color: var(--foreground);
     &:visited {
