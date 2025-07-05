@@ -38,9 +38,12 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
 
   return (
     <button
-      aria-label={resolvedTheme === 'dark' ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
+      aria-label={
+        resolvedTheme === 'dark' ? 'ライトモードに切り替える' : 'ダークモードに切り替える'
+      }
       className={`${className} c-button c-button--icon`}
       onClick={toggleTheme}
+      title={resolvedTheme === 'dark' ? 'ライトモードに切り替える' : 'ダークモードに切り替える'}
     >
       {resolvedTheme === 'dark' ? <HiMoon /> : <HiSun />}
     </button>

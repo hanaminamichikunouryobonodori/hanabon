@@ -16,7 +16,12 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <button aria-label='ページのトップに戻る' className={styles.button} onClick={scrollToTop}>
+    <button
+      aria-label='ページのトップに戻る'
+      title='ページのトップに戻る'
+      className={styles.button}
+      onClick={scrollToTop}
+    >
       <HiChevronDoubleUp />
     </button>
   );

@@ -13,7 +13,7 @@
   padding-inline: var.$spacing-md;
   background-color: rgb(247 247 247 / 70%);
   border-bottom: 1px var(--lineColor) solid;
-  border-bottom: 2px solid transparent; // ★ホバー時にガタつかないように、透明なボーダーを予め設定
+  border-bottom: 2px solid transparent;
   backdrop-filter: blur(2px);
   transform: translateZ(0);
   transition:
@@ -111,6 +111,7 @@
 
   .navLink {
     font-size: 1.2rem;
+    color: inherit;
   }
 
   .hamburger {
