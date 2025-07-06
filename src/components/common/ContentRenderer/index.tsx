@@ -143,7 +143,7 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             );
           }
 
-          // 6. グリッドコンテンツ
+          // 6. グリッドコンテンツ【再帰ポイント】
           case 'grid_container': {
             if (!block.grid_content) return null;
             const gridTypeMap = {
