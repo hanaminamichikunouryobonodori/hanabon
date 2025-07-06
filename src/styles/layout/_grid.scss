@@ -41,9 +41,9 @@
   &--3-7 {
     grid-template-columns: 3fr 7fr;
   }
-  
+
   &--7-3 {
-    grid-template-columns: 7frr 3fr;
+    grid-template-columns: 7fr 3fr;
   }
 
   @media (max-width: var.$breakpoint-lg) {
