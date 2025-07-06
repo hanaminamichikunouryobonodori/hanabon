@@ -10,20 +10,27 @@ import styles from './page.module.scss';
 
 export const revalidate = 60;
 
-export default async function Home() {
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function Home(props: Props) {
+  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
+
   const homepageData = await client.getObject<HomePageProps>({
     endpoint: 'homepage',
+    queries: { draftKey: draftKey },
   });
 
   const dataPromises = {
-    hero: getHomeContentById(homepageData.hero.id),
-    eventDate: getHomeContentById(homepageData.eventDate.id),
-    about: getHomeContentById(homepageData.about.id),
-    gallery: getHomeContentById(homepageData.gallery.id),
+    hero: getHomeContentById(homepageData.hero.id, draftKey),
+    eventDate: getHomeContentById(homepageData.eventDate.id, draftKey),
+    about: getHomeContentById(homepageData.about.id, draftKey),
+    gallery: getHomeContentById(homepageData.gallery.id, draftKey),
     news: getNewsList('home'),
-    joinCommittee: getNewsContentById(homepageData.joinCommittee.id),
-    access: getHomeContentById(homepageData.access.id),
-    sponsorship: getHomeContentById(homepageData.sponsorship.id),
+    joinCommittee: getNewsContentById(homepageData.joinCommittee.id, draftKey),
+    access: getHomeContentById(homepageData.access.id, draftKey),
+    sponsorship: getHomeContentById(homepageData.sponsorship.id, draftKey),
   };
 
   const promiseKeys = Object.keys(dataPromises) as Array<keyof typeof dataPromises>;
