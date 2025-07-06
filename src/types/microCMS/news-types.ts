@@ -1,4 +1,3 @@
-type Reference<T, R> = T extends 'get' ? R : string | null;
 interface GetsType<T> {
   contents: T[];
   totalCount: number;
@@ -169,24 +168,7 @@ interface news_divider {
   /**
    * 線の種類
    */
-  divider_style?: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション(2色)' | '斜線(2色)'];
-  /**
-   * 線の色
-   */
-  divider_color?: (
-    | '灰色'
-    | 'メインカラー'
-    | 'セカンダリーカラー'
-    | '赤'
-    | '青'
-    | '黄'
-    | '緑'
-    | 'ピンク'
-  )[];
-  /**
-   * 線の太さ
-   */
-  divider_width?: string;
+  divider_style: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション' | '斜線'];
 }
 
 export interface EndPoints {

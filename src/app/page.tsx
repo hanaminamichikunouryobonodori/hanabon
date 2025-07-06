@@ -1,5 +1,3 @@
-import { get } from 'http';
-
 import Hero from '@/app/_components/HeroSection';
 import HomeClient from '@/app/HomeClient';
 import { Footer } from '@/components/layout/Footer';

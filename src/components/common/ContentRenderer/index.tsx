@@ -212,6 +212,28 @@ const ContentRenderer = ({ content, className }: Props) => {
             );
           }
 
+          // 10.　区切り線
+          case 'divider': {
+            const styleMap = {
+              実線: '',
+              破線: 'dashed',
+              点線: 'dotted',
+              二重線: 'double',
+              グラデーション: 'gradient',
+              斜線: 'stripes',
+            };
+
+            const styleType = block.divider_style?.[0] || '実線';
+            const modifier = styleMap[styleType] || '';
+            const dividerClass = modifier ? `c-divider c-divider--${modifier}` : '';
+
+            return (
+              <div className='l-container--full' key={key}>
+                <hr aria-hidden='true' className={dividerClass} />
+              </div>
+            );
+          }
+
           default:
             return null;
         }

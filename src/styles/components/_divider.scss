@@ -1,0 +1,65 @@
+@use 'styles/abstracts/variables' as var;
+
+.c-divider {
+  &--dashed {
+    border-color: var(--main-color);
+    border-style: dashed;
+    border-width: 1px 0 0 0;
+  }
+  &--dotted {
+    border-color: var(--sub-color);
+    border-style: dotted;
+    border-width: 1px 0 0 0;
+  }
+  &--double {
+    border-color: var(--main-color);
+    border-style: double;
+    border-width: 3px 0 0 0;
+  }
+  &--stripes {
+    height: 3px;
+    background-color: var(--main-color);
+    background-image: -webkit-linear-gradient(
+      135deg,
+      var(--sub-color) 0px,
+      var(--sub-color) 2px,
+      transparent 2px,
+      transparent 4px,
+      var(--sub-color) 4px,
+      var(--sub-color) 6px,
+      transparent 6px,
+      transparent
+    );
+    background-image: linear-gradient(
+      -45deg,
+      var(--sub-color) 0px,
+      var(--sub-color) 2px,
+      transparent 2px,
+      transparent 4px,
+      var(--sub-color) 4px,
+      var(--sub-color) 6px,
+      transparent 6px,
+      transparent
+    );
+    background-size: 6px 6px;
+    border-width: 0;
+  }
+  &--gradient {
+    position: relative;
+    height: 1px;
+    background-color: var(--sub-color);
+    background-image: -webkit-linear-gradient(
+      left,
+      var(--sub-color) 0%,
+      var(--main-color) 50%,
+      var(--sub-color) 100%
+    );
+    background-image: linear-gradient(
+      90deg,
+      var(--sub-color) 0%,
+      var(--main-color) 50%,
+      var(--sub-color) 100%
+    );
+    border-width: 0;
+  }
+}

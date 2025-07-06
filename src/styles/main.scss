@@ -16,8 +16,9 @@
 // 4. 具体的なUIパーツ
 @use 'components/boxes';
 @use 'components/button';
-@use 'components/card';
+@use 'components/divider';
 @use 'components/forms';
+@use 'components/card';
 @use 'components/minchoheading';
 
 // 5. ユーティリティ（他のスタイルを上書きできるように最後に）
