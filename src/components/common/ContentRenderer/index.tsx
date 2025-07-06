@@ -2,6 +2,7 @@ import React, { JSX, useContext } from 'react';
 
 import Image from 'next/image';
 
+import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
@@ -30,7 +31,7 @@ const sizeMap = {
 
 type JapaneseSize = keyof typeof sizeMap;
 
-const ContentRenderer = ({ content, id, className }: Props) => {
+const ContentRenderer = ({ content, className }: Props) => {
   const { openLightbox } = useContext(LightboxContext);
 
   if (!content) {
@@ -108,13 +109,15 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             const boxClass =
               block.box_class?.[0] === '付箋ボックス'
                 ? 'c-sticky-box'
-                : block.box_class?.[0] === 'インフォ'
-                  ? 'c-info-box'
-                  : block.box_class?.[0] === 'Q&A'
-                    ? 'c-question-box'
-                    : block.box_class?.[0] === '注意・警告'
-                      ? 'c-alert-box'
-                      : 'c-simple-box'; // デフォルトはシンプルボックス
+                : block.box_class?.[0] === '塗りつぶしボックス'
+                  ? 'c-fill-box'
+                  : block.box_class?.[0] === 'インフォ'
+                    ? 'c-info-box'
+                    : block.box_class?.[0] === 'Q&A'
+                      ? 'c-question-box'
+                      : block.box_class?.[0] === '注意・警告'
+                        ? 'c-alert-box'
+                        : 'c-simple-box'; // デフォルトはシンプルボックス
             return (
               <React.Fragment key={key}>
                 <SafeHtmlRenderer className={boxClass} htmlContent={block.box_content} />
@@ -122,28 +125,21 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             );
           }
 
-          // 5. 2カラムブロック【再帰ポイント】
+          // 5. 2カラムブロック
           case 'two_column_block': {
-            const isSponsorshipBlock = id === 'sponsorship';
             return (
               <div className='l-grid l-grid--half' key={key}>
                 <>
-                  <ContentRenderer
-                    className={isSponsorshipBlock ? 'c-filled-block is-primary' : ''}
-                    content={block.column_left}
-                  />
+                  <ContentRenderer content={block.column_left} />
                 </>
                 <>
-                  <ContentRenderer
-                    className={isSponsorshipBlock ? 'c-filled-block is-secondary' : ''}
-                    content={block.column_right}
-                  />
+                  <ContentRenderer content={block.column_right} />
                 </>
               </div>
             );
           }
 
-          // 6. グリッドコンテンツ【再帰ポイント】
+          // 6. グリッドコンテンツ
           case 'grid_container': {
             if (!block.grid_content) return null;
             const gridTypeMap = {
@@ -197,6 +193,23 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             const spacerClass = `mt-${sizeKey}`;
 
             return <div aria-hidden='true' className={spacerClass} key={key} />;
+          }
+
+          // 9. カード
+          case 'card': {
+            const cardData = {
+              title: block.card_title,
+              image: block.card_image,
+              description: block.card_description,
+              link: block.card_link,
+              buttonText: block.card_button_text,
+            };
+            if (!cardData) return null;
+            return (
+              <React.Fragment key={key}>
+                <CardComponent {...cardData} />
+              </React.Fragment>
+            );
           }
 
           default:

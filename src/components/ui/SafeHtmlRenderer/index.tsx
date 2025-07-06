@@ -76,11 +76,11 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         const imageComponent = (
           <Image
             alt={alt || ''}
+            className='u-responsive-image u-image-rounded-md'
             height={Number(height) || 300}
             src={src || ''}
             style={{ width: '100%', height: 'auto' }}
             width={Number(width) || 400}
-            className='u-responsive-image u-image-rounded-md'
           />
         );
 

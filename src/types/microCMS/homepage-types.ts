@@ -31,9 +31,9 @@ export type homepage<T = 'get'> = Structure<
     /**
      * どんなお祭り？セクション
      */
-    about: Reference<T, unknown>;
+    about: Reference<T, unknown>[];
     /**
-     * ギャラリーセクション
+     * お祭りの様子セクション
      */
     gallery: Reference<T, unknown>;
     /**

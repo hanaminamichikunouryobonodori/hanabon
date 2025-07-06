@@ -10,10 +10,6 @@
     margin-block-end: var.$spacing-lg;
     font-size: 1.2rem;
   }
-  hr {
-    margin-block: var.$spacing-lg;
-    border: none;
-  }
   @media screen and (max-width: var.$breakpoint-lg) {
     line-height: 1;
     p {

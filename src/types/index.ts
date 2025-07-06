@@ -8,7 +8,7 @@ export type NewsData = news<'get'>;
 export type HomePageProps = {
   hero: PageData;
   eventDate: PageData;
-  about: PageData;
+  about: PageData[];
   gallery: PageData;
   news: NewsListData;
   joinCommittee: NewsData;

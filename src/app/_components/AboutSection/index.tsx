@@ -4,14 +4,29 @@ import { PageData } from '@/types';
 
 import styles from './about.module.scss';
 
-const AboutSection = ({ data }: { data: PageData }) => {
+interface AboutSectionProps {
+  data: PageData[];
+}
+
+const AboutSection = ({ data }: AboutSectionProps) => {
+  if (!Array.isArray(data)) {
+    return null;
+  }
   return (
-    <div className={styles.container}>
-      <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>
-      <div className='u-text-subtle'>
-        <ContentRenderer content={data.content} />
-      </div>
-    </div>
+    <>
+      {data.map((section) => {
+        const isAbout = section.title === 'どんなお祭り？';
+        return (
+          <div className={styles.container} key={section.id}>
+            <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
+            <ContentRenderer
+              className={`${isAbout ? 'u-text-subtle' : ''}`}
+              content={section.content}
+            />
+          </div>
+        );
+      })}
+    </>
   );
 };
 

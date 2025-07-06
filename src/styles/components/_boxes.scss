@@ -35,6 +35,17 @@
     margin: 0;
   }
 }
+
+.c-fill-box {
+  @extend %box-base;
+  background-color: var(--main-color);
+  border: 1px solid var(--lineColor);
+}
+
+.c-fill-box:nth-child(even) {
+  background-color: var(--sub-color);
+}
+
 html[data-theme='dark'] {
   .c-simple-box {
     background-color: color-mix(in srgb, var(--background) 90%, white 10%);

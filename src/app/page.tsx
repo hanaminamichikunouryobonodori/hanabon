@@ -7,6 +7,7 @@ import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/micr
 import { HomePageProps } from '@/types';
 
 import styles from './page.module.scss';
+import { get } from 'http';
 
 export const revalidate = 60;
 
@@ -25,7 +26,7 @@ export default async function Home(props: Props) {
   const dataPromises = {
     hero: getHomeContentById(homepageData.hero.id, draftKey),
     eventDate: getHomeContentById(homepageData.eventDate.id, draftKey),
-    about: getHomeContentById(homepageData.about.id, draftKey),
+    about: Promise.all(homepageData.about.map((item) => getHomeContentById(item.id, draftKey))),
     gallery: getHomeContentById(homepageData.gallery.id, draftKey),
     news: getNewsList('home'),
     joinCommittee: getNewsContentById(homepageData.joinCommittee.id, draftKey),

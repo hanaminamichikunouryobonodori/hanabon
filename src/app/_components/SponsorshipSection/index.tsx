@@ -1,10 +1,12 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
 import { PageData } from '@/types';
 
+import styles from './sponsorship.module.scss';
+
 const SponsorshipSection = ({ data }: { data: PageData }) => {
   return (
     <>
-      <ContentRenderer content={data.content} id='sponsorship' />
+      <ContentRenderer className={styles.container} content={data.content} id='sponsorship' />
       <p className='u-flex-center'>皆様の温かいご支援に、心より感謝申し上げます。</p>
     </>
   );
