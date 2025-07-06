@@ -33,11 +33,12 @@ export type pages<T = 'get'> = Structure<
      */
     content: (
       | pages_rich_text
-      | pages_two_column_block
-      | pages_gallery
       | pages_image
       | pages_boxes
       | pages_heading
+      | pages_two_column_block
+      | pages_grid_container
+      | pages_gallery
       | pages_spacer
     )[];
   }
@@ -119,6 +120,17 @@ interface pages_spacer {
    * 余白の大きさ
    */
   space_height: ['極小' | '小' | '中' | '大' | '特大'];
+}
+interface pages_grid_container {
+  fieldId: 'grid_container';
+  /**
+   * タイプ
+   */
+  grid_type: ['auto-fill' | 'auto-fit' | 'thirds' | 'fourth' | '2-8' | '8-2' | '3-7' | '7-3'];
+  /**
+   * 内容
+   */
+  grid_content: (pages_rich_text | pages_image)[];
 }
 
 export interface EndPoints {

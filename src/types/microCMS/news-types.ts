@@ -33,12 +33,13 @@ export type news<T = 'get'> = Structure<
      */
     content: (
       | news_rich_text
-      | news_gallery
       | news_image
       | news_boxes
-      | news_two_column_block
       | news_heading
+      | news_two_column_block
+      | news_grid_container
       | news_spacer
+      | news_gallery
     )[];
     /**
      * アイキャッチ画像
@@ -123,6 +124,17 @@ interface news_spacer {
    * 余白の大きさ
    */
   space_height?: ['極小' | '小' | '中' | '大' | '特大'];
+}
+interface news_grid_container {
+  fieldId: 'grid_container';
+  /**
+   * タイプ
+   */
+  grid_type: ['auto-fill' | 'auto-fit' | 'thirds' | 'fourth' | '2-8' | '8-2' | '3-7' | '7-3'];
+  /**
+   * 内容
+   */
+  grid_content: (news_rich_text | news_image)[];
 }
 
 export interface EndPoints {

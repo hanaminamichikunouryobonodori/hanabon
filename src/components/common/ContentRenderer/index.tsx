@@ -141,7 +141,32 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             );
           }
 
-          // 6. 見出し
+          // 6. グリッドコンテンツ
+          case 'grid_container': {
+            if (!block.grid_content) return null;
+            const gridTypeMap = {
+              'auto-fit': 'grid-auto-fit',
+              'auto-fill': 'grid-auto-fill',
+              thirds: 'thirds',
+              fourth: 'fourths',
+              '2-8': '2-8',
+              '8-2': '8-2',
+              '3-7': '3-7',
+              '7-3': '7-3',
+            };
+
+            const typeFromCMS = block.grid_type?.[0] || 'auto-fit';
+            const modifierSuffix = gridTypeMap[typeFromCMS] || 'grid-auto-fit';
+            const gridClass = `l-grid--${modifierSuffix}`;
+
+            return (
+              <div className={`l-grid ${gridClass}`} key={key}>
+                <ContentRenderer content={block.grid_content} />
+              </div>
+            );
+          }
+
+          // 7. 見出し
           case 'heading': {
             let headingLevel: 1 | 2 | 3 | 4 | 5 | 6 = 2;
             if (block.heading_level && block.heading_level.length > 0) {
@@ -163,7 +188,7 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             }
           }
 
-          // 7. 余白
+          // 8. 余白
           case 'spacer': {
             const japaneseSize = (block.space_height?.[0] || '中') as JapaneseSize;
             const sizeKey = sizeMap[japaneseSize] || 'md';
