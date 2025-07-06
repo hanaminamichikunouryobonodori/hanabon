@@ -6,13 +6,24 @@ export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
   const slug = params.get('slug');
   const draftKey = params.get('draftKey');
+  const type = params.get('type'); // 'news' または 'manuals'
 
-  if (!slug || !draftKey) {
-    return new NextResponse('Invalid slug or draftKey', { status: 401 });
+  if (!slug || !draftKey || !type) {
+    return new NextResponse('Invalid request: slug, draftKey, and type are required', {
+      status: 401,
+    });
+  }
+
+  if (type !== 'news' && type !== 'manuals') {
+    return new NextResponse(`Preview not supported for type: ${type}`, {
+      status: 400,
+    });
   }
 
   const draft = await draftMode();
   draft.enable();
 
-  redirect(`/news/${slug}?draftKey=${draftKey}`);
+  const redirectPath = `/${type}/${slug}`;
+
+  redirect(`${redirectPath}?draftKey=${draftKey}`);
 }

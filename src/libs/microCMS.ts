@@ -4,11 +4,12 @@ import { NewsData, NewsListData, PageData } from '@/types';
 
 import { client } from './client';
 
-export const getHomeContentById = async (contentId: string) => {
+export const getHomeContentById = async (contentId: string, draftKey?: string) => {
   try {
     const data: PageData = await client.get({
       endpoint: 'pages',
       contentId: contentId,
+      queries: { draftKey: draftKey },
     });
 
     return data;
