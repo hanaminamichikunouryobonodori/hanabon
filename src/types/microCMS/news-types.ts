@@ -15,171 +15,194 @@ type MediaType = {
   url: string;
   width: number;
   height: number;
-}
+};
 type Structure<T, P> = T extends 'get'
   ? { id: string } & DateType & Required<P>
   : T extends 'gets'
-  ? GetsType<{ id: string } & DateType & Required<P>>
-  : Partial<DateType> & (T extends 'patch' ? Partial<P> : P);
+    ? GetsType<{ id: string } & DateType & Required<P>>
+    : Partial<DateType> & (T extends 'patch' ? Partial<P> : P);
 
-export type news<T='get'> = Structure<
-T,
-{
-  /**
-   * タイトル
-   */
-  title: string
-  /**
-   * 本文
-   */
-  content: (news_rich_text | news_image | news_boxes | news_card | news_heading | news_two_column_block | news_grid_container | news_divider | news_spacer | news_gallery)[]
-  /**
-   * アイキャッチ画像
-   */
-  featuredImage?: MediaType
-}>
+export type news<T = 'get'> = Structure<
+  T,
+  {
+    /**
+     * タイトル
+     */
+    title: string;
+    /**
+     * 本文
+     */
+    content: (
+      | news_rich_text
+      | news_image
+      | news_boxes
+      | news_card
+      | news_heading
+      | news_two_column_block
+      | news_grid_container
+      | news_divider
+      | news_spacer
+      | news_gallery
+    )[];
+    /**
+     * アイキャッチ画像
+     */
+    featuredImage?: MediaType;
+  }
+>;
 
 interface news_rich_text {
-  fieldId: 'rich_text'
+  fieldId: 'rich_text';
   /**
    * 本文の位置
    */
-  align?: ['左寄せ' | '中央揃え' | '右寄せ']
+  align?: ['左寄せ' | '中央揃え' | '右寄せ'];
   /**
    * 本文
    */
-  rich_text?: any
+  rich_text?: any;
   /**
    * ID
    */
-  content_id?: string
+  content_id?: string;
 }
 interface news_gallery {
-  fieldId: 'gallery'
+  fieldId: 'gallery';
   /**
    * ギャラリー
    */
-  gallery_content: MediaType[]
+  gallery_content: MediaType[];
   /**
    * 画像比率
    */
-  gallery_aspect: ['16:9' | '4:3' | '1:1.414（A4/ポスター）']
+  gallery_aspect: ['16:9' | '4:3' | '1:1.414（A4/ポスター）'];
 }
 interface news_image {
-  fieldId: 'image'
+  fieldId: 'image';
   /**
    * 画像
    */
-  image_content?: MediaType
+  image_content?: MediaType;
 }
 interface news_boxes {
-  fieldId: 'boxes'
+  fieldId: 'boxes';
   /**
    * 種類
    */
-  box_class?: ['シンプルボックス' | '塗りつぶしボックス' | 'インフォ' | 'Q&A' | '注意・警告' | '付箋ボックス']
+  box_class?: [
+    'シンプルボックス' | '塗りつぶしボックス' | 'インフォ' | 'Q&A' | '注意・警告' | '付箋ボックス',
+  ];
   /**
    * ボックスの内容
    */
-  box_content?: any
+  box_content?: any;
 }
 interface news_two_column_block {
-  fieldId: 'two_column_block'
+  fieldId: 'two_column_block';
   /**
    * 左カラムの内容
    */
-  column_left: (news_rich_text | news_image | news_boxes)[]
+  column_left: (news_rich_text | news_image | news_boxes)[];
   /**
    * 右カラムの内容
    */
-  column_right: (news_rich_text | news_image | news_boxes)[]
+  column_right: (news_rich_text | news_image | news_boxes)[];
 }
 interface news_heading {
-  fieldId: 'heading'
+  fieldId: 'heading';
   /**
    * 見出し
    */
-  heading_content: string
+  heading_content: string;
   /**
    * 見出しレベル
    */
-  heading_level: ['2' | '3' | '4' | '5' | '6']
+  heading_level: ['2' | '3' | '4' | '5' | '6'];
   /**
    * ID
    */
-  heading_id?: string
+  heading_id?: string;
 }
 interface news_spacer {
-  fieldId: 'spacer'
+  fieldId: 'spacer';
   /**
    * 余白の大きさ
    */
-  space_height?: ['極小' | '小' | '中' | '大' | '特大']
+  space_height?: ['極小' | '小' | '中' | '大' | '特大'];
 }
 interface news_grid_container {
-  fieldId: 'grid_container'
+  fieldId: 'grid_container';
   /**
    * タイプ
    */
-  grid_type: ['auto-fill' | 'auto-fit' | 'thirds' | 'fourth' | '2-8' | '8-2' | '3-7' | '7-3']
+  grid_type: ['auto-fill' | 'auto-fit' | 'thirds' | 'fourth' | '2-8' | '8-2' | '3-7' | '7-3'];
   /**
    * 内容
    */
-  grid_content: (news_rich_text | news_image | news_card | news_boxes)[]
+  grid_content: (news_rich_text | news_image | news_card | news_boxes)[];
 }
 interface news_card {
-  fieldId: 'card'
+  fieldId: 'card';
   /**
    * 画像
    */
-  card_image: MediaType
+  card_image: MediaType;
   /**
    * タイトル
    */
-  card_title: string
+  card_title: string;
   /**
    * 説明文
    */
-  card_description: any
+  card_description: any;
   /**
    * リンク
    */
-  card_link?: string
+  card_link?: string;
   /**
    * ボタンテキスト
    */
-  card_button_text?: string
+  card_button_text?: string;
 }
 interface news_divider {
-  fieldId: 'divider'
+  fieldId: 'divider';
   /**
    * 線の種類
    */
-  divider_style?: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション(2色)' | '斜線(2色)']
+  divider_style?: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション(2色)' | '斜線(2色)'];
   /**
    * 線の色
    */
-  divider_color?: ('灰色' | 'メインカラー' | 'セカンダリーカラー' | '赤' | '青' | '黄' | '緑' | 'ピンク')[]
+  divider_color?: (
+    | '灰色'
+    | 'メインカラー'
+    | 'セカンダリーカラー'
+    | '赤'
+    | '青'
+    | '黄'
+    | '緑'
+    | 'ピンク'
+  )[];
   /**
    * 線の太さ
    */
-  divider_width?: string
+  divider_width?: string;
 }
 
 export interface EndPoints {
   get: {
-    'news': news<'get'>
-  }
+    news: news<'get'>;
+  };
   gets: {
-    'news': news<'gets'>
-  }
+    news: news<'gets'>;
+  };
   post: {
-    'news': news<'post'>
-  }
+    news: news<'post'>;
+  };
   put: {
-    'news': news<'put'>
-  }
+    news: news<'put'>;
+  };
   patch: {
-    'news': news<'patch'>
-  }
+    news: news<'patch'>;
+  };
 }

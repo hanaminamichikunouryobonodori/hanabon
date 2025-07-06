@@ -61,18 +61,18 @@
 }
 
 .c-card__tags {
-  margin-top: var.$spacing-sm;
   display: flex;
   flex-wrap: wrap;
   gap: var.$spacing-xs;
+  margin-top: var.$spacing-sm;
 }
 
 .c-card__tag {
   display: inline-block;
-  background-color: var(--main-color);
-  color: var(--foreground);
-  font-size: 0.8rem;
   padding: 4px 10px;
-  border-radius: var.$border-radius-lg;
+  font-size: 0.8rem;
   line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--main-color);
+  border-radius: var.$border-radius-lg;
 }

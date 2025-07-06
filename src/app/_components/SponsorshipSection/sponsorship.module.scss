@@ -1,9 +1,9 @@
 @use 'styles/abstracts/variables' as var;
 
-.container{
-    ul{
-        li{
-            margin-bottom: var.$spacing-md !important;
-        }
+.container {
+  ul {
+    li {
+      margin-bottom: var.$spacing-md !important;
     }
+  }
 }

@@ -40,7 +40,7 @@ const CardComponent = (cardData: CardDataProps) => {
               .map((text) => text.trim())
               .filter((text) => text)
               .map((tag, index) => (
-                <span key={index} className='c-card__tag'>
+                <span className='c-card__tag' key={index}>
                   {tag}
                 </span>
               ))}
