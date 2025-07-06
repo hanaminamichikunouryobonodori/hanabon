@@ -70,7 +70,7 @@
 }
 
 .active {
-  color: var(--sub-color);
+  color: color-mix(in srgb, var(--sub-color) 60%, #333 40%) !important; 
   @media (max-width: var.$breakpoint-lg) {
     color: inherit;
   }
