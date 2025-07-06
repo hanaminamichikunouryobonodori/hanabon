@@ -36,9 +36,11 @@ const ContentRenderer = ({ content, id, className }: Props) => {
   if (!content) {
     return null;
   }
+  const Wrapper = className ? 'div' : React.Fragment;
+  const wrapperProps = className ? { className: className } : {};
 
   return (
-    <div className={className || ''}>
+    <Wrapper {...wrapperProps}>
       {content.map((block, index) => {
         const key = `${block.fieldId}-${index}`;
 
@@ -201,7 +203,7 @@ const ContentRenderer = ({ content, id, className }: Props) => {
             return null;
         }
       })}
-    </div>
+    </Wrapper>
   );
 };
 
