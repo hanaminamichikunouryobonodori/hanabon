@@ -11,8 +11,8 @@ function constructUrl(microcmsPayload) {
   const YOUR_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN; // あなたのドメインに変更
 
   switch (apiName) {
-    case 'blog':
-      return `${YOUR_DOMAIN}/blog/${contentId}`;
+    case 'news':
+      return `${YOUR_DOMAIN}/news/${contentId}`;
     default:
       return null;
   }
@@ -26,7 +26,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Signature or secret is missing.' }, { status: 401 });
   }
   const body = await request.text();
-  const expectedSignature = createHmac('sha266', secret).update(body).digest('hex');
+  const expectedSignature = createHmac('sha256', secret).update(body).digest('hex');
   if (signature !== expectedSignature) {
     return NextResponse.json({ error: 'Invalid signature.' }, { status: 401 });
   }
