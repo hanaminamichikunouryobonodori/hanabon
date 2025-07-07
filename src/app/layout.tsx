@@ -22,6 +22,7 @@ export type Props = {
   children: ReactNode;
 };
 
+// ★ ここから　移行作業が終わったら削除して、末尾のmetadataを追加する
 const OLD_SITE_DOMAIN = 'http://hanabon.s1008.xrea.com';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -134,3 +135,5 @@ export const viewport: Viewport = {
   initialScale: 1,
   width: 'device-width',
 };
+
+// export const metadata = defaultMetadata; //7月21日に更新予定

@@ -29,7 +29,13 @@ const HeaderNav = () => {
     .filter((item) => item.to !== 'sponsorship')
     .map((item) => (
       <li key={item.to}>
-        {isHomePage ? (
+        {item.to === 'news' ? (
+          // 'news'専用の通常のリンク
+          <Link className={styles.navLink} href='/news' onClick={closeMenu}>
+            {item.label}
+          </Link>
+        ) : isHomePage ? (
+          // ホームページ表示時のアンカーリンク
           <ScrollLink
             activeClass={styles.active}
             className={styles.navLink}
@@ -43,6 +49,7 @@ const HeaderNav = () => {
             {item.label}
           </ScrollLink>
         ) : (
+          // 他のページ表示時のホームページへのアンカーリンク
           <Link className={styles.navLink} href={`/#${item.to}`} onClick={closeMenu}>
             {item.label}
           </Link>
