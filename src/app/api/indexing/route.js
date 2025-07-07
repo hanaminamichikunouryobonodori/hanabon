@@ -23,7 +23,7 @@ function constructUrl(microcmsPayload) {
 export async function POST(request) {
   // 1. 署名の検証（セキュリティ）
   const signature = request.headers.get('x-microcms-signature');
-  const secret = process.env.MICROCMS_WEBHOOK_SECRET;
+  const secret = process.env.NEXT_PUBLIC_MICROCMS_WEBHOOK_SECRET;
   if (!signature || !secret) {
     return NextResponse.json({ error: 'Signature or secret is missing.' }, { status: 401 });
   }
@@ -50,8 +50,8 @@ export async function POST(request) {
 
   // 3. Google Indexing APIへのリクエスト
   try {
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+    const privateKey = process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
+    const clientEmail = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_EMAIL;
 
     const jwtClient = new google.auth.JWT(clientEmail, null, privateKey, [
       'https://www.googleapis.com/auth/indexing',
