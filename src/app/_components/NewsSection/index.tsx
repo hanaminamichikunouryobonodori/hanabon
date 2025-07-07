@@ -9,7 +9,7 @@ import { NewsListData } from '@/types';
 const NewsSection = ({ data }: { data: NewsListData }) => {
   return (
     <>
-      <MinchoHeadingComponent level={2}>お知らせ</MinchoHeadingComponent>
+      <MinchoHeadingComponent level={2}>最新情報</MinchoHeadingComponent>
       <div className='l-container--full'>
         <hr />
       </div>
