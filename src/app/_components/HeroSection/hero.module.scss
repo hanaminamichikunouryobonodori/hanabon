@@ -10,9 +10,7 @@
   :global(.swiper-slide-active) .carouselImage,
   :global(.swiper-slide-duplicate-active) .carouselImage,
   :global(.swiper-slide-prev) .carouselImage {
-    animation:
-      zoomOut 8s linear both,
-      displayAndFadeOut 8s linear both;
+    animation: zoomOut 10s linear both;
   }
   @keyframes zoomOut {
     0% {
@@ -20,20 +18,6 @@
     }
     100% {
       transform: scale(1);
-    }
-  }
-  @keyframes displayAndFadeOut {
-    0% {
-      opacity: 0;
-    }
-    5% {
-      opacity: 1;
-    }
-    95% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
     }
   }
 }

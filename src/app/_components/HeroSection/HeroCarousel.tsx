@@ -31,7 +31,7 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
         effect='fade'
         loop={true}
         modules={[Autoplay, EffectFade]}
-        speed={1}
+        speed={2000}
       >
         {backgroundImageUrls.map((imageUrl, index) => (
           <SwiperSlide key={index}>
