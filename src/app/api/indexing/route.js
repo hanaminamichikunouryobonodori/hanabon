@@ -21,7 +21,13 @@ function constructUrl(microcmsPayload) {
 }
 
 export async function POST(request) {
-  // 1. 署名の検証（セキュリティ）
+  console.log('--- Start Debugging Environment Variables ---');
+  console.log('Type of GOOGLE_CLIENT_EMAIL:', typeof process.env.GOOGLE_CLIENT_EMAIL);
+  console.log('Is GOOGLE_CLIENT_EMAIL present?', !!process.env.GOOGLE_CLIENT_EMAIL);
+
+  console.log('Type of GOOGLE_PRIVATE_KEY:', typeof process.env.GOOGLE_PRIVATE_KEY);
+  console.log('Is GOOGLE_PRIVATE_KEY present?', !!process.env.GOOGLE_PRIVATE_KEY);
+  console.log('--- End Debugging ---');
   const signature = request.headers.get('x-microcms-signature');
   const secret = process.env.MICROCMS_WEBHOOK_SECRET;
   if (!signature || !secret) {
