@@ -1,14 +1,18 @@
 @use 'styles/abstracts/variables' as var;
 
 .root {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: inset 0px var.$spacing-lg var.$spacing-lg
+    color-mix(in srgb, var(--foreground) 10%, var(--main-color) 0%);
 }
 
 .container {
   max-width: var.$breakpoint-lg;
-  margin: var.$spacing-xl auto;
+  margin: var.$spacing-xxl auto;
 }
 
 .sitemap,

@@ -1,5 +1,10 @@
 @use 'styles/abstracts/placeholders';
 
+.c-input,
+.c-textarea,
+.c-search-input {
+  background-color: color-mix(in srgb, var(--foreground) 10%, var(--main-color) 10%);
+}
 .c-input {
   @extend %form-control-base;
 }

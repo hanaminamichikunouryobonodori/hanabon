@@ -12,6 +12,8 @@
     width: var.$container-narrow-max-width;
     container-name: narrow-container;
     container-type: inline-size;
+    box-shadow: 0 var.$spacing-xxl var.$spacing-xxl
+      color-mix(in srgb, var(--foreground) 10%, var(--main-color) 0%);
   }
 
   &--full {

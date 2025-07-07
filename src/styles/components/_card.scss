@@ -22,12 +22,12 @@
   overflow: hidden;
   background-color: var(--main-color);
   border-radius: var.$border-radius-md;
-  box-shadow: 0 4px 10px color-mix(in srgb, var(--background) 90%, var(--main-color) 30%);
+  box-shadow: 0 5px 10px color-mix(in srgb, var(--background) 80%, var(--main-color) 80%);
 }
 
 .c-card:nth-child(even) {
   background-color: var(--sub-color);
-  box-shadow: 0 4px 10px color-mix(in srgb, var(--background) 90%, var(--sub-color) 30%);
+  box-shadow: 0 5px 10px color-mix(in srgb, var(--background) 80%, var(--sub-color) 80%);
 }
 
 .c-card__image {

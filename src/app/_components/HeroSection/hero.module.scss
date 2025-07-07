@@ -2,9 +2,9 @@
 @use 'styles/utils/animations';
 
 .carouselContainer {
+  position: relative;
   z-index: 10px;
   height: calc(100vh - 80px);
-
   @media (max-width: var.$breakpoint-lg) {
     height: 50vh;
   }
@@ -21,8 +21,8 @@
 
 .heroLogoImage {
   position: absolute;
-  top: calc(50% - 80px);
-  left: 10%;
+  top: 10%;
+  right: 10%;
   z-index: 1;
   margin: 0 auto;
   opacity: 0;
