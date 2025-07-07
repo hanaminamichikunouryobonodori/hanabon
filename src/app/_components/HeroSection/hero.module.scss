@@ -3,10 +3,38 @@
 
 .carouselContainer {
   position: relative;
-  z-index: 10px;
   height: calc(100vh - 80px);
   @media (max-width: var.$breakpoint-lg) {
     height: 50vh;
+  }
+  :global(.swiper-slide-active) .carouselImage,
+  :global(.swiper-slide-duplicate-active) .carouselImage,
+  :global(.swiper-slide-prev) .carouselImage {
+    animation:
+      zoomOut 8s linear both,
+      displayAndFadeOut 8s linear both;
+  }
+  @keyframes zoomOut {
+    0% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes displayAndFadeOut {
+    0% {
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
 
@@ -21,15 +49,17 @@
 
 .heroLogoImage {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 50%;
+  left: 20%;
   z-index: 1;
-  margin: 0 auto;
-  opacity: 0;
-  @extend %slide-in-up-animation;
-
-  @media screen and (width <= 780px) {
-    max-width: 80%;
-    height: auto;
+  width: auto;
+  max-height: 90%;
+  opacity: 1;
+  transform: translateY(-50%);
+  @media (max-width: var.$breakpoint-lg) {
+    top: 50%;
+    left: 5%;
+    width: auto;
+    max-height: 90%;
   }
 }
