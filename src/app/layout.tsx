@@ -5,6 +5,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/google';
+import { headers } from 'next/headers'; // ★ headers をインポート
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -20,6 +21,23 @@ export const revalidate = 180;
 export type Props = {
   children: ReactNode;
 };
+
+const OLD_SITE_DOMAIN = 'http://hanabon.s1008.xrea.com';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = headers();
+  const path = (await headersList).get('x-invoke-path') || '/';
+
+  const canonicalUrl = OLD_SITE_DOMAIN + path;
+
+  return {
+    ...defaultMetadata,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+}
+// ★ ここまで
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -116,5 +134,3 @@ export const viewport: Viewport = {
   initialScale: 1,
   width: 'device-width',
 };
-
-export const metadata: Metadata = defaultMetadata;

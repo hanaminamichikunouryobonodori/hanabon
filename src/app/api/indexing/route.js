@@ -1,8 +1,9 @@
 // app/api/indexing/route.js (最終手段バージョン)
 
+import { createHmac } from 'crypto';
+
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
-import { createHmac } from 'crypto';
 
 // URLを構築するロジック（ご自身のサイト構成に合わせて変更してください）
 function constructUrl(microcmsPayload) {
