@@ -7,13 +7,12 @@ const HeroSection = ({ data }: { data: PageData }) => {
   const heroGalleryBlock = data.content.find((block) => block.fieldId === 'gallery');
   const logoImageBlock = data.content.find((block) => block.fieldId === 'image');
 
-  if (!heroGalleryBlock || !logoImageBlock) {
+  if (!heroGalleryBlock || !logoImageBlock?.image_content) {
     return null;
   }
 
   const heroData = heroGalleryBlock.gallery_content;
   const logoData = logoImageBlock.image_content;
-  console.log(logoData);
 
   return (
     <aside className={styles.container} id='hero'>
