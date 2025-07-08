@@ -13,6 +13,7 @@ interface CardDataProps {
   description: string;
   link?: string;
   buttonText?: string;
+  priority?: boolean;
 }
 
 const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
@@ -22,6 +23,7 @@ const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
         alt={cardData.image.alt || cardData.title}
         className='c-card__image'
         height={cardData.image.height || 400}
+        priority={cardData.priority || false}
         src={cardData.image.url}
         width={cardData.image.width || 600}
       />

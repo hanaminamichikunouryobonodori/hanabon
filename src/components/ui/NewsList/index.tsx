@@ -74,7 +74,7 @@ const NewsList = ({ data, isSimple }: Props) => {
   // isSimpleがfalseの場合、カードを並べるグリッドコンテナを返す
   return (
     <div className='l-grid l-grid--grid-auto-fit'>
-      {data.contents.map((content) => {
+      {data.contents.map((content, index) => {
         const textBlocks = content.content
           .map((block) => {
             if (block.fieldId === 'rich_text' && block.rich_text) return block.rich_text;
@@ -112,6 +112,7 @@ const NewsList = ({ data, isSimple }: Props) => {
           description: description,
           link: `/news/${content.id}`,
           buttonText: buttonText,
+          priority: index === 0,
         };
         return (
           <React.Fragment key={content.id}>
