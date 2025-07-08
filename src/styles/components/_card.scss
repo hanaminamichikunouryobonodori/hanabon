@@ -10,10 +10,14 @@
   border-radius: var.$border-radius-md;
   box-shadow: 0 5px 10px color-mix(in srgb, var(--background) 80%, var(--main-color) 80%);
 
-  /* transitionプロパティをカード本体に移動 */
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
+  .c-tags {
+    .c-tag {
+      background-color: var(--sub-color);
+    }
+  }
 }
 
 .c-card:has(.c-card__link) {
@@ -37,6 +41,11 @@
 .c-card:nth-child(even) {
   background-color: var(--sub-color);
   box-shadow: 0 5px 10px color-mix(in srgb, var(--background) 80%, var(--sub-color) 80%);
+  .c-tags {
+    .c-tag {
+      background-color: var(--main-color);
+    }
+  }
 }
 
 .c-card__image {
@@ -88,7 +97,6 @@
     height: 100%;
     content: '';
   }
-  /* ホバーエフェクトをカード自体に適用 */
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
