@@ -41,8 +41,8 @@
 }
 
 .newBadge {
-  color: var(--sub-color);
   font-weight: var.$font-weight-bold;
+  color: var(--sub-color);
 }
 
 @media screen and (max-width: var.$breakpoint-lg) {

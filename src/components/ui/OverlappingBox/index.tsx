@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Image from 'next/image';
 
 import SafeHtmlRenderer from '../SafeHtmlRenderer';
@@ -18,8 +20,6 @@ interface BoxProps {
 // コンポーネントの引数を修正
 const OverlappingBox = ({
   boxData,
-  className,
-  style,
 }: {
   boxData: BoxProps;
   className?: string;

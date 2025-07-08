@@ -2,7 +2,6 @@ import React, { JSX, useContext } from 'react';
 
 import Image from 'next/image';
 
-import { FadeInComponent } from '@/components/animations/FadeIn';
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
