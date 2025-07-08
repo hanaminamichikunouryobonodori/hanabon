@@ -14,13 +14,13 @@
 .container:nth-child(odd) {
   position: relative;
   z-index: 10;
-  grid-column: 1 / 4;
+  grid-column: 1 / 7;
   padding-block: var.$spacing-lg 0;
   padding-inline: var.$spacing-lg;
-  margin-top: -120px;
+  margin-top: -20px;
   @media (max-width: var.$breakpoint-md) {
+    grid-column: 1 / 10;
     padding-inline: var.$spacing-sm;
-    margin-top: -24px;
   }
 }
 .container:nth-child(1) {
@@ -29,15 +29,15 @@
 .container:nth-child(even) {
   position: relative;
   z-index: 20;
-  grid-column: 3 / 6;
+  grid-column: 5 / 11;
   padding-block: var.$spacing-lg 0;
   padding-inline: var.$spacing-lg;
-  margin-top: -120px;
+  margin-top: -20px;
   background-color: var(--sub-color);
   border-radius: var.$border-radius-lg 0 0 var.$border-radius-lg;
   @media (max-width: var.$breakpoint-md) {
+    grid-column: 2 / 11;
     padding-inline: var.$spacing-sm;
-    margin-top: -24px;
   }
 }
 
@@ -49,10 +49,12 @@
   width: 80%;
 }
 .title {
+  padding-block-end: 6px;
   font-size: 1.4rem;
   font-weight: var.$font-weight-bold;
 }
 .description {
+  padding-block-start: 6px;
   font-size: 1rem;
   font-weight: var.$font-weight-bold;
   text-align: center;
