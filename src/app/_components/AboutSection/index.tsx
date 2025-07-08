@@ -1,3 +1,4 @@
+import { FadeInComponent } from '@/components/animations/FadeIn';
 import ContentRenderer from '@/components/common/ContentRenderer';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types';
@@ -18,13 +19,15 @@ const AboutSection = ({ data }: AboutSectionProps) => {
         const isAbout = section.title === 'どんなお祭り？';
         const isProgram = section.title === 'お祭りの内容';
         return (
-          <div className={isAbout ? styles.container : ''} key={section.id}>
-            <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
-            <ContentRenderer
-              className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
-              content={section.content}
-            />
-          </div>
+          <FadeInComponent key={section.id}>
+            <div className={isAbout ? styles.container : ''}>
+              <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
+              <ContentRenderer
+                className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
+                content={section.content}
+              />
+            </div>
+          </FadeInComponent>
         );
       })}
     </>

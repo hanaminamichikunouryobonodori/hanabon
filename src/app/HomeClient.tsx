@@ -91,17 +91,21 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       {sections.map((section, index) => {
         const componentData = pages[section.id];
         if (section.id !== 'contact' && !componentData) return null;
-
         const isEven = (index + 1) % 2 === 0;
-        return (
-          <FadeInComponent key={section.id}>
-            <section className={`py-xxl ${isEven ? 'u-bg-secondary' : ''}`}>
-              <div className='l-container u-min-h-screen u-flex-center-column' id={section.id}>
-                {section.component}
-              </div>
-            </section>
-          </FadeInComponent>
+
+        const component = (
+          <section className={`py-xxl ${isEven ? 'u-bg-secondary' : ''}`} key={section.id}>
+            <div className='l-container u-min-h-screen u-flex-center-column' id={section.id}>
+              {section.component}
+            </div>
+          </section>
         );
+
+        if (section.id === 'about') {
+          return component;
+        }
+
+        return <FadeInComponent key={section.id}>{component}</FadeInComponent>;
       })}
     </>
   );

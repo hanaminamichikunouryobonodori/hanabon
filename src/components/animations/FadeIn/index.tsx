@@ -10,7 +10,7 @@ type Props = {
 
 export const FadeInComponent = ({ children, className }: Props) => {
   const { ref, inView } = useInView({
-    rootMargin: '-50%',
+    rootMargin: '-30%',
     triggerOnce: true,
   });
 
