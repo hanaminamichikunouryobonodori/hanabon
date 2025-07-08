@@ -10,12 +10,20 @@ import 'swiper/css/effect-fade';
 
 import styles from './hero.module.scss';
 
-interface CarouselProps {
-  backgroundImageUrls: string[];
-  logoImageData: { url: string; width: number; height: number } | undefined;
-}
+type ImageProps = {
+  url: string;
+  width: number;
+  height: number;
+  alt?: string;
+};
 
-const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, logoImageData }) => {
+const HeroCarouselComponent = ({
+  heroData,
+  logoData,
+}: {
+  heroData: ImageProps[];
+  logoData: ImageProps;
+}) => {
   const [showCarousel, setShowCarousel] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,7 +33,7 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
     return () => clearTimeout(timer);
   }, []);
 
-  if (!logoImageData) {
+  if (!heroData || heroData.length === 0 || !logoData || !logoData.url) {
     return null;
   }
 
@@ -43,15 +51,15 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
           modules={[Autoplay, EffectFade]}
           speed={2000}
         >
-          {backgroundImageUrls.map((imageUrl, index) => (
+          {heroData.map((data, index) => (
             <SwiperSlide key={index}>
               <Image
                 alt={`Hero Background ${index + 1}`}
                 className={styles.carouselImage}
                 fill
-                priority={index === 0}
+                priority={false}
                 sizes='100vw'
-                src={imageUrl}
+                src={data.url}
                 style={{ objectFit: 'cover' }}
               />
             </SwiperSlide>
@@ -64,8 +72,9 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
               alt={`Hero Background`}
               className={styles.carouselImage}
               fill
+              priority
               sizes='100vw'
-              src={backgroundImageUrls[0]}
+              src={heroData[0].url}
               style={{ objectFit: 'cover', scale: '1.3' }}
             />
           </div>
@@ -74,11 +83,11 @@ const HeroCarouselComponent: React.FC<CarouselProps> = ({ backgroundImageUrls, l
       <Image
         alt='花南地区納涼盆踊り'
         className={styles.heroLogoImage}
-        height={logoImageData.height}
+        height={logoData.height}
         priority
-        src={logoImageData.url}
+        src={logoData.url}
         style={{ objectFit: 'cover' }}
-        width={logoImageData.width}
+        width={logoData.width}
       />
     </div>
   );

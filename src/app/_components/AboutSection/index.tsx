@@ -20,12 +20,17 @@ const AboutSection = ({ data }: AboutSectionProps) => {
         const isProgram = section.title === 'お祭りの内容';
         return (
           <FadeInComponent key={section.id}>
-            <div className={isAbout ? styles.container : ''}>
+            <div className={isAbout ? styles.container : ''} id={isProgram ? 'program' : ''}>
               <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
               <ContentRenderer
                 className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
                 content={section.content}
               />
+              {isProgram && (
+                <small>
+                  ※内容は年度によって変更される場合があります。詳しい内容は開催年のプログラムを御覧ください。
+                </small>
+              )}
             </div>
           </FadeInComponent>
         );

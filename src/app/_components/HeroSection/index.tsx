@@ -4,26 +4,20 @@ import styles from './hero.module.scss';
 import HeroCarouselComponent from './HeroCarousel';
 
 const HeroSection = ({ data }: { data: PageData }) => {
-  let imageUrls: string[] = [];
-  let logoImageData;
-
-  const heroImagesBlock = data.content.find((block) => block.fieldId === 'gallery');
-
-  if (heroImagesBlock && heroImagesBlock.fieldId === 'gallery' && heroImagesBlock.gallery_content) {
-    imageUrls = heroImagesBlock.gallery_content.map((image) => image.url);
-  }
-
+  const heroGalleryBlock = data.content.find((block) => block.fieldId === 'gallery');
   const logoImageBlock = data.content.find((block) => block.fieldId === 'image');
 
-  if (logoImageBlock && logoImageBlock.fieldId === 'image') {
-    logoImageData = logoImageBlock.image_content;
+  if (!heroGalleryBlock || !logoImageBlock) {
+    return null;
   }
+
+  const heroData = heroGalleryBlock.gallery_content;
+  const logoData = logoImageBlock.image_content;
+  console.log(logoData);
 
   return (
     <aside className={styles.container} id='hero'>
-      {imageUrls.length > 0 && (
-        <HeroCarouselComponent backgroundImageUrls={imageUrls} logoImageData={logoImageData} />
-      )}
+      {heroData.length > 0 && <HeroCarouselComponent heroData={heroData} logoData={logoData} />}
     </aside>
   );
 };
