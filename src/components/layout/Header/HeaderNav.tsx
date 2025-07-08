@@ -26,6 +26,8 @@ const HeaderNav = () => {
   };
 
   const menuList = menuItems
+    .filter((item) => item.to !== 'program')
+    .filter((item) => item.to !== 'joinCommittee')
     .filter((item) => item.to !== 'sponsorship')
     .map((item) => (
       <li key={item.to}>
