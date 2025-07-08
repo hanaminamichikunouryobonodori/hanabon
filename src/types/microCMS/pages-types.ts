@@ -42,6 +42,7 @@ export type pages<T = 'get'> = Structure<
       | pages_divider
       | pages_spacer
       | pages_gallery
+      | pages_overlapping_box
     )[];
   }
 >;
@@ -181,6 +182,29 @@ interface pages_divider {
    * 線の種類
    */
   divider_style: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション' | '斜線'];
+}
+interface pages_overlapping_box {
+  fieldId: 'overlapping_box';
+  /**
+   * タイトル
+   */
+  box_title: string;
+  /**
+   * 画像
+   */
+  box_image?: MediaType;
+  /**
+   * 説明文
+   */
+  box_description: any;
+  /**
+   * ボタンテキスト
+   */
+  box_button_text?: string;
+  /**
+   * リンク
+   */
+  box_link?: string;
 }
 
 export interface EndPoints {

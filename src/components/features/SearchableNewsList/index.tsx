@@ -55,7 +55,7 @@ const SearchableNewsList = ({ allNews }: Props) => {
 
   return (
     <FadeInComponent>
-      <div className='l-container l-grid l-grid--grid-auto-fit'>
+      <div className='l-container l-grid l-grid--half px-lg'>
         <Breadcrumbs />
         <div className='search-form-container  u-flex-right'>
           <input

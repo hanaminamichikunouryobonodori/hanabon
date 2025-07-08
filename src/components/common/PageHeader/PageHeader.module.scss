@@ -2,18 +2,16 @@
 
 .header {
   width: 100%;
-  padding-block: var.$spacing-xl;
-  padding-inline: var.$spacing-lg;
-  margin-block-end: var.$spacing-lg;
   background-color: var(--background-secondary);
   box-shadow: inset 0 calc(-1 * var.$spacing-sm) var.$spacing-md
     color-mix(in srgb, var(--foreground) 30%, var(--main-color) 0%);
 }
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: var.$container-max-width;
-  margin: 0 auto;
+
+.header__title {
+  @media (max-width: var.$breakpoint-lg) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -16,11 +16,12 @@ const AboutSection = ({ data }: AboutSectionProps) => {
     <>
       {data.map((section) => {
         const isAbout = section.title === 'どんなお祭り？';
+        const isProgram = section.title === 'お祭りの内容';
         return (
-          <div className={isAbout ? styles.container : 'l-section'} key={section.id}>
+          <div className={isAbout ? styles.container : ''} key={section.id}>
             <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
             <ContentRenderer
-              className={`${isAbout ? 'u-text-subtle' : ''}`}
+              className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
               content={section.content}
             />
           </div>

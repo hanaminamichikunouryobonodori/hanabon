@@ -3,8 +3,7 @@
 
 import Image from 'next/image';
 
-import { FadeInComponent } from '@/components/animations/FadeIn';
-import ContentRenderer from '@/components/common/ContentRenderer';
+import ArticleContentLayout from '@/components/layout/ArticleContentLayout';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import PostNavigation from '@/components/ui/NewsList/PostNavigation';
 import PublishedDate from '@/components/ui/PublishedDate';
@@ -19,23 +18,26 @@ type Props = {
 
 export default function NewsArticle({ currentPostData, allPosts }: Props) {
   return (
-    <article className={`l-container l-container--narrow ${styles.container}`}>
-      <FadeInComponent>
-        <Breadcrumbs title={currentPostData.title} />
-        <h1>{currentPostData.title}</h1>
-        <PublishedDate className='u-flex-right mx-sm' dateString={currentPostData.publishedAt} />
-        <div className={styles.featuredImageContainer}>
-          <Image
-            alt={currentPostData.title}
-            fill
-            sizes='100vw'
-            src={currentPostData.featuredImage?.url ?? '/images/noImage.png'}
-          />
-        </div>
-        <ContentRenderer className={styles.content} content={currentPostData.content} />
-        <PostNavigation allPosts={allPosts} currentPost={currentPostData} />
-        <Breadcrumbs title={currentPostData.title} />
-      </FadeInComponent>
-    </article>
+    <ArticleContentLayout
+      content={currentPostData.content}
+      footerContent={
+        <>
+          <PostNavigation allPosts={allPosts} currentPost={currentPostData} />
+          <Breadcrumbs title={currentPostData.title} />
+        </>
+      }
+      title={currentPostData.title}
+    >
+      {/* childrenとして渡す要素 */}
+      <PublishedDate className='u-flex-right mx-sm' dateString={currentPostData.publishedAt} />
+      <div className={styles.featuredImageContainer}>
+        <Image
+          alt={currentPostData.title}
+          fill
+          sizes='100vw'
+          src={currentPostData.featuredImage?.url ?? '/images/noImage.png'}
+        />
+      </div>
+    </ArticleContentLayout>
   );
 }

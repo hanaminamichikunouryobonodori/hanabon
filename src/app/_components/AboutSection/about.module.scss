@@ -22,3 +22,15 @@
     }
   }
 }
+
+.staggeredContainer {
+  margin: auto calc(50% - 50vw);
+  display: grid;
+  grid-template-columns: var.$spacing-xxl 1fr repeat(3, 24px) 1fr var.$spacing-xxl;
+  align-items: start;
+}
+
+/* 2番目の要素を下にずらす */
+.staggeredContainer > *:nth-child(even) {
+  // margin-top: 250px;
+}

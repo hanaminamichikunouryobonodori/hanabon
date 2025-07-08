@@ -2,9 +2,11 @@ import React, { JSX, useContext } from 'react';
 
 import Image from 'next/image';
 
+import { FadeInComponent } from '@/components/animations/FadeIn';
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import OverlappingBox from '@/components/ui/OverlappingBox';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
 import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
@@ -207,7 +209,7 @@ const ContentRenderer = ({ content, className }: Props) => {
             if (!cardData) return null;
             return (
               <React.Fragment key={key}>
-                <CardComponent {...cardData} />
+                <CardComponent cardData={cardData} />
               </React.Fragment>
             );
           }
@@ -231,6 +233,23 @@ const ContentRenderer = ({ content, className }: Props) => {
               <div className='l-container l-container--full' key={key}>
                 <hr aria-hidden='true' className={dividerClass} />
               </div>
+            );
+          }
+
+          // 11.　重ね合わせボックス
+          case 'overlapping_box': {
+            const boxData = {
+              title: block.box_title,
+              image: block.box_image,
+              description: block.box_description,
+              link: block.box_link,
+              buttonText: block.box_button_text,
+            };
+            if (!boxData) return null;
+            return (
+              <React.Fragment key={key}>
+                <OverlappingBox boxData={boxData} />
+              </React.Fragment>
             );
           }
 

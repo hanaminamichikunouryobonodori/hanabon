@@ -15,8 +15,8 @@ interface CardDataProps {
   buttonText?: string;
 }
 
-const CardComponent = (cardData: CardDataProps) => {
-  const cardContent = (
+const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
+  return (
     <div className='c-card'>
       <Image
         alt={cardData.image.alt || cardData.title}
@@ -50,16 +50,6 @@ const CardComponent = (cardData: CardDataProps) => {
       {cardData.link && <Link className='c-card__link' href={cardData.link}></Link>}
     </div>
   );
-  // // linkがある場合はLinkタグでラップ、ない場合はdivでラップ
-  // if (cardData.link) {
-  //   return (
-  //     <Link className='c-card__link' href={cardData.link}>
-  //       {cardContent}
-  //     </Link>
-  //   );
-  // }
-
-  return <>{cardContent}</>;
 };
 
 export default CardComponent;

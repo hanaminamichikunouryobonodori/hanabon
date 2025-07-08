@@ -9,8 +9,8 @@ type Props = {
 
 const PageHeader = ({ children, className }: Props) => {
   return (
-    <header className={`${styles.header} ${className}`}>
-      <div className={styles.container}>
+    <header className={`${styles.header} ${className} py-xl mb-lg`}>
+      <div className='l-container px-lg'>
         <h1 className={styles['header__title']}>{children}</h1>
       </div>
     </header>

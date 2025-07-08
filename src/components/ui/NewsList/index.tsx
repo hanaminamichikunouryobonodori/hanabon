@@ -14,6 +14,23 @@ type Props = {
   isSimple?: boolean;
 };
 
+/**
+ * 指定された日付文字列が現在から1ヶ月以内であるかを判定します。
+ * @param {string} dateString - ISO 8601形式の日付文字列 (例: '2025-07-08T10:00:00.000Z')
+ * @returns {boolean} 1ヶ月以内であればtrue、そうでなければfalse
+ */
+const isWithinOneMonth = (dateString: string): boolean => {
+  if (!dateString) return false;
+
+  const publishedDate = new Date(dateString);
+  const today = new Date();
+
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setMonth(today.getMonth() - 1);
+
+  return publishedDate > oneMonthAgo;
+};
+
 const NewsList = ({ data, isSimple }: Props) => {
   // isSimpleがtrueの場合、<ol><li>のリストを返す
   if (isSimple) {
@@ -21,28 +38,34 @@ const NewsList = ({ data, isSimple }: Props) => {
       <div className='l-container px-lg'>
         <ol className={styles.list}>
           <hr />
-          {data.contents.map((content) => (
-            <React.Fragment key={content.id}>
-              <li>
-                <div className={styles.listText}>
-                  <Link href={`/news/${content.id}`}>
-                    <h5>{content.title}</h5>
-                  </Link>
-                  <div className={styles.listMeta}>
-                    <Link className='c-tag c-tag--revert px-sm' href='/news'>
-                      お知らせ
-                    </Link>
-                    <PublishedDate
-                      className='u-flex-right'
-                      dateString={content.publishedAt}
-                      id='updated'
-                    />
+          {data.contents.map((content) => {
+            const isNew = isWithinOneMonth(content.publishedAt);
+            return (
+              <React.Fragment key={content.id}>
+                <li>
+                  <div className={styles.listText}>
+                    <div className={styles.listMeta}>
+                      <Link className='c-tag c-tag--revert px-sm' href='/news'>
+                        お知らせ
+                      </Link>
+                      <PublishedDate
+                        className='u-flex-right'
+                        dateString={content.publishedAt}
+                        id='updated'
+                      />
+                    </div>
+                    <div className={styles.listTitle}>
+                      <Link href={`/news/${content.id}`}>
+                        <h5>{content.title}</h5>
+                      </Link>
+                      {isNew && <span className={styles.newBadge}>New!!</span>}
+                    </div>
                   </div>
-                </div>
-              </li>
-              <hr />
-            </React.Fragment>
-          ))}
+                </li>
+                <hr />
+              </React.Fragment>
+            );
+          })}
         </ol>
       </div>
     );
@@ -92,7 +115,7 @@ const NewsList = ({ data, isSimple }: Props) => {
         };
         return (
           <React.Fragment key={content.id}>
-            <CardComponent {...cardData} />
+            <CardComponent cardData={cardData} />
           </React.Fragment>
         );
       })}
