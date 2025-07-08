@@ -3,12 +3,11 @@
 .header {
   width: 100%;
   padding-block: var.$spacing-xl;
-  margin-block-end: 0;
+  padding-inline: var.$spacing-lg;
+  margin-block-end: var.$spacing-lg;
   background-color: var(--background-secondary);
-  border-bottom: 1px solid var(--lineColor);
-  &__title {
-    // font-size: larger;
-  }
+  box-shadow: inset 0 calc(-1 * var.$spacing-sm) var.$spacing-md
+    color-mix(in srgb, var(--foreground) 30%, var(--main-color) 0%);
 }
 .container {
   display: flex;

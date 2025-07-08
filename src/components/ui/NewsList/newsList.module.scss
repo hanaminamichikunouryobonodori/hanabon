@@ -1,16 +1,9 @@
 @use 'styles/abstracts/variables' as var;
 @use 'styles/utils/animations';
 
-.container {
-  width: 100%;
-}
-
-.container ol {
+.list {
   padding: 0;
   list-style: none;
-  .date {
-    text-align: right;
-  }
   h3,
   p {
     font-family: inherit;
@@ -19,7 +12,7 @@
     text-align: left;
   }
   a {
-    color: var(--foreground);
+    color: var(--foreground) !important;
     @media (hover: hover) {
       &:hover {
         @include animations.anim-transition-base;
@@ -31,6 +24,13 @@
 .listText {
   display: flex;
   flex-direction: column;
+  gap: var.$spacing-md;
+  justify-content: space-between;
+}
+
+.listMeta {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 

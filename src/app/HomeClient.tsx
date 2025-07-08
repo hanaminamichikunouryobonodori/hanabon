@@ -8,7 +8,6 @@ import AccessSection from '@/app/_components/AccessSection';
 import ContactSection from '@/app/_components/ContactSection';
 import EventDateSection from '@/app/_components/EventDateSection';
 import GallerySection from '@/app/_components/GallerySection';
-import JoinCommitteeSection from '@/app/_components/JoinCommitteeSection';
 import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
@@ -57,10 +56,9 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       component: <AboutSection data={pages.about} />,
     },
     { id: 'gallery', component: <GallerySection data={pages.gallery} /> },
-    { id: 'news', component: <NewsSection data={pages.news} /> },
     {
-      id: 'joinCommittee',
-      component: <JoinCommitteeSection data={pages.joinCommittee} />,
+      id: 'news',
+      component: <NewsSection joinCommittee={pages.joinCommittee} news={pages.news} />,
     },
     { id: 'access', component: <AccessSection data={pages.access} /> },
     { id: 'contact', component: <ContactSection /> },
@@ -97,7 +95,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
         const isEven = (index + 1) % 2 === 0;
         return (
           <FadeInComponent key={section.id}>
-            <section className={`py-xxl n ${isEven ? 'u-bg-secondary' : ''}`}>
+            <section className={`py-xxl ${isEven ? 'u-bg-secondary' : ''}`}>
               <div className='l-container u-min-h-screen u-flex-center-column' id={section.id}>
                 {section.component}
               </div>

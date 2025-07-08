@@ -1,18 +1,16 @@
 @use 'styles/abstracts/variables' as var;
 
+/* --- .header --- */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
-  display: grid;
-  grid-template-columns: 140px 1fr;
   align-items: center;
   width: 100%;
   height: 80px;
   padding-inline: var.$spacing-md;
   background-color: rgb(247 247 247 / 70%);
-  border-bottom: 1px var(--lineColor) solid;
   border-bottom: 2px solid transparent;
   backdrop-filter: blur(2px);
   transform: translateZ(0);
@@ -21,6 +19,7 @@
     border-bottom-color 0.3s ease;
 }
 
+/* --- .headerNav --- */
 .headerNav {
   display: flex;
   align-items: center;
@@ -31,6 +30,7 @@
   font-family: var.$font-family-serif;
 }
 
+/* --- .navList --- */
 .navList {
   display: flex;
   align-items: center;
@@ -39,7 +39,6 @@
   height: 100%;
   padding: 0 16px;
   margin: 0;
-
   text-shadow:
     1px 1px 0 rgb(247 247 247 / 30%),
     -1px -1px 0 rgb(247 247 247 / 30%),
@@ -69,6 +68,7 @@
   }
 }
 
+/* --- .active --- */
 .active {
   color: color-mix(in srgb, var(--sub-color) 60%, #333 40%) !important;
   @media (max-width: var.$breakpoint-lg) {
@@ -76,49 +76,54 @@
   }
 }
 
+/* --- .hamburger --- */
 .hamburger {
-  z-index: 100;
   display: none;
-  margin: 1.5rem;
 }
 
+/* --- .mobileLogo --- */
+.mobileLogo {
+  display: none;
+}
+
+/* =======================================
+   スマートフォン表示のスタイル
+   ======================================= */
 @media (max-width: var.$breakpoint-lg) {
-  .navList {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    visibility: hidden;
-    flex-direction: column;
-    gap: 2.5rem;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 320px;
-    height: 100vh;
-    padding-top: 100px;
-    text-shadow: none;
-    background-color: rgb(from var(--background) r g b / 0.8);
-    opacity: 0;
-    backdrop-filter: blur(5px);
-    transition:
-      opacity 0.3s ease-in-out,
-      visibility 0.3s ease-in-out;
-    a {
+  .header {
+    display: block;
+    width: 60px;
+    height: 60px;
+    padding-inline: 0;
+    margin-block-start: 5vh;
+    background-color: color-mix(in srgb, var(--background) 70%, var(--main-color) 0%);
+    border-bottom: none;
+    border-radius: 0 var.$border-radius-lg var.$border-radius-lg 0;
+    backdrop-filter: none;
+    transform: none;
+    a,
+    button {
       color: var(--foreground) !important;
     }
   }
 
-  .navLink {
-    font-size: 1.2rem;
-    color: inherit;
+  .headerNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-inline-start: 0;
   }
 
   .hamburger {
     position: relative;
+    z-index: 100;
     display: block;
     width: 30px;
     height: 22px;
+    padding: 0;
+    margin: 0;
     appearance: none;
     cursor: pointer;
     background: none;
@@ -129,21 +134,52 @@
       display: block;
       width: 100%;
       height: 2px;
-      background-color: #333;
+      background-color: var(--foreground);
       transition: all 0.3s ease-in-out;
-    }
 
-    span:nth-child(1) {
-      top: 0;
-    }
-    span:nth-child(2) {
-      top: 10px;
-    }
-    span:nth-child(3) {
-      top: 20px;
+      &:nth-child(1) {
+        top: 0;
+      }
+      &:nth-child(2) {
+        top: 10px;
+      }
+      &:nth-child(3) {
+        top: 20px;
+      }
     }
   }
 
+  .blurredLogo {
+    html[data-theme='dark'] & {
+      filter: invert(100%) !important;
+    }
+  }
+
+  /* --- ナビゲーションメニュー（開いた時） --- */
+  .navList {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    visibility: hidden;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 320px;
+    height: 100vh;
+    padding-top: 80px;
+    text-shadow: none;
+    background-color: rgb(from var(--background) r g b / 0.8);
+    opacity: 0;
+    backdrop-filter: blur(5px);
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
+
+  /* --- メニューが開いた時のスタイル --- */
   .headerNav.open {
     .hamburger {
       span {
@@ -161,11 +197,9 @@
         transform: rotate(-45deg);
       }
     }
-
     .navList {
       visibility: visible;
       opacity: 1;
-      transform: translateX(0);
     }
   }
 }

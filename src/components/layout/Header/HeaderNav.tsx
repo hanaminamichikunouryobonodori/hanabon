@@ -57,38 +57,19 @@ const HeaderNav = () => {
       </li>
     ));
 
+  const logoImage = (
+    <Image
+      alt='花南地区納涼盆踊り'
+      className={styles.blurredLogo}
+      height={30}
+      priority
+      src='/images/hanabonLogo.png'
+      width={144}
+    />
+  );
+
   return (
     <>
-      {isHomePage ? (
-        <ScrollLink
-          activeClass={styles.active}
-          className={styles.navLink}
-          duration={500}
-          offset={-80}
-          smooth={true}
-          spy={true}
-          to='top'
-        >
-          <Image
-            alt='花南地区納涼盆踊り'
-            height={30}
-            priority
-            src='/images/hanabonLogo.png'
-            width={144}
-          />
-        </ScrollLink>
-      ) : (
-        <Link href='/'>
-          <Image
-            alt='花南地区納涼盆踊り'
-            height={30}
-            priority
-            src='/images/hanabonLogo.png'
-            width={144}
-          />
-        </Link>
-      )}
-
       <nav className={`${styles.headerNav} ${isOpen ? styles.open : ''}`}>
         {/* ハンバーガーボタン */}
         <button aria-label='メニューを開閉する' className={styles.hamburger} onClick={toggleMenu}>
@@ -98,6 +79,21 @@ const HeaderNav = () => {
         </button>
         {/* ナビゲーションリスト */}
         <ul className={styles.navList}>
+          {isHomePage ? (
+            <ScrollLink
+              activeClass={styles.active}
+              className={styles.navLink}
+              duration={500}
+              offset={-80}
+              smooth={true}
+              spy={true}
+              to='top'
+            >
+              {logoImage}
+            </ScrollLink>
+          ) : (
+            <Link href='/'>{logoImage}</Link>
+          )}
           {menuList}
           <li>
             <ThemeSwitcher className={styles.navLink} onClick={closeMenu} />

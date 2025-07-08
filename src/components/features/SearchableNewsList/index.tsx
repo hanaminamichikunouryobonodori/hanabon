@@ -67,7 +67,7 @@ const SearchableNewsList = ({ allNews }: Props) => {
           />
         </div>
       </div>
-      <div className='l-container u-min-h-screen py-lg'>
+      <div className='l-container u-min-h-screen py-lg px-lg'>
         <NewsList data={filteredNewsList} />
         {filteredNewsList.contents.length === 0 && searchQuery && (
           <p>「{searchQuery}」に一致するお知らせはありませんでした。</p>

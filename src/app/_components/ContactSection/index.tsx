@@ -9,7 +9,7 @@ const ContactSection = () => {
   return (
     <>
       <MinchoHeadingComponent level={2}>問い合わせ</MinchoHeadingComponent>
-      <div className='l-container l-grid l-grid--half'>
+      <div className='l-container l-grid l-grid--half px-lg'>
         <div>
           <ContactForm />
         </div>

@@ -17,7 +17,7 @@ const AboutSection = ({ data }: AboutSectionProps) => {
       {data.map((section) => {
         const isAbout = section.title === 'どんなお祭り？';
         return (
-          <div className={styles.container} key={section.id}>
+          <div className={isAbout ? styles.container : 'l-section'} key={section.id}>
             <MinchoHeadingComponent level={2}>{section.title}</MinchoHeadingComponent>
             <ContentRenderer
               className={`${isAbout ? 'u-text-subtle' : ''}`}

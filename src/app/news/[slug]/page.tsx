@@ -1,5 +1,8 @@
+import { convert } from 'html-to-text';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { JsonLd } from '@/components/common/JsonLd';
 import { getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { NewsData, NewsListData } from '@/types';
 
@@ -32,6 +35,22 @@ export default async function NewsPage(props: Props) {
   if (!currentPostData) {
     return notFound();
   }
+
+  const jsonLd = {
+    '@context': 'http://googleusercontent.com/schema.org/',
+    '@type': 'NewsArticle',
+    headline: currentPostData.title,
+    image: [
+      currentPostData.featuredImage?.url || `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP.png`,
+    ],
+    datePublished: currentPostData.publishedAt,
+    dateModified: currentPostData.revisedAt,
+    author: {
+      '@type': 'Organization',
+      name: '花南地区納涼盆踊り実行委員会',
+    },
+  };
+
   const allPosts: NewsListData = await getNewsList('all');
 
   if (!currentPostData || !currentPostData.id) {
@@ -41,7 +60,72 @@ export default async function NewsPage(props: Props) {
     throw new Error('記事がありません');
   }
 
-  return <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />;
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />
+    </>
+  );
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
+  const data = await getPostData(params.slug, draftKey);
+
+  if (!data) {
+    return { title: '記事が見つかりません' };
+  }
+  const featuredImageUrl = data.featuredImage?.url;
+  const ogpImageUrl = featuredImageUrl
+    ? featuredImageUrl
+    : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`;
+
+  const textBlocks = data.content
+    .map((block) => {
+      if (block.fieldId === 'rich_text' && block.rich_text) return block.rich_text;
+      if (block.fieldId === 'heading' && block.heading_content) return block.heading_content;
+      if (block.fieldId === 'boxes' && block.box_content) return block.box_content;
+      return '';
+    })
+    .filter((text) => text)
+    .join(' ');
+
+  let description = '';
+  if (textBlocks) {
+    const plainText = convert(textBlocks, {
+      wordwrap: false,
+      selectors: [
+        { selector: 'a', options: { ignoreHref: true } },
+        { selector: 'img', format: 'skip' },
+      ], // aタグとimgタグのURLを非表示に
+    });
+
+    description = plainText.substring(0, 120).replace(/\s+$/, '') + '...';
+  } else {
+    description = data.title;
+  }
+
+  return {
+    title: `${data.title} | ${process.env.SITE_NAME}`,
+    description: description,
+    twitter: {
+      title: `${data.title} | ${process.env.SITE_NAME}`,
+      images: [ogpImageUrl],
+      description: description,
+    },
+    openGraph: {
+      type: 'article',
+      description: description,
+      url: process.env.NEXT_PUBLIC_DOMAIN,
+      title: `${data.title} | ${process.env.SITE_NAME}`,
+      images: [
+        {
+          url: ogpImageUrl,
+        },
+      ],
+    },
+  };
 }
 
 export const generateStaticParams = async () => {

@@ -7,9 +7,10 @@ type Props = {
 };
 
 const PublishedDate = ({ dateString, className, id }: Props) => {
-  const formattedDate = new Date(dateString).toLocaleString('ja-JP', {
+  const formattedDate = new Date(dateString).toLocaleString('ja-JP-u-ca-japanese', {
+    era: 'long',
     year: 'numeric',
-    month: 'numeric',
+    month: 'long',
     day: 'numeric',
     timeZone: 'Asia/Tokyo',
   });

@@ -1,21 +1,7 @@
 @use 'styles/abstracts/variables' as var;
 
-.c-card__link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  border-radius: 8px;
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
-}
-
-.c-card__link:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-  transform: translateY(-4px);
-}
-
 .c-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -23,6 +9,29 @@
   background-color: var(--main-color);
   border-radius: var.$border-radius-md;
   box-shadow: 0 5px 10px color-mix(in srgb, var(--background) 80%, var(--main-color) 80%);
+
+  /* transitionプロパティをカード本体に移動 */
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+}
+
+.c-card:has(.c-card__link) {
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      .c-card__title {
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+        text-decoration-color: color-mix(in srgb, var(--background) 50%, var(--main-color) 0%);
+      }
+    }
+  }
+  &:active {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
 }
 
 .c-card:nth-child(even) {
@@ -48,31 +57,39 @@
 .c-card__title {
   margin-top: 0;
   margin-bottom: 8px;
+  font-size: 1.2rem;
   font-weight: var.$font-weight-bold;
+  color: var(--foreground) !important;
 }
 
 .c-card__description {
   flex-grow: 1;
+  font-size: 0.9rem;
   font-weight: var.$font-weight-normal;
+  line-height: 1.2 !important;
+  color: var(--foreground) !important;
+  word-break: break-all;
+  line-break: anywhere;
   p {
     font-size: 0.9rem;
-    line-height: 1.4 !important;
+    line-height: 1.2 !important;
   }
 }
-
-.c-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var.$spacing-xs;
-  margin-top: var.$spacing-sm;
-}
-
-.c-card__tag {
-  display: inline-block;
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--foreground);
-  background-color: var(--main-color);
-  border-radius: var.$border-radius-lg;
+.c-card__link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    content: '';
+  }
+  /* ホバーエフェクトをカード自体に適用 */
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }

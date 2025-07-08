@@ -1,0 +1,38 @@
+@use 'styles/abstracts/variables' as var;
+
+.c-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var.$spacing-xs;
+  margin-top: var.$spacing-sm;
+}
+
+.c-tag {
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--main-color);
+  background-color: var(--foreground);
+  border-radius: var.$border-radius-lg;
+  &:visited {
+    color: initial;
+  }
+  a {
+    color: inherit;
+    &:visited {
+      color: initial;
+    }
+  }
+  &--revert {
+    color: var(--foreground);
+    background-color: var(--main-color);
+  }
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+  }
+}

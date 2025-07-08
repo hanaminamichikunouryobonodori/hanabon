@@ -228,7 +228,7 @@ const ContentRenderer = ({ content, className }: Props) => {
             const dividerClass = modifier ? `c-divider c-divider--${modifier}` : '';
 
             return (
-              <div className='l-container--full' key={key}>
+              <div className='l-container l-container--full' key={key}>
                 <hr aria-hidden='true' className={dividerClass} />
               </div>
             );

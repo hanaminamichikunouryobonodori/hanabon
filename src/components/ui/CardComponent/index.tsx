@@ -34,29 +34,30 @@ const CardComponent = (cardData: CardDataProps) => {
             <p className='c-card__description'>{cardData.description}</p>
           ))}
         {cardData.buttonText && (
-          <div className='c-card__tags'>
+          <div className='c-tags'>
             {cardData.buttonText
               .split(',')
               .map((text) => text.trim())
               .filter((text) => text)
               .map((tag, index) => (
-                <span className='c-card__tag' key={index}>
+                <span className='c-tag' key={index}>
                   {tag}
                 </span>
               ))}
           </div>
         )}
       </div>
+      {cardData.link && <Link className='c-card__link' href={cardData.link}></Link>}
     </div>
   );
-  // linkがある場合はLinkタグでラップ、ない場合はdivでラップ
-  if (cardData.link) {
-    return (
-      <Link className='c-card__link' href={cardData.link}>
-        {cardContent}
-      </Link>
-    );
-  }
+  // // linkがある場合はLinkタグでラップ、ない場合はdivでラップ
+  // if (cardData.link) {
+  //   return (
+  //     <Link className='c-card__link' href={cardData.link}>
+  //       {cardContent}
+  //     </Link>
+  //   );
+  // }
 
   return <>{cardContent}</>;
 };

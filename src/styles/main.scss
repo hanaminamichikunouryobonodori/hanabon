@@ -19,6 +19,7 @@
 @use 'components/divider';
 @use 'components/forms';
 @use 'components/card';
+@use 'components/tags';
 @use 'components/minchoheading';
 
 // 5. ユーティリティ（他のスタイルを上書きできるように最後に）
@@ -35,4 +36,7 @@
 
 main {
   margin-block-start: 80px;
+  @media (max-width: 980px) {
+    margin-block-start: 0;
+  }
 }

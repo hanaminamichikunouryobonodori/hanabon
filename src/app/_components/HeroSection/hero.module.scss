@@ -42,7 +42,8 @@
   transform: translateY(-50%);
   @media (max-width: var.$breakpoint-lg) {
     top: 50%;
-    left: 5%;
+    right: 5%;
+    left: auto;
     width: auto;
     max-height: 90%;
   }

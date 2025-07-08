@@ -1,6 +1,8 @@
+@use 'styles/abstracts/variables' as var;
 @use 'styles/utils/animations';
 
 .container {
+  max-width: 480px;
   a {
     color: var(--foreground);
     @media (hover: hover) {
