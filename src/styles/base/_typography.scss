@@ -1,9 +1,10 @@
 @use '../abstracts/variables' as var;
 
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
   color-scheme: light;
   background-color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
 body {
