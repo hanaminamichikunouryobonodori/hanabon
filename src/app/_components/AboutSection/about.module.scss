@@ -25,12 +25,8 @@
 
 .staggeredContainer {
   display: grid;
-  grid-template-columns: var.$spacing-xxl 1fr repeat(3, 24px) 1fr var.$spacing-xxl;
+  grid-template-columns: 1fr repeat(3, 48px) 1fr;
   align-items: start;
   margin: auto calc(50% - 50vw);
-}
-
-/* 2番目の要素を下にずらす */
-.staggeredContainer > *:nth-child(even) {
-  // margin-top: 250px;
+  margin-block-end: var.$spacing-xxl;
 }

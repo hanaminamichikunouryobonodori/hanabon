@@ -27,26 +27,28 @@ const OverlappingBox = ({
 }) => {
   return (
     <div className={styles.container}>
-      <h3>{boxData.title}</h3>
-      {boxData.image && (
-        <Image
-          alt={boxData.title}
-          className='u-responsive-image'
-          height={boxData.image.height}
-          src={boxData.image.url}
-          width={boxData.image.width}
-        />
-      )}
+      <div className={styles.body}>
+        <div className={styles.title}>{boxData.title}</div>
+        {boxData.image && (
+          <Image
+            alt={boxData.title}
+            className='u-responsive-image'
+            height={boxData.image.height}
+            src={boxData.image.url}
+            width={boxData.image.width}
+          />
+        )}
 
-      <div className={styles.description}>
-        <SafeHtmlRenderer htmlContent={boxData.description} />
+        <div className={styles.description}>
+          <SafeHtmlRenderer htmlContent={boxData.description} />
+        </div>
+
+        {boxData.buttonText && boxData.link && (
+          <a className={styles.button} href={boxData.link}>
+            {boxData.buttonText}
+          </a>
+        )}
       </div>
-
-      {boxData.buttonText && boxData.link && (
-        <a className={styles.button} href={boxData.link}>
-          {boxData.buttonText}
-        </a>
-      )}
     </div>
 
     // ★★★ 削除：</div>
