@@ -6,6 +6,7 @@ import styles from './sponsorship.module.scss';
 const SponsorshipSection = ({ data }: { data: PageData }) => {
   return (
     <>
+      <h2 id='sponsorship'>主催</h2>
       <ContentRenderer className={styles.container} content={data.content} id='sponsorship' />
       <p className='u-flex-center'>皆様の温かいご支援に、心より感謝申し上げます。</p>
     </>
