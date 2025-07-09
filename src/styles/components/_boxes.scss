@@ -3,12 +3,15 @@
 %box-base {
   display: flex;
   align-items: flex-start;
-  padding: var.$spacing-lg;
-  margin-block: var.$spacing-lg;
+  padding: var.$spacing-sm;
+  margin-block: var.$spacing-md;
   border-radius: var.$border-radius-md;
 
   > :last-child {
     margin-bottom: 0;
+  }
+  > :first-child {
+    margin-bottom: inherit;
   }
 
   p {
@@ -59,7 +62,8 @@ html[data-theme='dark'] {
   display: flex;
   grid-gap: 0 0.7em;
   align-items: center;
-  padding: 1em;
+  padding-block: var.$spacing-sm;
+  padding-inline: var.$spacing-lg;
   margin: var.$spacing-md auto;
   background-color: color-mix(in srgb, $color 30%, black 0%);
   border: 1px solid $color;
@@ -84,15 +88,15 @@ html[data-theme='dark'] {
 
 .c-info-box {
   @extend %box-base;
-  @include icon-box-variant(var(--color-blue), 'i'); // 青系の色と 'i' を渡す
+  @include icon-box-variant(var(--color-yellow), 'i');
 }
 
 .c-question-box {
   @extend %box-base;
-  @include icon-box-variant(var(--color-pink), '?'); // アクセントカラーと '?' を渡す
+  @include icon-box-variant(var(--color-blue), '?');
 }
 
 .c-alert-box {
   @extend %box-base;
-  @include icon-box-variant(var(--color-red), '!'); // 赤系の色と '!' を渡す
+  @include icon-box-variant(var(--color-red), '!');
 }
