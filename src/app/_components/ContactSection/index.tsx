@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
 import ContactForm from '@/components/features/ContactForm';
-import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MinchoHeading';
 
 import styles from './contact.module.scss';
 
 const ContactSection = () => {
   return (
     <>
-      <MinchoHeadingComponent id='contact' level={2}>
+      <MaruHeadingComponent id='contact' level={2}>
         問い合わせ
-      </MinchoHeadingComponent>
+      </MaruHeadingComponent>
       <div className='l-container l-grid l-grid--half px-lg'>
         <div>
           <ContactForm />

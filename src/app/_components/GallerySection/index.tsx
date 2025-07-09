@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 
-import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types';
 
 const GallerySection = ({ data }: { data: PageData }) => {
@@ -11,9 +11,9 @@ const GallerySection = ({ data }: { data: PageData }) => {
 
   return (
     <div className='l-section' id='gallerySection'>
-      <MinchoHeadingComponent id='gallery' level={2}>
+      <MaruHeadingComponent id='gallery' level={2}>
         {data.title}
-      </MinchoHeadingComponent>
+      </MaruHeadingComponent>
       <ContentRenderer className='l-container l-container--full' content={data.content} />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MinchoHeading';
 import NewsList from '@/components/ui/NewsList';
 import { NewsData, NewsListData } from '@/types';
 
@@ -11,9 +11,9 @@ import JoinCommitteeSection from '../JoinCommitteeSection';
 const NewsSection = ({ news, joinCommittee }: { news: NewsListData; joinCommittee: NewsData }) => {
   return (
     <>
-      <MinchoHeadingComponent id='news' level={2}>
+      <MaruHeadingComponent id='news' level={2}>
         最新情報
-      </MinchoHeadingComponent>
+      </MaruHeadingComponent>
       <NewsList data={news} isSimple={true} />
       <div className='u-flex-center'>
         <Link href='/news'>

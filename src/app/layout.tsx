@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, NextPage, Viewport } from 'next';
-import { Montserrat, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from 'next/font/google';
-import { headers } from 'next/headers'; // ★ headers をインポート
+import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
+import { headers } from 'next/headers';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -55,11 +55,11 @@ const ZenKakuGothic = Zen_Kaku_Gothic_New({
   variable: '--font-zen-kaku-gothic-new',
 });
 
-const ZenOldMincho = Zen_Old_Mincho({
-  weight: '900',
+const ZenMaruGothic = Zen_Maru_Gothic({
+  weight: ['700', '900'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-zen-old-mincho',
+  variable: '--font-zen-maru-gothic',
 });
 
 async function getTheme(): Promise<Theme> {
@@ -89,7 +89,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
   return (
     <html lang='ja' suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} ${ZenKakuGothic.variable} ${ZenOldMincho.variable}`}
+        className={`${montserrat.variable} ${ZenKakuGothic.variable} ${ZenMaruGothic.variable}`}
         id='top'
       >
         <ThemeProvider>

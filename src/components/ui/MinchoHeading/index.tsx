@@ -11,7 +11,7 @@ interface MinchoHeadingProps {
   id?: string;
 }
 
-const MinchoHeadingComponent: React.FC<MinchoHeadingProps> = ({
+const MaruHeadingComponent: React.FC<MinchoHeadingProps> = ({
   level,
   children,
   className = '',
@@ -28,4 +28,4 @@ const MinchoHeadingComponent: React.FC<MinchoHeadingProps> = ({
   );
 };
 
-export default MinchoHeadingComponent;
+export default MaruHeadingComponent;

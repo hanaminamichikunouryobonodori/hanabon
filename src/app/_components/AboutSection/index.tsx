@@ -1,6 +1,6 @@
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import ContentRenderer from '@/components/common/ContentRenderer';
-import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MinchoHeading';
 import { PageData } from '@/types';
 
 import styles from './about.module.scss';
@@ -21,12 +21,9 @@ const AboutSection = ({ data }: AboutSectionProps) => {
         return (
           <FadeInComponent key={section.id}>
             <div className={isAbout ? styles.container : ''} id={isProgram ? 'program' : ''}>
-              <MinchoHeadingComponent
-                id={isAbout ? 'about' : isProgram ? 'program ' : ''}
-                level={2}
-              >
+              <MaruHeadingComponent id={isAbout ? 'about' : isProgram ? 'program ' : ''} level={2}>
                 {section.title}
-              </MinchoHeadingComponent>
+              </MaruHeadingComponent>
               <ContentRenderer
                 className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
                 content={section.content}

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
-import MinchoHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MinchoHeading';
 import OverlappingBox from '@/components/ui/OverlappingBox';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
 import { LightboxContext } from '@/contexts/LightboxContext';
@@ -177,9 +177,9 @@ const ContentRenderer = ({ content, className }: Props) => {
             const isMinchoHeading = block.heading_id === 'minchoHeading';
             if (isMinchoHeading) {
               return (
-                <MinchoHeadingComponent key={key} level={headingLevel}>
+                <MaruHeadingComponent key={key} level={headingLevel}>
                   {block.heading_content}
-                </MinchoHeadingComponent>
+                </MaruHeadingComponent>
               );
             } else {
               const HeadingComponent = `h${headingLevel}` as keyof JSX.IntrinsicElements;

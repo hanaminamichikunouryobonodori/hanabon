@@ -20,7 +20,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      font-weight: bold;
+      font-weight: var.$font-weight-bold;
+
       color: var(--sub-color);
       content: '※';
     }

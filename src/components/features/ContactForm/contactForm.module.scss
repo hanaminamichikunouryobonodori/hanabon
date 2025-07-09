@@ -1,3 +1,5 @@
+@use 'styles/abstracts/variables' as var;
+
 .form {
   display: flex;
   flex-direction: column;
@@ -13,7 +15,8 @@
 
 .label {
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-weight: var.$font-weight-bold;
+
   color: var(--foreground);
 }
 
