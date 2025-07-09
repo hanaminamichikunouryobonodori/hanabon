@@ -80,7 +80,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       name: '花南地区納涼盆踊り実行委員会',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://hanabon.vercel.app/images/hanabonLogo.png',
+        url: 'https://hanabon.vercel.app/images/hanabonLogo.webp',
       },
     },
   };

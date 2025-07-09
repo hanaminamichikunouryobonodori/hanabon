@@ -71,7 +71,7 @@ const HeaderNav = () => {
       className={styles.blurredLogo}
       height={30}
       priority
-      src='/images/hanabonLogo.png'
+      src='/images/hanabonLogo.webp'
       width={144}
     />
   );

@@ -86,7 +86,6 @@ const HeroCarouselComponent = ({
         height={logoData.height}
         priority
         src={logoData.url}
-        style={{ objectFit: 'cover' }}
         width={logoData.width}
       />
     </div>
