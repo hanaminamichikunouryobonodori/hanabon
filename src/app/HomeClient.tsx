@@ -22,6 +22,7 @@ type Section = {
 
 const HomeClient = ({ pages }: { pages: HomePageProps }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -67,7 +68,18 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       component: <SponsorshipSection data={pages.sponsorship} />,
     },
   ];
-
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'WebSite',
+        position: 1,
+        name: 'ホーム',
+        item: siteUrl,
+      },
+    ],
+  };
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -87,6 +99,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={jsonLdData} />
       {sections.map((section, index) => {
         const componentData = pages[section.id];

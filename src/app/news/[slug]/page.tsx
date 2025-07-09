@@ -31,10 +31,35 @@ export default async function NewsPage(props: Props) {
   const params = await props.params;
   const draftKey = (await props.searchParams)?.draftKey as string | undefined;
   const currentPostData = await getPostData(params.slug, draftKey);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
 
   if (!currentPostData) {
     return notFound();
   }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'ホーム',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'お知らせ一覧',
+        item: `${siteUrl}/news`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '',
+        item: `${siteUrl}/news/${params.slug}`,
+      },
+    ],
+  };
 
   const jsonLd = {
     '@context': 'http://googleusercontent.com/schema.org/',
@@ -62,6 +87,7 @@ export default async function NewsPage(props: Props) {
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={jsonLd} />
       <NewsArticle allPosts={allPosts.contents} currentPostData={currentPostData} />
     </>

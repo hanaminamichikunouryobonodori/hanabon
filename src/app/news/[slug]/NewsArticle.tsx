@@ -1,4 +1,3 @@
-// ★ ファイルの先頭に 'use client' を記述
 'use client';
 
 import Image from 'next/image';
