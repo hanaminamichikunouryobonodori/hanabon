@@ -1,0 +1,107 @@
+[33m8352981[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m fix: sitemapとRSSを更新
+[33m1658828[m feat(RSS): RSSの追加
+[33meeb868f[m feat(Arcitle): お知らせ記事が古い場合に注釈を追加
+[33md1b2a95[m fix: JsonLDの追加
+[33m82107f0[m fix: デザインの修正
+[33ma8b9483[m fix: Metadataの修正
+[33m53536ca[m fix: メニューの不要な項目を削除
+[33mda0edeb[m fix: カードのグリッドデザインを修正
+[33mf0454b2[m fix: カードのタグデザインを修正
+[33mebe0426[m fix: タイプエラーの修正
+[33m740de44[m fix: コードリファクタリング
+[33m9e6d618[m feat(Footer): フッターに項目を追加
+[33m31cf231[m fix(scss): お祭りの内容のレスポンシブ対応
+[33m94a9656[m fix(NewsList): お知らせ一覧の画像読み込みの最適化
+[33m5dd8bc1[m fix: ホームページのデザイン修正
+[33m0c561f2[m fix: はみ出す要素を抑制(hidden)
+[33m2af65af[m fix: お祭りの内容セクションのデザイン調整
+[33m0416e1d[m fix(ui): 重なりデザインの修正
+[33mbfafa41[m fix: デザイン修正
+[33me504057[m fix: デザイン全般を修正
+[33mfc60420[m Merge branch 'main' of https://github.com/hanaminamichikunouryobonodori/hanabon
+[33mec9674e[m fix: Headerのお知らせリンクはお知らせ一覧へ飛ばす
+[33ma186ac7[m fix: Headerのお知らせリンクはお知らせ一覧へ飛ばす
+[33ma4cc7d4[m feat(URL): サイト移行までは旧サイトを優先するように設定
+[33ma28dc8a[m fix: タイポ修正
+[33me379656[m fix: JSONを直接読み込ませる
+[33m12d22e2[m fix: indexapiを修正
+[33m4a17d9d[m fix(Debug): デバック用の設定
+[33m733bd42[m fix: デバック用
+[33mddc6bda[m fix: APIキー更新
+[33m0e59356[m fix: API Keyの修正
+[33m674c76d[m feat:Google indexingに対応
+[33m52c01e5[m fix: Heroに読み込み時のdelayを追加
+[33m2122385[m fix: Heroアニメーションの微調整
+[33md0bd361[m fix: Heroのアニメーションを修正
+[33m9e8c2a1[m fix(ui): デザインの修正
+[33mf12b23e[m fix: 区切り線を追加
+[33mfd121b5[m fix: ヘッダーのアクティブリンク色を修正
+[33m5cecf76[m fix: eslint
+[33m41fa1fa[m feat: カードを追加
+[33mdce41ce[m fix: 画像のradiusの調整
+[33mb4a3adf[m fix(api): 固定ページもプレビューに対応
+[33m9f6f8fd[m fix(api): プレビューAPIの修正
+[33mfd000f9[m fix: _grid.scssのタイポを修正
+[33m42d91ca[m fix: グリッドコンテナに合わせてContentRendererを調整
+[33mbb54e4c[m feat(layout): 動的なグリッドコンテナを追加
+[33m2ae730a[m fix:リンクスクロールを修正するためにローディングを追加
+[33m047c727[m fix:ページのフェードレイアウトを変更
+[33m5dbf1da[m fix:LightBoxのツールバーの位置調整
+[33md73cdab[m fix:記事ページもフェード表示するようにする
+[33m2cb9413[m[33m ([m[1;33mtag: [m[1;33mv1.1.0[m[33m)[m release: Bump version to 1.1.0
+[33m40483be[m fix:テーマボタンを押した場合もmenuを閉じる
+[33mb3958e7[m fix:ボタンに注釈を追加
+[33m68487fb[m fix:LightBoxをZoomに対応
+[33m41ac6e3[m feat:LightBoxに対応
+[33m42d1c49[m fix:Hero画像のアスペクト比を調整
+[33m69c5e54[m fix:Postの見出しを修正
+[33m4dfc413[m feat:Footerにトップへ戻るボタンを追加
+[33m78877e3[m fix:HeroセクションをSwiperに変更
+[33m65bf2d2[m feat:next-themesに対応
+[33mbfb37d6[m feat:JSON-LDに対応
+[33mb6a1e43[m fix:SEO対策
+[33m6f3626f[m feat:SEO対策
+[33m11a7b5e[m feat:robots.tsを設定
+[33m453a8f5[m fix:認証ができたので削除
+[33m4faea3d[m fix:値の間違いを修正
+[33mbcc35be[m feat:Google Search Console用のタグ追加
+[33m02d5d2e[m fix(design):テーブルのCSSを修正
+[33ma7bc11d[m feat:html-to-textを使ってNews記事のdescriptionを設定
+[33mffb04df[m fix(design):Date表示のデザインを編集
+[33m6385eee[m feat:GoogleTagManagerを追加
+[33m4636203[m chore(deps): 依存関係を最新版に更新
+[33m5e341a7[m feat:ホームページの記事IDをmicroCMSのAPIで管理
+[33m91cb674[m fix:News記事の見出しデザインの修正
+[33mfecd40a[m fix(design):Tableデザインの修正
+[33mf923756[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m release: バージョン1.0.0をリリース
+[33m31361f8[m fix(link):リンク時のスクロールを調整
+[33m9bd658b[m feat:OGP画像追加
+[33m6ba3c98[m fix:404ページのデザイン修正
+[33me686d60[m fix:GoogleAnalyticsの調整
+[33mcdefa6e[m fix:ホームコンテンツをimportに変更
+[33m921c73d[m fix(preview):キーの修正
+[33md1ad28c[m feat(preview):プレビューモードの実装
+[33m5b99f27[m fix:数字フォントを調整
+[33m3b0a94e[m fix:デザインの修正
+[33m38710dd[m fix:大文字と小文字の表記ブレを修正
+[33ma2d20a1[m fix(font):フォントをZenKakuGothicNewに変更
+[33m07463cf[m feat(analytics): Google Analytics 4 (GA4)を導入
+[33ma666f9a[m fix:ハンバーガーメニューのリンク色を修正
+[33m27e7f01[m feat(seo): sitemap.xmlの動的生成機能を追加
+[33m6d28276[m fix:次の記事・前の記事のデザインを修正
+[33m1b67033[m fix(ui):パンくずリストが改行しないようにして、文字を省略するように修正
+[33m03857f0[m refactor(data-fetching): Promise.allの結果をObject.fromEntriesで再構築
+[33mdf2840c[m fix(TypeScript):型宣言の修正
+[33m0b204bf[m fix:paramsでのパラメータ取得が非同期に修正
+[33mb6e6b87[m fix(news): generateMetadataのデータ取得方法を修正し、ビルドエラーを解消
+[33m40e99ef[m fix:Metadataの修正
+[33m151a176[m fix(CSS):不要なCSSを削除
+[33ma5c7aa4[m fix(OGP):メタデータのOGPにwidthとheightを追加
+[33m63cab44[m fix(layout): App Routerの規約に合わせlayout.tsxを修正
+[33m804844c[m fix(build):不要なconsoleの削除
+[33m43bacc0[m fix(build): 不要なwebpack設定を削除し、Next.js標準の画像ローダーを使用
+[33m365e002[m chore(analytics): Vercel Speed Insightsを導入
+[33maf3e977[m fix(build): \file-loaderを追加してビルドエラーを解消
+[33mf0d82e5[m fix(build): url-loaderを追加してビルドエラーを解消
+[33m1605f2f[m feat: Initial commit (v0.1.0) Webサイトの初期バージョン（v0.1.0）を実装。 基本的なページ構成と、主要な機能を構築。
+[33m24796ca[m Initial commit from Create Next App
