@@ -60,5 +60,5 @@ const News = async () => {
 export default News;
 
 export const metadata: Metadata = {
-  title: `お知らせ一覧 | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+  title: `お知らせ一覧 | ${process.env.SITE_NAME}`,
 };
