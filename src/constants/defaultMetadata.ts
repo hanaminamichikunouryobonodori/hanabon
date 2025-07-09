@@ -43,4 +43,12 @@ export const defaultMetadata: Metadata = {
       },
     ],
   },
+  robots: {
+    follow: true,
+    index: true,
+    googleBot: {
+      follow: true,
+      index: true,
+    },
+  },
 };

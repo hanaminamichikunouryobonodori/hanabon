@@ -9,7 +9,11 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: '/api/',
-        // disallow: '/private/', // もしクロールさせたくない特定のパスがあれば指定
+      },
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: '/manuals/',
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
