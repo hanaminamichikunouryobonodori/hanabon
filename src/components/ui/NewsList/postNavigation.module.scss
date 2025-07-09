@@ -14,8 +14,20 @@
   min-height: var.$spacing-xxl;
   padding: 0.5rem 1rem;
   text-align: center;
-  background-color: var(--background);
+  background-color: var(--main-color);
+  border-radius: var.$border-radius-md;
+  a {
+    color: var(--foreground);
+    &:visited {
+      color: var(--foreground);
+    }
+  }
 }
-.navItem:not(:has(> :not(br):not(span):not(i))) {
+.navItem:nth-child(2) {
+  background-color: var(--sub-color);
+}
+
+.navItem:not(:has(> :not(br):not(span):not(i))),
+.navItem:nth-child(2):not(:has(> :not(br):not(span):not(i))) {
   background-color: transparent;
 }
