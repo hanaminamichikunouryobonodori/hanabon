@@ -33,7 +33,7 @@ const HeaderNav = () => {
       <li key={item.to}>
         {item.to === 'news' ? (
           // 'news'専用の通常のリンク
-          <Link className={styles.navLink} href='/news' onClick={closeMenu}>
+          <Link className={styles.navLink} href='/news'>
             {item.label}
           </Link>
         ) : isHomePage ? (
@@ -98,7 +98,7 @@ const HeaderNav = () => {
           )}
           {menuList}
           <li>
-            <ThemeSwitcher className={styles.navLink} onClick={closeMenu} />
+            <ThemeSwitcher className={styles.navLink} setIsOpen={setIsOpen} />
           </li>
         </ul>
       </nav>
