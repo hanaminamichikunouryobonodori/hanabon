@@ -10,6 +10,9 @@
   // 情報 (Info) - 青系
   --color-blue: #0d6efd; // 濃い青
   --color-blue-bg: #e7f5ff; // 薄い青
+  // Cyan - シアン系
+  --color-cyan: #0dcaf0; // 鮮やかなシアン
+  --color-cyan-bg: #cff4fc; // 薄いシアン
   // 警告 (Warning) - 黄色系
   --color-yellow: #ffc107; // 濃い黄色
   --color-yellow-bg: #fffbeb; // 薄い黄色
@@ -17,6 +20,9 @@
   // 質問 (Question) - ピンク系
   --color-pink: #d63384; // 濃いピンク
   --color-pink-bg: #fde7f3; // 薄いピンク
+  // パープル (Purple) - 紫系
+  --color-purple: #6f42c1; // 濃い紫
+  --color-purple-bg: #f4eefd; // 薄い紫
   // 成功 (Success) - 緑系
   --color-green: #198754; // 濃い緑
   --color-green-bg: #d1e7dd; // 薄い緑
@@ -34,8 +40,11 @@ html[data-theme='dark'] {
   --main-color: color-mix(in srgb, var(--main-color-base) 85%, black 30%);
   --sub-color: color-mix(in srgb, var(--sub-color-base) 85%, black 30%);
   // 情報 (Info) - 青系
-  --color-blue: #58a6ff; // 明るい青
+  --color-blue: #409eff; // 明るい青（彩度を調整）
   --color-blue-bg: #1f2c3d; // 暗い青の背景
+  // Cyan - シアン系
+  --color-cyan: #6be2f5; // 明るいシアン
+  --color-cyan-bg: #1c3c45; // 暗いシアンの背景
   // 警告 (Warning) - 黄色系
   --color-yellow: #e7b621; // 明るい黄色
   --color-yellow-bg: #3a2e0c; // 暗い黄色の背景
@@ -43,6 +52,9 @@ html[data-theme='dark'] {
   // 質問 (Question) - ピンク系
   --color-pink: #f781c1; // 明るいピンク
   --color-pink-bg: #3c192b; // 暗いピンクの背景
+  // パープル (Purple) - 紫系
+  --color-purple: #a777e3; // 明るい紫
+  --color-purple-bg: #2c2140; // 暗い紫の背景
   // 成功 (Success) - 緑系
   --color-green: #56d364; // 明るい緑
   --color-green-bg: #1c3d2e; // 暗い緑の背景

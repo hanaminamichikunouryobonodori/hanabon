@@ -1,0 +1,52 @@
+.themeSwitchPlaceholder {
+  width: 56px;
+  height: 32px;
+  background-color: var(--lineColor);
+  border-radius: 9999px;
+}
+
+.themeSwitch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.themeSwitchInput {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.themeSwitchSlider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--lineColor);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* スイッチの円とアイコン */
+.themeSwitchIcon {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-yellow);
+  background-color: var(--background);
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.themeSwitchInput:checked + .themeSwitchSlider .themeSwitchIcon {
+  color: color-mix(in srgb, var(--color-blue) 50%, var(--color-blue-bg) 50%);
+  transform: translateX(24px);
+}
