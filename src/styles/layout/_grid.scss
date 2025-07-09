@@ -11,19 +11,11 @@
   width: 100%;
 
   &--grid-auto-fill {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-
-  &--grid-auto-fill:has(.c-card) {
-    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
   &--grid-auto-fit {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-
-  &--grid-auto-fit:has(.c-card) {
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
   &--half {
