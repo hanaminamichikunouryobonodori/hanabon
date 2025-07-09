@@ -55,7 +55,7 @@ export default async function NewsPage(props: Props) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: '',
+        name: currentPostData.title,
         item: `${siteUrl}/news/${params.slug}`,
       },
     ],
