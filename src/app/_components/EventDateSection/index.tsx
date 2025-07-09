@@ -7,7 +7,9 @@ import style from './eventDate.module.scss';
 const EventDateSection = ({ data }: { data: PageData }) => {
   return (
     <div className={style.container}>
-      <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>
+      <MinchoHeadingComponent id='eventDate' level={2}>
+        {data.title}
+      </MinchoHeadingComponent>
       <ContentRenderer content={data.content} />
     </div>
   );

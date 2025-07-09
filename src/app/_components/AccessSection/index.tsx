@@ -5,7 +5,9 @@ import { PageData } from '@/types';
 const AccessSection = ({ data }: { data: PageData }) => {
   return (
     <>
-      <MinchoHeadingComponent level={2}>アクセス</MinchoHeadingComponent>
+      <MinchoHeadingComponent id='access' level={2}>
+        アクセス
+      </MinchoHeadingComponent>
       <div className='l-container l-container--full u-text-subtle px-lg'>
         <ContentRenderer content={data.content} />
       </div>

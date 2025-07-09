@@ -14,7 +14,9 @@ $spacing-sizes: (
   // 24px
   'xl': var.$spacing-xl,
   // 40px
-  'xxl': var.$spacing-xxl, // 64px
+  'xxl': var.$spacing-xxl,
+  // 64px
+  '3xl': var.$spacing-3xl, // 80px
 );
 
 // --- ② クラスの自動生成 ---

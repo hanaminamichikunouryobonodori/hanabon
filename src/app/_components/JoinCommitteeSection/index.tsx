@@ -16,7 +16,7 @@ const JoinCommitteeSection = ({ data }: { data: NewsData }) => {
   };
 
   return (
-    <div className={`${styles.container} u-flex-center-column px-lg`}>
+    <div className={`${styles.container} u-flex-center-column px-lg`} id='joinCommittee'>
       <CardComponent cardData={cardData} />
     </div>
   );

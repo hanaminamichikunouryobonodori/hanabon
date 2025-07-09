@@ -8,18 +8,24 @@ interface MinchoHeadingProps {
   children: React.ReactNode;
   /** 外部から追加するCSSクラス */
   className?: string;
+  id?: string;
 }
 
 const MinchoHeadingComponent: React.FC<MinchoHeadingProps> = ({
   level,
   children,
   className = '',
+  id,
 }) => {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
   const combinedClassName = `c-heading c-heading--h${level} ${className}`.trim();
 
-  return <Tag className={combinedClassName}>{children}</Tag>;
+  return (
+    <Tag className={combinedClassName} id={id ? id : ''}>
+      {children}
+    </Tag>
+  );
 };
 
 export default MinchoHeadingComponent;

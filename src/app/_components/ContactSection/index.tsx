@@ -8,7 +8,9 @@ import styles from './contact.module.scss';
 const ContactSection = () => {
   return (
     <>
-      <MinchoHeadingComponent level={2}>問い合わせ</MinchoHeadingComponent>
+      <MinchoHeadingComponent id='contact' level={2}>
+        問い合わせ
+      </MinchoHeadingComponent>
       <div className='l-container l-grid l-grid--half px-lg'>
         <div>
           <ContactForm />

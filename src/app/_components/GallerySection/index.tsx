@@ -10,8 +10,10 @@ const GallerySection = ({ data }: { data: PageData }) => {
   });
 
   return (
-    <div className='l-section' id='gallery'>
-      <MinchoHeadingComponent level={2}>{data.title}</MinchoHeadingComponent>
+    <div className='l-section' id='gallerySection'>
+      <MinchoHeadingComponent id='gallery' level={2}>
+        {data.title}
+      </MinchoHeadingComponent>
       <ContentRenderer className='l-container l-container--full' content={data.content} />
     </div>
   );

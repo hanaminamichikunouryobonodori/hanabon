@@ -11,7 +11,9 @@ import JoinCommitteeSection from '../JoinCommitteeSection';
 const NewsSection = ({ news, joinCommittee }: { news: NewsListData; joinCommittee: NewsData }) => {
   return (
     <>
-      <MinchoHeadingComponent level={2}>最新情報</MinchoHeadingComponent>
+      <MinchoHeadingComponent id='news' level={2}>
+        最新情報
+      </MinchoHeadingComponent>
       <NewsList data={news} isSimple={true} />
       <div className='u-flex-center'>
         <Link href='/news'>

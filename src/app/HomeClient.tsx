@@ -28,11 +28,13 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
     const targetId = sessionStorage.getItem('scrollTo');
     if (targetId) {
       sessionStorage.removeItem('scrollTo');
-      scroller.scrollTo(targetId, {
-        duration: 800,
-        smooth: 'easeInOutQuart',
-        offset: 80,
-      });
+      setTimeout(() => {
+        scroller.scrollTo(targetId, {
+          duration: 800,
+          smooth: 'easeInOutQuart',
+          offset: -130,
+        });
+      }, 500);
       setScrollTarget(null);
     }
   }, [scrollTarget, setScrollTarget]);
@@ -93,8 +95,11 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
         const isEven = (index + 1) % 2 === 0;
 
         const component = (
-          <section className={`py-xxl ${isEven ? 'u-bg-secondary' : ''}`} key={section.id}>
-            <div className='l-container u-min-h-screen u-flex-center-column' id={section.id}>
+          <section className={`py-3xl ${isEven ? 'u-bg-secondary' : ''}`} key={section.id}>
+            <div
+              className='l-container u-min-h-screen u-flex-center-column'
+              id={`${section.id}Section`}
+            >
               {section.component}
             </div>
           </section>

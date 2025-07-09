@@ -15,7 +15,8 @@ const HeroSection = ({ data }: { data: PageData }) => {
   const logoData = logoImageBlock.image_content;
 
   return (
-    <aside className={styles.container} id='hero'>
+    <aside className={styles.container} id='heroSection'>
+      <h2 id='hero' style={{ display: 'none' }}></h2>
       {heroData.length > 0 && <HeroCarouselComponent heroData={heroData} logoData={logoData} />}
     </aside>
   );

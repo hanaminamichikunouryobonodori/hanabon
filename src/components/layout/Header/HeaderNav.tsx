@@ -40,12 +40,12 @@ const HeaderNav = () => {
           <ScrollLink
             activeClass={styles.active}
             className={styles.navLink}
-            duration={500}
-            offset={-80}
+            duration={800}
+            offset={-120}
             onClick={closeMenu}
             smooth={true}
             spy={true}
-            to={item.to}
+            to={`${item.to}Section`}
           >
             {item.label}
           </ScrollLink>

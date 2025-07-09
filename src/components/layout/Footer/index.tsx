@@ -27,8 +27,8 @@ export const Footer = () => {
                   {isHomePage ? (
                     <ScrollLink
                       className={styles.sitemapLink}
-                      duration={500}
-                      offset={80}
+                      duration={800}
+                      offset={-100}
                       smooth={true}
                       style={{ cursor: 'pointer' }}
                       to={item.to}
