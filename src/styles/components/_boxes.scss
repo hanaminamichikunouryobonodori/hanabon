@@ -2,6 +2,7 @@
 
 %box-base {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   padding: var.$spacing-sm;
   margin-block: var.$spacing-md;
@@ -41,6 +42,8 @@
 
 .c-fill-box {
   @extend %box-base;
+  padding-block: var.$spacing-lg var.$spacing-xl;
+  padding-inline: var.$spacing-lg;
   background-color: var(--main-color);
   border: 1px solid var(--lineColor);
 }
