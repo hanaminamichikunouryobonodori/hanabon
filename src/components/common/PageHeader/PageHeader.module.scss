@@ -8,6 +8,8 @@
 }
 
 .header__title {
+  margin-block: 0;
+  text-align: left;
   @media (max-width: var.$breakpoint-lg) {
     display: flex;
     flex-direction: column;
