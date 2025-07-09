@@ -8,6 +8,7 @@ import PublishedDate from '@/components/ui/PublishedDate';
 import { NewsListData } from '@/types';
 
 import styles from './newsList.module.scss';
+import { generatePlainText } from '@/libs/plainText';
 
 type Props = {
   data: NewsListData;
@@ -75,30 +76,7 @@ const NewsList = ({ data, isSimple }: Props) => {
   return (
     <div className='l-grid l-grid--grid-auto-fit'>
       {data.contents.map((content, index) => {
-        const textBlocks = content.content
-          .map((block) => {
-            if (block.fieldId === 'rich_text' && block.rich_text) return block.rich_text;
-            if (block.fieldId === 'heading' && block.heading_content) return block.heading_content;
-            if (block.fieldId === 'boxes' && block.box_content) return block.box_content;
-            return '';
-          })
-          .filter((text) => text)
-          .join(' ');
-
-        let description = '';
-        if (textBlocks) {
-          const plainText = convert(textBlocks, {
-            wordwrap: false,
-            selectors: [
-              { selector: 'a', options: { ignoreHref: true } },
-              { selector: 'img', format: 'skip' },
-            ],
-          });
-
-          description = plainText.substring(0, 50).replace(/\s+$/, '') + '...';
-        } else {
-          description = content.title;
-        }
+        const description = generatePlainText(content, 50);
         const date = new Date(content.publishedAt);
         const formatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
           era: 'long',

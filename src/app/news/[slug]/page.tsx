@@ -1,4 +1,3 @@
-import { convert } from 'html-to-text';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -7,6 +6,7 @@ import { getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { NewsData, NewsListData } from '@/types';
 
 import NewsArticle from './NewsArticle';
+import { generatePlainText } from '@/libs/plainText';
 
 export const dynamic = 'force-dynamic';
 
@@ -80,31 +80,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const ogpImageUrl = featuredImageUrl
     ? featuredImageUrl
     : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`;
-
-  const textBlocks = data.content
-    .map((block) => {
-      if (block.fieldId === 'rich_text' && block.rich_text) return block.rich_text;
-      if (block.fieldId === 'heading' && block.heading_content) return block.heading_content;
-      if (block.fieldId === 'boxes' && block.box_content) return block.box_content;
-      return '';
-    })
-    .filter((text) => text)
-    .join(' ');
-
-  let description = '';
-  if (textBlocks) {
-    const plainText = convert(textBlocks, {
-      wordwrap: false,
-      selectors: [
-        { selector: 'a', options: { ignoreHref: true } },
-        { selector: 'img', format: 'skip' },
-      ], // aタグとimgタグのURLを非表示に
-    });
-
-    description = plainText.substring(0, 120).replace(/\s+$/, '') + '...';
-  } else {
-    description = data.title;
-  }
+  const description = generatePlainText(data, 100);
 
   return {
     title: `${data.title} | ${process.env.SITE_NAME}`,
