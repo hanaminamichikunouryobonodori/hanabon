@@ -5,7 +5,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import eventDateStyles from '@/app/_components/EventDateSection/eventDate.module.scss';
 import { LightboxContext } from '@/contexts/LightboxContext';
@@ -20,6 +20,7 @@ interface Props {
 
 const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const { openLightbox } = useContext(LightboxContext);
   if (!htmlContent) {
     return null;
@@ -56,13 +57,18 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
                 {domToReact(domNode.children as DOMNode[], options)}
               </ScrollLink>
             );
-          }
-          // 別のページにいる場合 -> ホームページに遷移してからスクロール
-          else {
+          } else {
+            console.log('SafeHTMLRenderer', targetId);
             return (
-              <Link href={href} scroll={false}>
+              <a
+                onClick={() => {
+                  sessionStorage.setItem('scrollTo', targetId);
+                  router.push('/');
+                }}
+                style={{ cursor: 'pointer' }}
+              >
                 {domToReact(domNode.children as DOMNode[], options)}
-              </Link>
+              </a>
             );
           }
         }

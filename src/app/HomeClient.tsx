@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX, useEffect, useState } from 'react';
+import { JSX, useEffect } from 'react';
 import { scroller } from 'react-scroll';
 
 import AboutSection from '@/app/_components/AboutSection';
@@ -12,7 +12,7 @@ import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import { JsonLd } from '@/components/common/JsonLd';
-import LoadingScreen from '@/components/ui/LoadingScreen';
+import { useSessionStorage } from '@/hooks/useSessionStorage';
 import { HomePageProps } from '@/types';
 
 type Section = {
@@ -21,34 +21,21 @@ type Section = {
 };
 
 const HomeClient = ({ pages }: { pages: HomePageProps }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
+  const [scrollTarget, setScrollTarget] = useSessionStorage('scrollTo', null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      return;
+    const targetId = sessionStorage.getItem('scrollTo');
+    if (targetId) {
+      sessionStorage.removeItem('scrollTo');
+      scroller.scrollTo(targetId, {
+        duration: 800,
+        smooth: 'easeInOutQuart',
+        offset: 80,
+      });
+      setScrollTarget(null);
     }
-    const hash = window.location.hash;
-    if (hash) {
-      const targetId = hash.substring(1);
-      setTimeout(() => {
-        const element = document.getElementById(targetId);
-        if (element) {
-          scroller.scrollTo(targetId, {
-            duration: 800,
-            smooth: 'easeInOutQuad',
-          });
-        }
-      }, 100);
-    }
-  }, [isLoading]);
+  }, [scrollTarget, setScrollTarget]);
 
   const sections: Section[] = [
     { id: 'eventDate', component: <EventDateSection data={pages.eventDate} /> },
@@ -95,7 +82,6 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       },
     },
   };
-  if (isLoading) return <LoadingScreen />;
 
   return (
     <>

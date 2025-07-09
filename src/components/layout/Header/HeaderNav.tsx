@@ -5,7 +5,7 @@ import { Link as ScrollLink } from 'react-scroll';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { ThemeSwitcher } from '@/components/features/ThemeSwitcher';
 import { menuItems } from '@/libs/navigation';
@@ -14,6 +14,7 @@ import styles from './header.module.scss';
 
 const HeaderNav = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const isHomePage = pathname === '/';
 
   const [isOpen, setIsOpen] = useState(false);
@@ -32,12 +33,10 @@ const HeaderNav = () => {
     .map((item) => (
       <li key={item.to}>
         {item.to === 'news' ? (
-          // 'news'専用の通常のリンク
-          <Link className={styles.navLink} href='/news'>
+          <Link className={styles.navLink} href='/news' onClick={closeMenu}>
             {item.label}
           </Link>
         ) : isHomePage ? (
-          // ホームページ表示時のアンカーリンク
           <ScrollLink
             activeClass={styles.active}
             className={styles.navLink}
@@ -51,10 +50,17 @@ const HeaderNav = () => {
             {item.label}
           </ScrollLink>
         ) : (
-          // 他のページ表示時のホームページへのアンカーリンク
-          <Link className={styles.navLink} href={`/#${item.to}`} onClick={closeMenu}>
+          <a
+            className={styles.navLink}
+            onClick={() => {
+              sessionStorage.setItem('scrollTo', item.to);
+              router.push('/');
+              closeMenu();
+            }}
+            style={{ cursor: 'pointer' }}
+          >
             {item.label}
-          </Link>
+          </a>
         )}
       </li>
     ));
@@ -73,32 +79,31 @@ const HeaderNav = () => {
   return (
     <>
       <nav className={`${styles.headerNav} ${isOpen ? styles.open : ''}`}>
-        {/* ハンバーガーボタン */}
         <button aria-label='メニューを開閉する' className={styles.hamburger} onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
         </button>
-        {/* ナビゲーションリスト */}
         <ul className={styles.navList}>
-          {isHomePage ? (
-            <ScrollLink
-              activeClass={styles.active}
-              className={styles.navLink}
-              duration={500}
-              offset={-80}
-              smooth={true}
-              spy={true}
-              to='top'
-            >
-              {logoImage}
-            </ScrollLink>
-          ) : (
-            <Link href='/'>{logoImage}</Link>
-          )}
+          <li>
+            {isHomePage ? (
+              <ScrollLink
+                className={styles.navLink}
+                duration={500}
+                offset={-80}
+                smooth={true}
+                spy={true}
+                to='top'
+              >
+                {logoImage}
+              </ScrollLink>
+            ) : (
+              <Link href='/'>{logoImage}</Link>
+            )}
+          </li>
           {menuList}
           <li>
-            <ThemeSwitcher className={styles.navLink} setIsOpen={setIsOpen} />
+            <ThemeSwitcher setIsOpen={setIsOpen} />
           </li>
         </ul>
       </nav>
