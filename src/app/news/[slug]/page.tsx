@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation';
 
 import { JsonLd } from '@/components/common/JsonLd';
 import { getNewsContentById, getNewsList } from '@/libs/microCMS';
+import { generatePlainText } from '@/libs/plainText';
 import { NewsData, NewsListData } from '@/types';
 
 import NewsArticle from './NewsArticle';
-import { generatePlainText } from '@/libs/plainText';
 
 export const dynamic = 'force-dynamic';
 

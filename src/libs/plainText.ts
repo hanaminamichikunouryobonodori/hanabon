@@ -1,5 +1,6 @@
-import { NewsData, PageData } from '@/types';
 import { convert } from 'html-to-text';
+
+import { NewsData, PageData } from '@/types';
 
 /**
  * 記事のcontentオブジェクトからテキストを生成します。

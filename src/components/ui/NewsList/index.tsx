@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { convert } from 'html-to-text';
 import Link from 'next/link';
 
 import CardComponent from '@/components/ui/CardComponent';
 import PublishedDate from '@/components/ui/PublishedDate';
+import { generatePlainText } from '@/libs/plainText';
 import { NewsListData } from '@/types';
 
 import styles from './newsList.module.scss';
-import { generatePlainText } from '@/libs/plainText';
 
 type Props = {
   data: NewsListData;
