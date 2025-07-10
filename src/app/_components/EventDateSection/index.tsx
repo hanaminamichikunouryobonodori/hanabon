@@ -6,11 +6,16 @@ import style from './eventDate.module.scss';
 
 const EventDateSection = ({ data }: { data: PageData }) => {
   return (
-    <div className={style.container}>
-      <MaruHeadingComponent id='eventDate' level={2}>
-        {data.title}
-      </MaruHeadingComponent>
-      <ContentRenderer content={data.content} />
+    <div className={`${style.container} mx-xxl`}>
+      <div className={style.titleWrapper}>
+        <MaruHeadingComponent className={style.title} id='eventDate' level={2}>
+          <span>{data.title}</span>
+        </MaruHeadingComponent>
+      </div>
+      <ContentRenderer
+        className={`${style.box} c-simple-box u-flex-left-column`}
+        content={data.content}
+      />
     </div>
   );
 };

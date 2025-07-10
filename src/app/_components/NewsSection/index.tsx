@@ -14,16 +14,20 @@ const NewsSection = ({ news, joinCommittee }: { news: NewsListData; joinCommitte
       <MaruHeadingComponent id='news' level={2}>
         最新情報
       </MaruHeadingComponent>
-      <NewsList data={news} isSimple={true} />
-      <div className='u-flex-center'>
-        <Link href='/news'>
-          <button className='c-button c-button--outline'>過去の記事を読む</button>
-        </Link>
+      <div
+        className='c-sticky-box u-flex-center-column'
+        style={{ borderEndEndRadius: '24px', borderStartEndRadius: '24px' }}
+      >
+        <NewsList data={news} isSimple={true} />
+        <div className='u-flex-center'>
+          <Link href='/news'>
+            <button className='c-button c-button--outline'>過去の記事を読む</button>
+          </Link>
+        </div>
       </div>
-      <div className='l-container l-container--full my-xl'>
-        <hr className='c-divider c-divider--dashed' style={{ borderColor: 'var(--lineColor)' }} />
+      <div className='my-xl'>
+        <JoinCommitteeSection data={joinCommittee} />
       </div>
-      <JoinCommitteeSection data={joinCommittee} />
     </>
   );
 };

@@ -1,7 +1,6 @@
 @use 'styles/abstracts/variables' as var;
 
 .container {
-  width: 95%;
   h3,
   h4,
   h5,
@@ -15,7 +14,34 @@
     text-align: left;
   }
 }
-
+.titleWrapper {
+  text-align: center;
+}
+.title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -50px !important;
+  font-size: 3rem;
+  span {
+    padding: var.$spacing-sm var.$spacing-lg;
+    background-color: var(--background-secondary);
+    border-radius: var.$border-radius-xxl;
+  }
+}
+.box {
+  padding-block-start: var.$spacing-xxl;
+  padding-inline: var.$spacing-md;
+  background-color: var(--background-secondary) !important;
+  border: 0;
+  border-top: 0px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
+  border-right: 3px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
+  border-bottom: 5px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
+  border-left: 1px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
+  border-radius: var.$border-radius-4xl;
+  @media (max-width: var.$breakpoint-md) {
+    margin-inline: 0;
+  }
+}
 .schedule {
   font-size: xxx-large;
   h2,
@@ -31,6 +57,8 @@
   }
 }
 .program {
+  width: 100%;
+
   table {
     margin-block-start: 0;
     font-size: inherit !important;

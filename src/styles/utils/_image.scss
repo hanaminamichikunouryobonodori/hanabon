@@ -1,8 +1,7 @@
 @use 'styles/abstracts/variables' as var;
 
 .u-responsive-image {
-  width: 100%;
-  max-width: 700px;
+  max-width: 100%;
   height: auto;
 }
 

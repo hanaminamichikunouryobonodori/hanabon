@@ -12,6 +12,9 @@ $radius-sizes: (
   'lg': var.$border-radius-lg,
   // 例: 16px
   'xl': var.$border-radius-xl,
+  'xxl': var.$border-radius-xxl,
+  '3xl': var.$border-radius-3xl,
+  '4xl': var.$border-radius-4xl,
   // 例: 24px
   'full': 9999px, // 円形やカプセル形を作るための非常に大きい値
 );
