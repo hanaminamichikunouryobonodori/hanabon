@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import ContactForm from '@/components/features/ContactForm';
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 
 import styles from './contact.module.scss';
 

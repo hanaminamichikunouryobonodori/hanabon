@@ -1,5 +1,5 @@
 import ContentRenderer from '@/components/common/ContentRenderer';
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
 
 import style from './eventDate.module.scss';

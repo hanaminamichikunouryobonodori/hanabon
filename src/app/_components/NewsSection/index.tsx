@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import NewsList from '@/components/ui/NewsList';
 import { NewsData, NewsListData } from '@/types';
 

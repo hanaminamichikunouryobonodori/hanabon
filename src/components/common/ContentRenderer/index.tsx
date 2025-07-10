@@ -4,12 +4,13 @@ import Image from 'next/image';
 
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import OverlappingBox from '@/components/ui/OverlappingBox';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
 import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
+import { log } from 'node:console';
 
 type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
 type NewsContentBlock = NonNullable<news<'get'>['content']>[number];
@@ -237,18 +238,13 @@ const ContentRenderer = ({ content, className }: Props) => {
 
           // 11.　重ね合わせボックス
           case 'overlapping_box': {
-            const boxData = {
-              title: block.box_title,
-              image: block.box_image,
-              description: block.box_description,
-              link: block.box_link,
-              buttonText: block.box_button_text,
-            };
-            if (!boxData) return null;
+            const boxData = block;
+            console.log(block);
+
             return (
-              <React.Fragment key={key}>
-                <OverlappingBox boxData={boxData} />
-              </React.Fragment>
+              <div className='c-staggeredContainer' key={key}>
+                {/* <OverlappingBox boxData={boxData} /> */}
+              </div>
             );
           }
 

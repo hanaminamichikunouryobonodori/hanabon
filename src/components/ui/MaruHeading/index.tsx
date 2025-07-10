@@ -1,17 +1,15 @@
 import React, { JSX } from 'react';
 
 // コンポーネントが受け取るPropsの型定義
-interface MinchoHeadingProps {
+export interface MaruHeadingProps {
   /** 見出しレベル (1はh1, 2はh2...) */
   level: 1 | 2 | 3 | 4 | 5 | 6;
-  /** 表示するテキストや要素 */
   children: React.ReactNode;
-  /** 外部から追加するCSSクラス */
   className?: string;
   id?: string;
 }
 
-const MaruHeadingComponent: React.FC<MinchoHeadingProps> = ({
+const MaruHeadingComponent: React.FC<MaruHeadingProps> = ({
   level,
   children,
   className = '',

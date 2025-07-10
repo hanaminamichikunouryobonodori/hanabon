@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
 
 const GallerySection = ({ data }: { data: PageData }) => {

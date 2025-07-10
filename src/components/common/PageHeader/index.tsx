@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MaruHeadingComponent from '@/components/ui/MinchoHeading';
+import MaruHeadingComponent from '@/components/ui/MaruHeading';
 
 import styles from './PageHeader.module.scss';
 
