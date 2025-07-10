@@ -62,7 +62,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       {
-        '@type': 'WebSite',
+        '@type': 'ListItem',
         position: 1,
         name: 'ホーム',
         item: siteUrl,
