@@ -12,10 +12,7 @@ const EventDateSection = ({ data }: { data: PageData }) => {
           <span>{data.title}</span>
         </MaruHeadingComponent>
       </div>
-      <ContentRenderer
-        className={`${style.box} c-simple-box u-flex-left-column`}
-        content={data.content}
-      />
+      <ContentRenderer className={style.box} content={data.content} />
     </div>
   );
 };
