@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 
 import Image from 'next/image';
@@ -19,6 +19,7 @@ const HeaderNav = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {}, [isOpen, setIsOpen]);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -70,6 +71,7 @@ const HeaderNav = () => {
       alt='花南地区納涼盆踊り'
       className={styles.blurredLogo}
       height={30}
+      onClick={closeMenu}
       priority
       src='/images/hanabonLogo.webp'
       width={144}
@@ -78,6 +80,7 @@ const HeaderNav = () => {
 
   return (
     <>
+      {isOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
       <nav className={`${styles.headerNav} ${isOpen ? styles.open : ''}`}>
         <button aria-label='メニューを開閉する' className={styles.hamburger} onClick={toggleMenu}>
           <span></span>
