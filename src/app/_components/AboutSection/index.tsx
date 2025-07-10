@@ -21,7 +21,11 @@ const AboutSection = ({ data }: AboutSectionProps) => {
         return (
           <FadeInComponent key={section.id}>
             <div className={isAbout ? styles.container : ''} id={isProgram ? 'program' : ''}>
-              <MaruHeadingComponent id={isAbout ? 'about' : isProgram ? 'program ' : ''} level={2}>
+              <MaruHeadingComponent
+                className={isProgram ? 'mt-3xl' : ''}
+                id={isAbout ? 'about' : isProgram ? 'program ' : ''}
+                level={2}
+              >
                 {section.title}
               </MaruHeadingComponent>
               <ContentRenderer

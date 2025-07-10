@@ -1,7 +1,5 @@
 import Hero from '@/app/_components/HeroSection';
 import HomeClient from '@/app/HomeClient';
-import { Footer } from '@/components/layout/Footer';
-import { Header } from '@/components/layout/Header';
 import { client } from '@/libs/client';
 import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { HomePageProps } from '@/types';
@@ -47,9 +45,7 @@ export default async function Home(props: Props) {
   return (
     <main className={styles.root}>
       <Hero data={pages.hero} />
-      <Header />
       <HomeClient pages={pages} />
-      <Footer />
     </main>
   );
 }

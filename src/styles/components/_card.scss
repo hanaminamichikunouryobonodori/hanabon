@@ -5,7 +5,7 @@
   grid-template-columns: repeat(10, 1fr);
   align-items: start;
   margin: auto calc(50% - 50vw);
-  margin-block-end: var.$spacing-xxl;
+  margin-block-end: var.$spacing-lg;
 }
 
 .c-card {

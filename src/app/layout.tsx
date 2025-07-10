@@ -9,6 +9,8 @@ import { headers } from 'next/headers';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AnchorLinkHandler } from '@/components/utils/AnchorLinkHandler';
 import { defaultMetadata } from '@/constants/defaultMetadata';
@@ -94,6 +96,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
       >
         <ThemeProvider>
           <LightboxProvider>
+            <Header />
             <style>{`:root{--main-color-base:${mainColor};--sub-color-base:${subColor}}`}</style>
             {children}
             {isEnabled && (
@@ -119,6 +122,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
                 </Link>
               </div>
             )}
+            <Footer />
           </LightboxProvider>
         </ThemeProvider>
         <SpeedInsights />

@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { HiHome } from 'react-icons/hi';
 
 import styles from '@/app/news/[slug]/post.module.scss';
-import { Footer } from '@/components/layout/Footer';
-import { Header } from '@/components/layout/Header';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import NewsList from '@/components/ui/NewsList';
 import { getNewsList } from '@/libs/microCMS';
@@ -15,7 +13,6 @@ const NotFound = async () => {
 
   return (
     <>
-      <Header />
       <main className='l-container'>
         <Breadcrumbs title='404 Not Found' />
         <div className='u-min-h-screen py-xl'>
@@ -40,7 +37,6 @@ const NotFound = async () => {
         </div>
         <Breadcrumbs title='404 Not Found' />
       </main>
-      <Footer />
     </>
   );
 };

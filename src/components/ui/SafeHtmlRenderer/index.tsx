@@ -28,6 +28,26 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
 
   const options: HTMLReactParserOptions = {
     replace: (domNode) => {
+      if (domNode.type === 'text') {
+        const text = domNode.data;
+        const parts = text.split(/(。|、)/g);
+
+        return (
+          <>
+            {parts.map((part, index) => {
+              if (part === '。' || part === '、') {
+                return (
+                  <React.Fragment key={index}>
+                    {part}
+                    <wbr />
+                  </React.Fragment>
+                );
+              }
+              return part;
+            })}
+          </>
+        );
+      }
       if (!(domNode instanceof Element)) return;
 
       if (domNode.name === 'a') {

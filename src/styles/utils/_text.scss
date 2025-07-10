@@ -1,5 +1,12 @@
 @use 'styles/abstracts/variables' as var;
 
+.u-keep-words {
+  white-space: nowrap;
+  p {
+    white-space: nowrap;
+  }
+}
+
 .u-text-subtle {
   opacity: 0.8;
 }

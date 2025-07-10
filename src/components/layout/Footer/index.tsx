@@ -33,7 +33,7 @@ export const Footer = () => {
                       style={{ cursor: 'pointer' }}
                       to={item.to}
                     >
-                      {item.label}
+                      {item.label === 'お知らせ' ? '最新情報' : item.label}
                     </ScrollLink>
                   ) : (
                     <a
@@ -44,7 +44,7 @@ export const Footer = () => {
                       }}
                       style={{ cursor: 'pointer' }}
                     >
-                      {item.label}
+                      {item.label === 'お知らせ' ? '最新情報' : item.label}
                     </a>
                   )}
                 </li>

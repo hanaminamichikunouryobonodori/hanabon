@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+  padding-inline: var.$spacing-sm;
   font-family: var.$font-family-serif;
   font-weight: var.$font-weight-black;
   line-height: 2.4;
@@ -9,6 +10,7 @@
   p {
     margin-block-end: var.$spacing-lg;
     font-size: 1.2rem;
+    white-space: nowrap;
   }
   @media screen and (max-width: var.$breakpoint-lg) {
     line-height: 1;
