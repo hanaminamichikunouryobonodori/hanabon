@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(() => {
+function useSessionStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(initialValue);
+
+  useEffect(() => {
     try {
       const item = window.sessionStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      const value = item ? JSON.parse(item) : initialValue;
+      setStoredValue(value);
     } catch (error) {
       console.log(error);
-      return initialValue;
+      setStoredValue(initialValue);
     }
-  });
-
-  const setValue = (value: T) => {
+  }, [key, initialValue]);
+  const setValue = (value: T | ((val: T) => T)) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
@@ -21,5 +23,7 @@ export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: 
     }
   };
 
-  return [storedValue, setValue];
+  return [storedValue, setValue] as const;
 }
+
+export default useSessionStorage;

@@ -1,5 +1,13 @@
 @use 'styles/abstracts/variables' as var;
 
+.c-staggeredContainer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: start;
+  margin: auto calc(50% - 50vw);
+  margin-block-end: var.$spacing-xxl;
+}
+
 .c-card {
   position: relative;
   display: flex;

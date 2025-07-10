@@ -1,6 +1,5 @@
 // 1. 変数やMixinなど、他のすべてのファイルの基盤
 @use 'abstracts/variables';
-@use 'abstracts/mixins';
 @use 'abstracts/placeholders';
 
 // 2. 基本的なスタイル（リセットなど）
@@ -35,7 +34,7 @@
 @use 'utils/animations';
 
 main {
-  margin-block-start: 80px;
+  margin-block-start: variables.$spacing-3xl;
   @media (max-width: 980px) {
     margin-block-start: 0;
   }

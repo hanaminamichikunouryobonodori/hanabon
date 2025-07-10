@@ -7,13 +7,13 @@ import ImageCarousel from '@/components/ui/ImageCarousel';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import OverlappingBox from '@/components/ui/OverlappingBox';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
+import { groupConsecutiveBlocks } from '@/components/utils/groupContent';
 import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
-import { log } from 'node:console';
 
-type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
-type NewsContentBlock = NonNullable<news<'get'>['content']>[number];
+export type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
+export type NewsContentBlock = NonNullable<news<'get'>['content']>[number];
 type InferredMediaType = NonNullable<news<'get'>['featuredImage']>;
 type ImageContentType = InferredMediaType & { alt?: string };
 
@@ -36,6 +36,8 @@ type JapaneseSize = keyof typeof sizeMap;
 const ContentRenderer = ({ content, className }: Props) => {
   const { openLightbox } = useContext(LightboxContext);
 
+  const processedContent = groupConsecutiveBlocks(content);
+
   if (!content) {
     return null;
   }
@@ -44,7 +46,7 @@ const ContentRenderer = ({ content, className }: Props) => {
 
   return (
     <Wrapper {...wrapperProps}>
-      {content.map((block, index) => {
+      {processedContent.map((block, index) => {
         const key = `${block.fieldId}-${index}`;
 
         switch (block.fieldId) {
@@ -237,13 +239,22 @@ const ContentRenderer = ({ content, className }: Props) => {
           }
 
           // 11.　重ね合わせボックス
-          case 'overlapping_box': {
-            const boxData = block;
-            console.log(block);
+          case 'grouped_overlapping_box': {
+            const allCards = block.items.flatMap((item) => item.overlapping_cards);
 
             return (
               <div className='c-staggeredContainer' key={key}>
-                {/* <OverlappingBox boxData={boxData} /> */}
+                {allCards.map((card, index) => {
+                  const cardData = {
+                    title: card.card_title,
+                    image: card.card_image,
+                    description: card.card_description,
+                    link: card.card_link,
+                    buttonText: card.card_button_text,
+                  };
+
+                  return <OverlappingBox boxData={cardData} key={index} />;
+                })}
               </div>
             );
           }

@@ -1,7 +1,7 @@
 @use '../abstracts/variables' as var;
 
 .l-container {
-  max-width: var.$container-max-width;
+  max-width: var.$container-max-width-lg;
   margin-inline: auto;
 
   &--secondary {
@@ -9,7 +9,7 @@
   }
 
   &--narrow {
-    width: var.$container-narrow-max-width;
+    max-width: var.$container-max-width-sm;
     container-name: narrow-container;
     container-type: inline-size;
     box-shadow: 0 var.$spacing-xxl var.$spacing-xxl
@@ -25,11 +25,11 @@
     max-width: 95vw;
   }
   @media (max-width: var.$breakpoint-md) {
-    width: 98%;
+    width: 100%;
     max-width: 98vw;
     &--narrow {
       width: 100%;
-      max-width: 100vw;
+      max-width: 98vw;
     }
   }
 }

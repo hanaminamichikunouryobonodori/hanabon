@@ -39,10 +39,10 @@ export type pages<T = 'get'> = Structure<
       | pages_heading
       | pages_two_column_block
       | pages_grid_container
+      | pages_overlapping_box
       | pages_divider
       | pages_spacer
       | pages_gallery
-      | pages_overlapping_box
     )[];
   }
 >;
@@ -186,25 +186,9 @@ interface pages_divider {
 interface pages_overlapping_box {
   fieldId: 'overlapping_box';
   /**
-   * タイトル
+   * 内容
    */
-  box_title: string;
-  /**
-   * 画像
-   */
-  box_image?: MediaType;
-  /**
-   * 説明文
-   */
-  box_description: any;
-  /**
-   * ボタンテキスト
-   */
-  box_button_text?: string;
-  /**
-   * リンク
-   */
-  box_link?: string;
+  overlapping_cards: pages_card[];
 }
 
 export interface EndPoints {

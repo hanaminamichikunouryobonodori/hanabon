@@ -12,7 +12,7 @@ import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import { JsonLd } from '@/components/common/JsonLd';
-import { useSessionStorage } from '@/hooks/useSessionStorage';
+import useSessionStorage from '@/hooks/useSessionStorage';
 import { HomePageProps } from '@/types';
 
 type Section = {

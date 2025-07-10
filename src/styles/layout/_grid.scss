@@ -7,7 +7,7 @@
 
 .l-grid {
   display: grid;
-  gap: var.$spacing-lg;
+  gap: var.$spacing-lg; //24px
   width: 100%;
 
   &--grid-auto-fill {
@@ -47,6 +47,7 @@
   }
 
   @media (max-width: var.$breakpoint-lg) {
+    gap: var.$spacing-md;
     &--thirds,
     &--fourths {
       grid-template-columns: 1fr 1fr;
@@ -54,6 +55,7 @@
   }
 
   @media (max-width: var.$breakpoint-md) {
+    gap: var.$spacing-sm;
     &--half,
     &--thirds,
     &--fourths,

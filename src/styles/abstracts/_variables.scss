@@ -1,10 +1,3 @@
-// --- 色 (Colors) ---
-// テキスト・背景色
-$color-text: #333333; // 基本の文字色
-$color-text-subtle: #555555; // 少し薄い文字色
-$color-background: #fdfdfa; // 少し温かみのある白
-$color-background-secondary: #f3f3f0; // セクションの背景など
-
 // --- フォント (Typography) ---
 // フォントファミリー
 $font-family-serif: Montserrat, 'Zen Maru Gothic', 'Times New Roman', 'YuMincho', serif;
@@ -43,8 +36,9 @@ $spacing-5xl: $spacing-base * 16; // 128px
 
 // --- レイアウト (Layout) ---
 // コンテナの最大幅
-$container-max-width: 980px;
-$container-narrow-max-width: 700px;
+$container-max-width-lg: 1200px; // 最も広いコンテナ
+$container-max-width-md: 980px; // 標準のコンテナ
+$container-max-width-sm: 700px; // 狭いコンテナ（記事の本文など）
 
 // ブレークポイント（メディアクエリ用）
 $breakpoint-sm: 640px;
