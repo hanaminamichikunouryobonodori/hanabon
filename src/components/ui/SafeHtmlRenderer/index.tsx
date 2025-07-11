@@ -87,7 +87,6 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
               </ScrollLink>
             );
           } else {
-            console.log('SafeHTMLRenderer', targetId);
             return (
               <a
                 onClick={() => {
