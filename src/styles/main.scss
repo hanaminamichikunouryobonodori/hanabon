@@ -35,6 +35,8 @@
 @use 'utils/animations';
 
 main {
+  position: relative;
+  z-index: 2;
   margin-block-start: variables.$spacing-3xl;
   @media (max-width: variables.$breakpoint-lg) {
     margin-block-start: 0;

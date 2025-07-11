@@ -1,5 +1,6 @@
 'use client';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { Link as ScrollLink } from 'react-scroll';
 
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
@@ -10,6 +11,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import eventDateStyles from '@/app/_components/EventDateSection/eventDate.module.scss';
 import { LightboxContext } from '@/contexts/LightboxContext';
 
+import ScrollHintWrapper from '../ScrollHint';
+
 import style from './microCMS.module.scss';
 
 interface Props {
@@ -19,9 +22,15 @@ interface Props {
 }
 
 const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
+  const [hasMounted, setHasMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const { openLightbox } = useContext(LightboxContext);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   if (!htmlContent) {
     return null;
   }
@@ -126,11 +135,13 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         return imageComponent;
       }
       if (domNode.name === 'table') {
-        return (
-          <div className='table-wrapper'>
-            <table {...domNode.attribs}>{domToReact(domNode.children as DOMNode[], options)}</table>
-          </div>
+        const tableElement = (
+          <table {...domNode.attribs}>{domToReact(domNode.children as DOMNode[], options)}</table>
         );
+        if (hasMounted && isMobile) {
+          return <ScrollHintWrapper>{tableElement}</ScrollHintWrapper>;
+        }
+        return <div className='table-wrapper'>{tableElement}</div>;
       }
     },
   };

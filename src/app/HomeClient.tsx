@@ -10,7 +10,6 @@ import EventDateSection from '@/app/_components/EventDateSection';
 import GallerySection from '@/app/_components/GallerySection';
 import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
-import { FadeInComponent } from '@/components/animations/FadeIn';
 import { JsonLd } from '@/components/common/JsonLd';
 import useSessionStorage from '@/hooks/useSessionStorage';
 import { HomePageProps } from '@/types';
@@ -94,7 +93,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
         if (section.id !== 'contact' && !componentData) return null;
         const isEven = (index + 1) % 2 === 0;
 
-        const component = (
+        return (
           <section className={`py-3xl ${isEven ? 'u-bg-secondary' : ''}`} key={section.id}>
             <div
               className='l-container u-min-h-screen u-flex-center-column'
@@ -104,12 +103,6 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
             </div>
           </section>
         );
-
-        if (section.id === 'about') {
-          return component;
-        }
-
-        return <FadeInComponent key={section.id}>{component}</FadeInComponent>;
       })}
     </>
   );

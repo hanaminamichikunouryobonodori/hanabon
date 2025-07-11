@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { FadeInComponent } from '@/components/animations/FadeIn';
 import ContactForm from '@/components/features/ContactForm';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 
@@ -7,7 +8,7 @@ import styles from './contact.module.scss';
 
 const ContactSection = () => {
   return (
-    <>
+    <FadeInComponent>
       <MaruHeadingComponent className={styles.title} id='contact' level={2}>
         問い合わせ
       </MaruHeadingComponent>
@@ -53,7 +54,7 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </>
+    </FadeInComponent>
   );
 };
 

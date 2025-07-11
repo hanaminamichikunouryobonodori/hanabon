@@ -13,4 +13,8 @@
 
   margin: 2em 0;
   border-radius: var.$border-radius-xxl;
+  @media (max-width: var.$breakpoint-lg) {
+    width: 100%;
+    padding-inline: var.$spacing-sm;
+  }
 }

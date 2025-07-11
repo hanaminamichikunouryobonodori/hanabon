@@ -1,6 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 
+import { FadeInComponent } from '@/components/animations/FadeIn';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
 
@@ -10,12 +11,14 @@ const GallerySection = ({ data }: { data: PageData }) => {
   });
 
   return (
-    <div className='l-section' id='gallerySection'>
-      <MaruHeadingComponent id='gallery' level={2}>
-        {data.title}
-      </MaruHeadingComponent>
-      <ContentRenderer className='l-container l-container--full' content={data.content} />
-    </div>
+    <FadeInComponent>
+      <div className='l-section' id='gallerySection'>
+        <MaruHeadingComponent id='gallery' level={2}>
+          {data.title}
+        </MaruHeadingComponent>
+        <ContentRenderer className='l-container l-container--full' content={data.content} />
+      </div>
+    </FadeInComponent>
   );
 };
 
