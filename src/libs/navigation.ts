@@ -10,9 +10,6 @@ export const menuItems = [
   { to: 'sponsorship', label: '主催・協賛' },
 ];
 
-export const footerLinks = [
-  { to: '/privacy', label: 'プライバシーポリシー' },
-  { to: '/sitemap.xml', label: 'サイトマップ' },
-];
+export const footerLinks = [{ to: '/privacy', label: 'プライバシーポリシー' }];
 
 export const newsCategories = [{ to: 'news', label: 'お知らせ一覧' }];

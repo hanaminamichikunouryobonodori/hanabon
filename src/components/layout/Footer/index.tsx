@@ -78,6 +78,9 @@ export const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <Link href='/sitemap.xml' prefetch={false}>
+                サイトマップ
+              </Link>
             </ul>
             <QrCodeForMobile />
           </div>
