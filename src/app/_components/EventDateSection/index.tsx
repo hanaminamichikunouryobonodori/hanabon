@@ -7,7 +7,7 @@ import style from './eventDate.module.scss';
 
 const EventDateSection = ({ data }: { data: PageData }) => {
   return (
-    <FadeInComponent>
+    <FadeInComponent margin='0%'>
       <div className={style.container}>
         <div className={style.titleWrapper}>
           <MaruHeadingComponent className={style.title} id='eventDate' level={2}>

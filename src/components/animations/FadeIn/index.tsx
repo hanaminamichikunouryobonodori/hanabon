@@ -6,11 +6,13 @@ import { useInView } from 'react-intersection-observer';
 type Props = {
   children: React.ReactNode;
   className?: string;
+  margin?: string;
 };
 
-export const FadeInComponent = ({ children, className }: Props) => {
+export const FadeInComponent = ({ children, className, margin }: Props) => {
+  const rootMargin = margin || '-30%';
   const { ref, inView } = useInView({
-    rootMargin: '-30%',
+    rootMargin: rootMargin,
     triggerOnce: true,
   });
 

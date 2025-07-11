@@ -7,8 +7,8 @@
 }
 
 .box {
+  max-width: var.$container-max-width-md;
   padding-block-start: var.$spacing-xxl;
-  margin-inline: var.$spacing-lg;
 }
 
 .atSymbol::before {
