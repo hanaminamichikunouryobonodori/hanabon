@@ -1,0 +1,13 @@
+@use 'styles/abstracts/variables' as var;
+
+.title {
+  position: relative;
+  z-index: 10;
+  margin-block-end: calc(-1 * var.$spacing-lg) !important;
+}
+
+.box {
+  @media (max-width: var.$breakpoint-sm) {
+    padding: var.$spacing-xl 0 !important;
+  }
+}

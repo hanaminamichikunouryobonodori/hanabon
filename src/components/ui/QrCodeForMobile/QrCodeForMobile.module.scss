@@ -1,0 +1,16 @@
+@use 'styles/abstracts/variables' as var;
+
+.qrCodeContainer {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .qrCodeContainer {
+    display: block;
+    padding-block-start: var.$spacing-lg;
+  }
+
+  .qrCodeTitle {
+    margin-bottom: 8px;
+  }
+}

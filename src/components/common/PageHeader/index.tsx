@@ -11,12 +11,10 @@ type Props = {
 
 const PageHeader = ({ children, className }: Props) => {
   return (
-    <header className={`${styles.header} ${className} py-xl mb-lg`}>
-      <div className='l-container px-lg'>
-        <MaruHeadingComponent className={styles['header__title']} level={1}>
-          {children}
-        </MaruHeadingComponent>
-      </div>
+    <header className={`${styles.header} ${className}`}>
+      <MaruHeadingComponent className={styles['header__title']} level={1}>
+        {children}
+      </MaruHeadingComponent>
     </header>
   );
 };

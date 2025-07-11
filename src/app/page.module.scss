@@ -29,4 +29,9 @@
       line-height: 1.5;
     }
   }
+  @media (max-width: var.$breakpoint-sm) {
+    section {
+      padding-inline: 2%;
+    }
+  }
 }

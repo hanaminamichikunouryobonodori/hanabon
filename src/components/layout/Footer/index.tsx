@@ -4,6 +4,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
+import QrCodeForMobile from '@/components/ui/QrCodeForMobile';
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 import { menuItems, footerLinks } from '@/libs/navigation';
 
@@ -16,7 +17,7 @@ export const Footer = () => {
   const isHomePage = pathname === '/';
 
   return (
-    <footer className={`u-bg-secondary ${styles.root}`}>
+    <footer className={styles.root}>
       <div className={`${styles.container} l-grid l-grid--grid-auto-fit`}>
         <div className={styles.sitemap}>
           <div className={styles.contentWrapper}>
@@ -78,6 +79,7 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
+            <QrCodeForMobile />
           </div>
         </div>
       </div>

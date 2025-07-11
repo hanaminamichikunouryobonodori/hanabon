@@ -1,13 +1,23 @@
 @use 'styles/abstracts/variables' as var;
+@use 'styles/abstracts/mixins' as mixins;
 
 .root {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: inset 0px var.$spacing-lg var.$spacing-lg
-    color-mix(in srgb, var(--foreground) 10%, var(--main-color) 0%);
+  padding-top: 680px;
+  margin-top: -480px;
+  background-color: var(--background-secondary);
+  -webkit-mask-image: url('/images/wave-haikei.svg');
+  mask-image: url('/images/wave-haikei.svg');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  @include mixins.stripe-background;
+
+  mask-size: cover;
 }
 
 .container {

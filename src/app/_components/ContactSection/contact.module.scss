@@ -1,5 +1,16 @@
 @use 'styles/abstracts/variables' as var;
 
+.title {
+  position: relative;
+  z-index: 10;
+  margin-block-end: calc(-1 * var.$spacing-xl) !important;
+}
+
+.box {
+  padding-block-start: var.$spacing-xxl;
+  margin-inline: var.$spacing-lg;
+}
+
 .atSymbol::before {
   content: '@';
 }

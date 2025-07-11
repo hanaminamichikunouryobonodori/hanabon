@@ -32,7 +32,7 @@ const OverlappingBox = ({
         {boxData.image && (
           <Image
             alt={boxData.title}
-            className='u-responsive-image'
+            className='u-responsive-image u-image-rounded-md'
             height={boxData.image.height}
             src={boxData.image.url}
             width={boxData.image.width}

@@ -6,7 +6,7 @@ import style from './eventDate.module.scss';
 
 const EventDateSection = ({ data }: { data: PageData }) => {
   return (
-    <div className={`${style.container} mx-xxl`}>
+    <div className={style.container}>
       <div className={style.titleWrapper}>
         <MaruHeadingComponent className={style.title} id='eventDate' level={2}>
           <span>{data.title}</span>

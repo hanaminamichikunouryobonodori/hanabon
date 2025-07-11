@@ -1,11 +1,12 @@
 @use 'styles/abstracts/variables' as var;
+@use 'styles/abstracts/mixins' as mixins;
 
 %box-base {
   display: flex;
   align-items: flex-start;
   padding: var.$spacing-sm;
   margin-block: var.$spacing-md;
-  border-radius: var.$border-radius-md;
+  border-radius: var.$border-radius-lg;
 
   > :last-child {
     margin-bottom: 0;
@@ -13,16 +14,25 @@
   > :first-child {
     margin-bottom: inherit;
   }
-
-  p {
-    margin-block: 0.5em;
-  }
 }
 
 .c-simple-box {
   @extend %box-base;
-  background-color: color-mix(in srgb, var(--background) 90%, black 10%);
+  background-color: color-mix(in srgb, var(--background) 80%, var(--foreground) 20%);
   border: 1px solid var(--foreground);
+  &--no-border {
+    border: none;
+  }
+}
+
+.c-diagonal-box {
+  @extend %box-base;
+  background-color: color-mix(in srgb, var(--background) 75%, var(--foreground) 15%);
+
+  html[data-theme='dark'] & {
+    background-color: color-mix(in srgb, var(--background) 95%, var(--foreground) 5%);
+  }
+  border-radius: var.$border-radius-5xl 0 var.$border-radius-5xl 0;
 }
 
 .c-sticky-box {
@@ -34,9 +44,6 @@
   border-left: solid var.$spacing-md var(--main-color);
   border-radius: inherit;
   box-shadow: var.$box-shadow-base;
-  p {
-    margin: 0;
-  }
 }
 
 .c-fill-box {
@@ -49,6 +56,11 @@
 
 .c-fill-box:nth-child(even) {
   background-color: var(--sub-color);
+}
+
+.c-stripe-box {
+  @extend %box-base;
+  @include mixins.stripe-background;
 }
 
 html[data-theme='dark'] {

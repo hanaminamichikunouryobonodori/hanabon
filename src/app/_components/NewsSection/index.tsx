@@ -8,14 +8,16 @@ import { NewsData, NewsListData } from '@/types';
 
 import JoinCommitteeSection from '../JoinCommitteeSection';
 
+import styles from './NewsSection.module.scss';
+
 const NewsSection = ({ news, joinCommittee }: { news: NewsListData; joinCommittee: NewsData }) => {
   return (
     <>
-      <MaruHeadingComponent id='news' level={2}>
+      <MaruHeadingComponent className={styles.title} id='news' level={2}>
         最新情報
       </MaruHeadingComponent>
       <div
-        className='c-sticky-box u-flex-center-column'
+        className={`${styles.box} c-sticky-box u-flex-center-column`}
         style={{ borderEndEndRadius: '24px', borderStartEndRadius: '24px' }}
       >
         <NewsList data={news} isSimple={true} />

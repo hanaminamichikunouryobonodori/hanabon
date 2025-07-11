@@ -1,0 +1,16 @@
+@use 'styles/abstracts/variables' as var;
+
+.title {
+  position: relative;
+  z-index: 10;
+  margin-block-end: calc(-1 * var.$spacing-xxl) !important;
+}
+
+.box {
+  width: 70vw;
+  padding-block-start: var.$spacing-xxl;
+  padding-inline: var.$spacing-3xl;
+
+  margin: 2em 0;
+  border-radius: var.$border-radius-xxl;
+}

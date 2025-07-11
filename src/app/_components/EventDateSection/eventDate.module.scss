@@ -1,6 +1,8 @@
 @use 'styles/abstracts/variables' as var;
 
 .container {
+  width: 100%;
+  overflow-x: hidden;
   h3,
   h4,
   h5,
@@ -29,8 +31,14 @@
   }
 }
 .box {
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+  max-width: 95vw;
+  padding-block: var.$spacing-lg;
   padding-block-start: var.$spacing-xxl;
-  padding-inline: var.$spacing-md;
+  padding-inline: var.$spacing-lg;
+  margin: 0 auto;
   background-color: var(--background-secondary) !important;
   border: 0;
   border-top: 0px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
