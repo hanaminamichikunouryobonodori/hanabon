@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { getNewsList } from '@/libs/microCMS';
 import { NewsData } from '@/types';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN || 'https://hanabon.vercel.app';
@@ -29,14 +29,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const newsPosts = await getNewsList('all');
-
-  const newsPages: MetadataRoute.Sitemap = newsPosts.contents.map((post: NewsData) => ({
-    url: `${BASE_URL}/news/${post.id}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  }));
+  let newsPages: MetadataRoute.Sitemap = [];
+  try {
+    const newsPosts = await getNewsList('all');
+    newsPages = newsPosts.contents.map((post: NewsData) => ({
+      url: `${BASE_URL}/news/${post.id}`,
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    }));
+  } catch (error) {
+    console.error('Sitemap generation: Failed to fetch news posts.', error);
+  }
 
   return [...defaultPages, ...newsPages];
 }
