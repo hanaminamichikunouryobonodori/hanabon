@@ -40,9 +40,11 @@ export type pages<T = 'get'> = Structure<
       | pages_two_column_block
       | pages_grid_container
       | pages_overlapping_box
+      | pages_accordion
       | pages_divider
       | pages_spacer
       | pages_gallery
+      | pages_event_date
     )[];
   }
 >;
@@ -189,6 +191,38 @@ interface pages_overlapping_box {
    * 内容
    */
   overlapping_cards: pages_card[];
+}
+interface pages_date {
+  fieldId: 'date';
+  /**
+   * 日付
+   */
+  date: string;
+}
+interface pages_event_date {
+  fieldId: 'event_date';
+  /**
+   * 開催日時（複数選択可）
+   */
+  event_dates: pages_date[];
+}
+interface pages_heading_and_content {
+  fieldId: 'heading_and_content';
+  /**
+   * 見出し
+   */
+  title: string;
+  /**
+   * 内容
+   */
+  content: any;
+}
+interface pages_accordion {
+  fieldId: 'accordion';
+  /**
+   * 内容
+   */
+  accordion_content: pages_heading_and_content[];
 }
 
 export interface EndPoints {

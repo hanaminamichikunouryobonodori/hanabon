@@ -1,18 +1,92 @@
+import { useEffect, useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+
 import Link from 'next/link';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import ContactForm from '@/components/features/ContactForm';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
+import { PageData } from '@/types';
 
 import styles from './contact.module.scss';
 
-const ContactSection = () => {
+const ContactSection = ({ data }: { data: PageData }) => {
+  const [isEventPeriod, setIsEventPeriod] = useState(false);
+
+  useEffect(() => {
+    const eventDateBlock = data.content.find(
+      (block: PageData['content']) => block.fieldId === 'event_date'
+    );
+    console.log(eventDateBlock);
+
+    if (!eventDateBlock || !eventDateBlock.event_dates) {
+      setIsEventPeriod(false);
+      return;
+    }
+
+    const eventDates = eventDateBlock.event_dates.map((item: { date: string }) => item.date);
+
+    if (eventDates.length === 0) {
+      setIsEventPeriod(false);
+      return;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const isInPeriod = eventDates.some((dateString: string) => {
+      const eventDate = new Date(dateString);
+      eventDate.setHours(0, 0, 0, 0);
+
+      const oneWeekBefore = new Date(eventDate);
+      oneWeekBefore.setDate(eventDate.getDate() - 7);
+
+      const oneWeekAfter = new Date(eventDate);
+      oneWeekAfter.setDate(eventDate.getDate() + 7);
+
+      return today >= oneWeekBefore && today <= oneWeekAfter;
+    });
+
+    setIsEventPeriod(isInPeriod);
+  }, [data.content]);
+
   return (
     <FadeInComponent>
       <MaruHeadingComponent className={styles.title} id='contact' level={2}>
         問い合わせ
       </MaruHeadingComponent>
-      <div className={`${styles.box} l-container c-diagonal-box`}>
+      <div className={`${styles.box} l-container c-diagonal-box u-flex-left-column`}>
+        {isEventPeriod && (
+          <div className='c-alert-box mt-0'>
+            <div className='u-flex-left-column'>
+              <p>
+                <strong>【重要】イベント期間中のご連絡について</strong>
+              </p>
+              <p className='u-flex-left-column u-text-size-sm' style={{ lineHeight: 1.5 }}>
+                現在、イベント開催期間およびその前後のため、お問い合わせへの返信が遅れる可能性がございます。
+                <br />
+                <span style={{ textDecoration: 'underline' }}>
+                  特にイベント前日や当日にいただいたお問い合わせ（質問・忘れ物のご連絡など）への
+                  <strong>即日返信はできかねます</strong>。
+                </span>
+                いただいたご連絡へは、翌日以降に確認し順次対応させていただきますので、何卒ご了承ください。
+                <br />
+                <span style={{ fontWeight: 'bold' }}>
+                  当日お急ぎの場合は、会場（
+                  <ScrollLink
+                    duration={800}
+                    smooth={true}
+                    style={{ cursor: 'pointer' }}
+                    to='access'
+                  >
+                    アクセス
+                  </ScrollLink>
+                  ）のスタッフまで直接ご質問ください。
+                </span>
+              </p>
+            </div>
+          </div>
+        )}
         <div className='l-grid l-grid--half px-lg '>
           <div>
             <ContactForm />

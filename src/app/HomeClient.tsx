@@ -50,7 +50,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       component: <NewsSection joinCommittee={pages.joinCommittee} news={pages.news} />,
     },
     { id: 'access', component: <AccessSection data={pages.access} /> },
-    { id: 'contact', component: <ContactSection /> },
+    { id: 'contact', component: <ContactSection data={pages.eventDate} /> },
     {
       id: 'sponsorship',
       component: <SponsorshipSection data={pages.sponsorship} />,
