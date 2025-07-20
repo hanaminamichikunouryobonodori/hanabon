@@ -270,6 +270,14 @@ const ContentRenderer = ({ content, className }: Props) => {
               .map((item) => new Date(item.date))
               .sort((a, b) => a.getTime() - b.getTime());
 
+            const now = new Date();
+            const lastDate = dates[dates.length - 1];
+            const endOfEvent = new Date(lastDate);
+            endOfEvent.setDate(endOfEvent.getDate() + 1);
+            endOfEvent.setHours(0, 0, 0, 0);
+
+            const isEndOfEvent = now >= endOfEvent;
+
             const eraFormatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
               era: 'long',
               year: 'numeric',
@@ -279,32 +287,42 @@ const ContentRenderer = ({ content, className }: Props) => {
             });
 
             const firstDate = dates[0];
-
             const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
-
             const year = firstDate.getFullYear();
-
             let largeDatePart = `.${firstDate.getMonth() + 1}.${firstDate.getDate()}(${weekdayFormatter.format(firstDate)})`;
+
             for (let i = 1; i < dates.length; i++) {
               const currentDate = dates[i];
               largeDatePart += `・${currentDate.getDate()}(${weekdayFormatter.format(currentDate)})`;
             }
 
             return (
-              <div key={key} style={{ textAlign: 'center' }}>
-                <h3 className='mb-0'>{header}</h3>
-                <p
-                  className='mt-0 mb-xxl'
-                  style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
-                >
-                  <strong>
-                    <span>{year}</span>
-                    <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
-                      {largeDatePart}
-                    </span>
-                  </strong>
-                </p>
-              </div>
+              <React.Fragment key={key}>
+                {isEndOfEvent && (
+                  <div className='c-info-box u-w-70'>
+                    <p className='mb-0' style={{ lineHeight: '1.5' }}>
+                      {eraFormatter.format(firstDate).split('年')[0]}
+                      年の納涼盆踊りは、盛況のうちに全日程を終了いたしました。
+                      <wbr />
+                      ご来場いただきました皆様に、心より御礼申し上げます。
+                    </p>
+                  </div>
+                )}
+                <div style={{ textAlign: 'center' }}>
+                  <h3 className='mb-0'>{header}</h3>
+                  <p
+                    className='mt-0 mb-xxl'
+                    style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
+                  >
+                    <strong>
+                      <span>{year}</span>
+                      <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
+                        {largeDatePart}
+                      </span>
+                    </strong>
+                  </p>
+                </div>
+              </React.Fragment>
             );
           }
 
