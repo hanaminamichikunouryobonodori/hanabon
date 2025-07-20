@@ -21,6 +21,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<FormValues>({
     mode: 'onSubmit',
     shouldUseNativeValidation: true,
@@ -47,13 +48,12 @@ export default function ContactForm() {
     };
     fetchData().then((data) => {
       if (data === 'Success') {
+        reset();
         alert(
           '送信が成功しました\n入力されたメールアドレスに送信完了通知が届いているかご確認ください。\n届いていない場合、メールアドレスが間違っていたりドメインが拒否されている場合がありますので設定を見直してから再度送信してください。'
         );
       } else {
-        alert(
-          '送信が失敗しました\n何度も続く場合は、別のツール(Twitterなど)からお問い合わせください'
-        );
+        alert('送信が失敗しました\n何度も続く場合は、直接メールアドレスにお送りください。');
       }
     });
   };
