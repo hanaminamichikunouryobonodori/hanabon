@@ -299,8 +299,8 @@ const ContentRenderer = ({ content, className }: Props) => {
             return (
               <React.Fragment key={key}>
                 {isEndOfEvent && (
-                  <div className='c-info-box u-w-70'>
-                    <p className='mb-0' style={{ lineHeight: '1.5' }}>
+                  <div className='c-info-box' style={{ maxWidth: '700px' }}>
+                    <p style={{ margin: 0, lineHeight: '1.5' }}>
                       {eraFormatter.format(firstDate).split('年')[0]}
                       年の納涼盆踊りは、盛況のうちに全日程を終了いたしました。
                       <wbr />
@@ -309,7 +309,7 @@ const ContentRenderer = ({ content, className }: Props) => {
                   </div>
                 )}
                 <div style={{ textAlign: 'center' }}>
-                  <h3 className='mb-0'>{header}</h3>
+                  <h3>{header}</h3>
                   <p
                     className='mt-0 mb-xxl'
                     style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
