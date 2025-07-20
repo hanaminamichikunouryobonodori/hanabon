@@ -15,7 +15,7 @@ const ContactSection = ({ data }: { data: PageData }) => {
 
   useEffect(() => {
     const eventDateBlock = data.content.find(
-      (block: PageData['content'][number]) => block.fieldId === 'event_date'
+      (block: { fieldId: string }) => block.fieldId === 'event_dates'
     );
 
     if (!eventDateBlock || !eventDateBlock.event_dates) {

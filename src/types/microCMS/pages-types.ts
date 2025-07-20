@@ -44,7 +44,7 @@ export type pages<T = 'get'> = Structure<
       | pages_divider
       | pages_spacer
       | pages_gallery
-      | pages_event_date
+      | pages_event_dates
     )[];
   }
 >;
@@ -199,8 +199,8 @@ interface pages_date {
    */
   date: string;
 }
-interface pages_event_date {
-  fieldId: 'event_date';
+interface pages_event_dates {
+  fieldId: 'event_dates';
   /**
    * 開催日時（複数選択可）
    */
