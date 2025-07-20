@@ -37,42 +37,42 @@ $properties: (
       #{$prop-value}: $size-value;
     }
 
-    // 例: .my-md { margin-top: 16px; margin-bottom: 16px; }
+    // 例: .my-md { margin-block-start: 16px; margin-block-end: 16px; }
     .#{$prop-key}y-#{$size-key} {
-      #{$prop-value}-top: $size-value;
-      #{$prop-value}-bottom: $size-value;
+      #{$prop-value}-block-start: $size-value;
+      #{$prop-value}-block-end: $size-value;
     }
 
-    // 例: .mx-md { margin-left: 16px; margin-right: 16px; }
+    // 例: .mx-md { margin-inline-start: 16px; margin-inline-end: 16px; }
     .#{$prop-key}x-#{$size-key} {
-      #{$prop-value}-left: $size-value;
-      #{$prop-value}-right: $size-value;
+      #{$prop-value}-inline-start: $size-value;
+      #{$prop-value}-inline-end: $size-value;
     }
 
-    // 例: .mt-md { margin-top: 16px; }
+    // 例: .mt-md { margin-block-start: 16px; }
     .#{$prop-key}t-#{$size-key} {
-      #{$prop-value}-top: $size-value;
+      #{$prop-value}-block-start: $size-value;
     }
 
-    // 例: .mb-md { margin-bottom: 16px; }
+    // 例: .mb-md { margin-block-end: 16px; }
     .#{$prop-key}b-#{$size-key} {
-      #{$prop-value}-bottom: $size-value;
+      #{$prop-value}-block-end: $size-value;
     }
 
-    // 例: .ml-md { margin-left: 16px; }
+    // 例: .ml-md { margin-inline-start: 16px; }
     .#{$prop-key}l-#{$size-key} {
-      #{$prop-value}-left: $size-value;
+      #{$prop-value}-inline-start: $size-value;
     }
 
-    // 例: .mr-md { margin-right: 16px; }
+    // 例: .mr-md { margin-inline-end: 16px; }
     .#{$prop-key}r-#{$size-key} {
-      #{$prop-value}-right: $size-value;
+      #{$prop-value}-inline-end: $size-value;
     }
   }
 }
 
 // autoマージン用の特別なユーティリティ
 .mx-auto {
-  margin-right: auto;
-  margin-left: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }

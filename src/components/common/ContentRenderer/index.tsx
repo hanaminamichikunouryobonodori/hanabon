@@ -292,8 +292,11 @@ const ContentRenderer = ({ content, className }: Props) => {
 
             return (
               <div key={key} style={{ textAlign: 'center' }}>
-                <h3>{header}</h3>
-                <p style={{ margin: 0, fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}>
+                <h3 className='mb-0'>{header}</h3>
+                <p
+                  className='mt-0 mb-xxl'
+                  style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
+                >
                   <strong>
                     <span>{year}</span>
                     <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
