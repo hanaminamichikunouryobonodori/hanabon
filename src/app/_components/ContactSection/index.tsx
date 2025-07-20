@@ -10,15 +10,20 @@ import { PageData } from '@/types';
 
 import styles from './contact.module.scss';
 
+type ContentBlock = PageData['content'][number];
+type PagesEventDates = Extract<ContentBlock, { fieldId: 'event_dates' }>;
+
 const ContactSection = ({ data }: { data: PageData }) => {
   const [isEventPeriod, setIsEventPeriod] = useState(false);
 
   useEffect(() => {
     const eventDateBlock = data.content.find(
-      (block: { fieldId: string }) => block.fieldId === 'event_dates'
+      (block: { fieldId: string }): block is PagesEventDates =>
+        'fieldId' in block && block.fieldId === 'event_dates'
     );
+    console.log(eventDateBlock);
 
-    if (!eventDateBlock || !eventDateBlock.event_dates) {
+    if (!eventDateBlock) {
       setIsEventPeriod(false);
       return;
     }
