@@ -259,6 +259,52 @@ const ContentRenderer = ({ content, className }: Props) => {
             );
           }
 
+          // 12.　開催日
+          case 'event_dates': {
+            const eventDate = block.event_dates;
+            if (!eventDate || eventDate.length === 0) {
+              return null;
+            }
+
+            const dates = eventDate
+              .map((item) => new Date(item.date))
+              .sort((a, b) => a.getTime() - b.getTime());
+
+            const eraFormatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
+              era: 'long',
+              year: 'numeric',
+            });
+            const weekdayFormatter = new Intl.DateTimeFormat('ja-JP', {
+              weekday: 'short',
+            });
+
+            const firstDate = dates[0];
+
+            const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
+
+            const year = firstDate.getFullYear();
+
+            let largeDatePart = `.${firstDate.getMonth() + 1}.${firstDate.getDate()}(${weekdayFormatter.format(firstDate)})`;
+            for (let i = 1; i < dates.length; i++) {
+              const currentDate = dates[i];
+              largeDatePart += `・${currentDate.getDate()}(${weekdayFormatter.format(currentDate)})`;
+            }
+
+            return (
+              <div key={key} style={{ textAlign: 'center' }}>
+                <h3>{header}</h3>
+                <p style={{ margin: 0, fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}>
+                  <strong>
+                    <span>{year}</span>
+                    <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
+                      {largeDatePart}
+                    </span>
+                  </strong>
+                </p>
+              </div>
+            );
+          }
+
           default:
             return null;
         }

@@ -62,7 +62,7 @@
 }
 
 @mixin anim-fadeIn {
-  animation: fadeIn 2s ease-out 0s 1 normal forwards;
+  animation: fadeIn 1s ease-out 0s 1 normal forwards;
 }
 
 %fade-in-animation {

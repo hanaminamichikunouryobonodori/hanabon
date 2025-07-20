@@ -21,7 +21,6 @@ const ContactSection = ({ data }: { data: PageData }) => {
       (block: { fieldId: string }): block is PagesEventDates =>
         'fieldId' in block && block.fieldId === 'event_dates'
     );
-    console.log(eventDateBlock);
 
     if (!eventDateBlock) {
       setIsEventPeriod(false);
