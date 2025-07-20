@@ -32,7 +32,7 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: 'website',
     url: process.env.NEXT_PUBLIC_DOMAIN,
-    title: '花南地区納涼盆踊り',
+    title: '花南地区納涼盆踊り | 小平市花小金井南町のお祭り',
     description: '小平市花小金井南町で毎年催されているお祭りです',
     siteName: '花南地区納涼盆踊り',
     images: [
