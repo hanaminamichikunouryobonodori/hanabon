@@ -24,24 +24,6 @@ export type Props = {
   children: ReactNode;
 };
 
-// ★ ここから　移行作業が終わったら削除して、末尾のmetadataを追加する
-const OLD_SITE_DOMAIN = 'http://hanabon.s1008.xrea.com';
-
-export async function generateMetadata(): Promise<Metadata> {
-  const headersList = headers();
-  const path = (await headersList).get('x-invoke-path') || '/';
-
-  const canonicalUrl = OLD_SITE_DOMAIN + path;
-
-  return {
-    ...defaultMetadata,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-  };
-}
-// ★ ここまで
-
 const isProduction = process.env.NODE_ENV === 'production';
 
 const montserrat = Montserrat({
@@ -140,4 +122,4 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
-// export const metadata = defaultMetadata; //7月21日に更新予定
+export const metadata = defaultMetadata;
