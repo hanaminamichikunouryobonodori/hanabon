@@ -47,6 +47,7 @@
   border-left: 1px solid color-mix(in srgb, var(--background) 0%, var(--foreground) 50%);
   border-radius: var.$border-radius-4xl;
   @media (max-width: var.$breakpoint-md) {
+    padding-inline: var.$spacing-sm;
     margin-inline: 0;
   }
 }
