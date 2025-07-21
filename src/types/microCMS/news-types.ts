@@ -39,6 +39,7 @@ export type news<T = 'get'> = Structure<
       | news_heading
       | news_two_column_block
       | news_grid_container
+      | news_accordion
       | news_divider
       | news_spacer
       | news_gallery
@@ -101,11 +102,29 @@ interface news_two_column_block {
   /**
    * 左カラムの内容
    */
-  column_left: (news_rich_text | news_image | news_boxes)[];
+  column_left: (
+    | news_rich_text
+    | news_image
+    | news_boxes
+    | news_heading
+    | news_card
+    | news_accordion
+    | news_divider
+    | news_spacer
+  )[];
   /**
    * 右カラムの内容
    */
-  column_right: (news_rich_text | news_image | news_boxes)[];
+  column_right: (
+    | news_rich_text
+    | news_image
+    | news_boxes
+    | news_heading
+    | news_spacer
+    | news_divider
+    | news_card
+    | news_accordion
+  )[];
 }
 interface news_heading {
   fieldId: 'heading';
@@ -169,6 +188,28 @@ interface news_divider {
    * 線の種類
    */
   divider_style: ['実線' | '破線' | '点線' | '二重線' | 'グラデーション' | '斜線'];
+}
+interface news_heading_and_content {
+  fieldId: 'heading_and_content';
+  /**
+   * 見出し
+   */
+  title: string;
+  /**
+   * 内容
+   */
+  content: any;
+}
+interface news_accordion {
+  fieldId: 'accordion';
+  /**
+   * 内容
+   */
+  accordion_content: news_heading_and_content[];
+  /**
+   * 種類
+   */
+  accordion_type?: ['通常' | 'Q&A'];
 }
 
 export interface EndPoints {
