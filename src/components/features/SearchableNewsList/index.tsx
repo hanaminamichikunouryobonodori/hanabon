@@ -4,8 +4,8 @@ import { useState, useMemo } from 'react';
 import Fuse, { type IFuseOptions } from 'fuse.js';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
+import NewsList from '@/components/features/NewsList';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import NewsList from '@/components/ui/NewsList';
 import { NewsData, NewsListData } from '@/types';
 
 type Props = {

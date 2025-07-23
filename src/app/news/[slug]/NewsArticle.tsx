@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 
+import PostNavigation from '@/components/features/NewsList/PostNavigation';
 import ArticleContentLayout from '@/components/layout/ArticleContentLayout';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import PostNavigation from '@/components/ui/NewsList/PostNavigation';
 import PublishedDate from '@/components/ui/PublishedDate';
 import { getElapsedYears } from '@/libs/dateUtils';
 import { NewsListData, NewsData } from '@/types';

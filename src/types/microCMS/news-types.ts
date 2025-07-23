@@ -209,7 +209,7 @@ interface news_accordion {
   /**
    * 種類
    */
-  accordion_type?: ['通常' | 'Q&A'];
+  accordion_type: ['通常' | 'Q&A'];
 }
 
 export interface EndPoints {

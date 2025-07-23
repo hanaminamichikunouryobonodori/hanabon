@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { HiHome } from 'react-icons/hi';
 
 import styles from '@/app/news/[slug]/post.module.scss';
+import NewsList from '@/components/features/NewsList';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import NewsList from '@/components/ui/NewsList';
 import { getNewsList } from '@/libs/microCMS';
 import { NewsListData } from '@/types';
 

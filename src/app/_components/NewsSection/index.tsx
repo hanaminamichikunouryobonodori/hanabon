@@ -3,8 +3,8 @@ import React from 'react';
 import Link from 'next/link';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
+import NewsList from '@/components/features/NewsList';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
-import NewsList from '@/components/ui/NewsList';
 import { NewsData, NewsListData } from '@/types';
 
 import JoinCommitteeSection from '../JoinCommitteeSection';

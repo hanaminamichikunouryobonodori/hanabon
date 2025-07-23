@@ -2,6 +2,7 @@ import React, { JSX, useContext } from 'react';
 
 import Image from 'next/image';
 
+import AccordionComponent from '@/components/features/AccordionComponent';
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
@@ -322,6 +323,29 @@ const ContentRenderer = ({ content, className }: Props) => {
                     </strong>
                   </p>
                 </div>
+              </React.Fragment>
+            );
+          }
+
+          // 13.　アコーディオン
+          case 'accordion': {
+            const content = block.accordion_content;
+            const type = block.accordion_type[0];
+            const className = type === 'Q&A' ? 'c-accordion c-accordion--qa' : 'c-accordion';
+
+            return (
+              <React.Fragment key={key}>
+                {content.map((item, index) => {
+                  return (
+                    <AccordionComponent
+                      className={className}
+                      content={item.content}
+                      heading={item.title}
+                      index={index}
+                      key={index}
+                    />
+                  );
+                })}
               </React.Fragment>
             );
           }

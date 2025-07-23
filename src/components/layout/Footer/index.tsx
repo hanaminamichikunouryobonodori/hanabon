@@ -4,8 +4,8 @@ import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import QrCodeForMobile from '@/components/ui/QrCodeForMobile';
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
+import QrCodeForMobile from '@/components/features/QrCodeForMobile';
+import ScrollToTopButton from '@/components/features/ScrollToTopButton';
 import { menuItems, footerLinks } from '@/libs/navigation';
 
 import styles from './footer.module.scss';

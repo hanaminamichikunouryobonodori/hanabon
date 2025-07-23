@@ -3,9 +3,8 @@ import type { ReactNode } from 'react';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata, NextPage, Viewport } from 'next';
+import type { NextPage, Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
-import { headers } from 'next/headers';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 

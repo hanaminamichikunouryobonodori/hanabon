@@ -45,7 +45,7 @@ body {
       color: color-mix(in srgb, var(--main-color) 90%, var(--background) 10%);
     }
     &:active {
-      color: var(--lineColor);
+      color: var(--line-color);
     }
     &:focus-visible {
       outline: 1px solid var(--sub-color);
@@ -142,7 +142,7 @@ td {
 th {
   font-weight: var.$font-weight-bold;
   background-color: var(--main-color);
-  border-bottom: 1px dashed var(--lineColor);
+  border-bottom: 1px dashed var(--line-color);
 }
 
 caption {
