@@ -36,6 +36,11 @@ export default [
       },
       globals: {
         ...globals.browser,
+        ...globals.node,
+        React: 'readonly',
+        JSX: 'readonly',
+        response: 'readonly',
+        rej: 'readonly',
       },
     },
     rules: {
