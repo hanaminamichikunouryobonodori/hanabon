@@ -1,8 +1,5 @@
-import { NextPage } from 'next';
-
 import { Props } from '../layout';
 
-const NewsLayout: NextPage<Props> = async ({ children }) => {
+export default function NewsLayout({ children }: Props) {
   return <main>{children}</main>;
-};
-export default NewsLayout;
+}

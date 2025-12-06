@@ -13,7 +13,7 @@
     "check": "npm run format && npm run lint:all"
   },
   "dependencies": {
-    "next": "^15.3.5",
+    "next": "^15.3.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0"

@@ -86,8 +86,8 @@
   font-weight: var.$font-weight-normal;
   line-height: 1.2 !important;
   color: var(--foreground) !important;
-  word-break: break-all;
   line-break: anywhere;
+  word-break: break-all;
   p {
     font-size: 0.9rem;
     line-height: 1.2 !important;

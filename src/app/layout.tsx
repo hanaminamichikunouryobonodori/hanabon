@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { NextPage, Viewport } from 'next';
+import type { Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
@@ -60,7 +60,7 @@ async function getTheme(): Promise<Theme> {
   }
 }
 
-const RootLayout: NextPage<Props> = async ({ children }) => {
+export default async function RootLayout({ children }: Props) {
   const theme = await getTheme();
   const { mainColor, subColor } = theme;
   const { isEnabled } = await draftMode();
@@ -112,8 +112,7 @@ const RootLayout: NextPage<Props> = async ({ children }) => {
       {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}
     </html>
   );
-};
-export default RootLayout;
+}
 
 export const viewport: Viewport = {
   themeColor: '#1a1a1a',
