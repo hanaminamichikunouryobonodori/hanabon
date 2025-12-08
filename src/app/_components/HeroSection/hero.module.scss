@@ -1,5 +1,5 @@
-@use 'styles/abstracts/variables' as var;
-@use 'styles/utils/animations' as animation;
+@use '@/styles/abstracts/variables' as var;
+@use '@/styles/utils/animations' as animation;
 
 .carouselContainer {
   position: relative;
