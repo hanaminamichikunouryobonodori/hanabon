@@ -47,7 +47,13 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: cspPolicies.replace(/\s{2,}/g, ' ').trim(),
+            value:
+              "default-src 'self'; " +
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com maps.googleapis.com; " +
+              "style-src 'self' 'unsafe-inline' fonts.googleapis.com; " +
+              "img-src 'self' data: kb147.web.fc2.com maps.gstatic.com *.googleapis.com *.ggpht.com; " +
+              "connect-src 'self' www.google-analytics.com *.googleapis.com; " +
+              'frame-src https://www.google.com https://maps.google.com;',
           },
         ],
       },
