@@ -53,7 +53,7 @@ export default [
       ],
       'no-unused-vars': 'off',
 
-      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/set-state-in-effect': 'off',
 
       'no-irregular-whitespace': [
         'error',

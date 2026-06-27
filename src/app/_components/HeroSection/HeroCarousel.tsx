@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { Autoplay, EffectFade } from 'swiper/modules';
@@ -24,12 +24,19 @@ const HeroCarouselComponent = ({
   heroData: ImageProps[];
   logoData: ImageProps;
 }) => {
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsInitialLoad(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   if (!heroData || heroData.length === 0 || !logoData || !logoData.url) {
     return null;
   }
 
   return (
-    <div className={styles.carouselContainer}>
+    <div className={`${styles.carouselContainer}${isInitialLoad ? ` ${styles.initialLoad}` : ''}`}>
       <Swiper
         autoplay={{
           delay: 8000,

@@ -10,14 +10,25 @@
   :global(.swiper-slide-active) .carouselImage,
   :global(.swiper-slide-duplicate-active) .carouselImage,
   :global(.swiper-slide-prev) .carouselImage {
-    animation: zoomOut 10s linear both;
+    animation: kenBurns 12s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
-  @keyframes zoomOut {
-    0% {
-      transform: scale(1.3);
+
+  // ロゴ登場中（初回2秒間）は背景を静止させる
+  &.initialLoad {
+    :global(.swiper-slide-active) .carouselImage,
+    :global(.swiper-slide-duplicate-active) .carouselImage,
+    :global(.swiper-slide-prev) .carouselImage {
+      animation-play-state: paused;
     }
-    100% {
-      transform: scale(1);
+  }
+
+  @keyframes kenBurns {
+    from {
+      transform: scale(1) translate(0, 0);
+    }
+
+    to {
+      transform: scale(1.12) translate(-1.5%, -0.5%);
     }
   }
 }
