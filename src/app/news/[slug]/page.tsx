@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { JsonLd } from '@/components/common/JsonLd';
-import { getNewsContentById, getNewsList } from '@/libs/microCMS';
+import { getNewsContentById, getNewsList, getTheme } from '@/libs/microCMS';
 import { generatePlainText } from '@/libs/plainText';
 import { NewsData, NewsListData } from '@/types';
 
@@ -30,8 +30,12 @@ async function getPostData(slug: string, draftKey?: string) {
 export default async function NewsPage(props: Props) {
   const params = await props.params;
   const draftKey = (await props.searchParams)?.draftKey as string | undefined;
-  const currentPostData = await getPostData(params.slug, draftKey);
+  const [currentPostData, theme] = await Promise.all([
+    getPostData(params.slug, draftKey),
+    getTheme(),
+  ]);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
+  const fallbackOgp = theme.ogpImage?.url ?? `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`;
 
   if (!currentPostData) {
     return notFound();
@@ -66,7 +70,7 @@ export default async function NewsPage(props: Props) {
     '@type': 'NewsArticle',
     headline: currentPostData.title,
     image: [
-      currentPostData.featuredImage?.url || `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP2026.png`,
+      currentPostData.featuredImage?.url || fallbackOgp,
     ],
     datePublished: currentPostData.publishedAt,
     dateModified: currentPostData.revisedAt,
@@ -102,10 +106,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   if (!data) {
     return { title: '記事が見つかりません' };
   }
+  const theme = await getTheme();
   const featuredImageUrl = data.featuredImage?.url;
-  const ogpImageUrl = featuredImageUrl
-    ? featuredImageUrl
-    : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`;
+  const ogpImageUrl =
+    featuredImageUrl ??
+    theme.ogpImage?.url ??
+    `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`;
   const description = generatePlainText(data, 100);
 
   return {

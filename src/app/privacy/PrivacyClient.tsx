@@ -7,9 +7,10 @@ import { PageData } from '@/types';
 
 type Props = {
   data: PageData;
+  ogpImageUrl: string;
 };
 
-export default function PrivacyClient({ data }: Props) {
+export default function PrivacyClient({ data, ogpImageUrl }: Props) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -34,7 +35,7 @@ export default function PrivacyClient({ data }: Props) {
     '@context': 'http://googleusercontent.com/schema.org/',
     '@type': 'Article',
     headline: data.title,
-    image: [`${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP2026.png`],
+    image: [ogpImageUrl],
     datePublished: data.publishedAt,
     dateModified: data.revisedAt,
     author: {

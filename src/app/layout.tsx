@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
@@ -14,8 +14,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AnchorLinkHandler } from '@/components/utils/AnchorLinkHandler';
 import { defaultMetadata } from '@/constants/defaultMetadata';
 import { LightboxProvider } from '@/contexts/LightboxContext';
-import { client } from '@/libs/client';
-import { Theme } from '@/types/microCMS/theme-response';
+import { getTheme } from '@/libs/microCMS';
 
 export const revalidate = 3600;
 
@@ -45,22 +44,6 @@ const ZenMaruGothic = Zen_Maru_Gothic({
   display: 'swap',
   variable: '--font-zen-maru-gothic',
 });
-
-async function getTheme(): Promise<Theme> {
-  try {
-    const themeData = await client.getObject<Theme>({
-      endpoint: 'theme',
-      customRequestInit: { next: { revalidate: 3600 } },
-    });
-    return themeData;
-  } catch (error) {
-    console.error('テーマが取得できませんでした:', error);
-    return {
-      mainColor: '#0d4396',
-      subColor: '#f19bc0',
-    };
-  }
-}
 
 export default async function RootLayout({ children }: Props) {
   const theme = await getTheme();
@@ -125,4 +108,19 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
-export const metadata = defaultMetadata;
+export async function generateMetadata(): Promise<Metadata> {
+  const theme = await getTheme();
+  const ogpUrl = theme.ogpImage?.url ?? `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`;
+
+  return {
+    ...defaultMetadata,
+    twitter: {
+      ...defaultMetadata.twitter,
+      images: ogpUrl,
+    },
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      images: [{ url: ogpUrl, width: 1200, height: 630 }],
+    },
+  };
+}

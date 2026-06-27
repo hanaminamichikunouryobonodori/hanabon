@@ -3,12 +3,16 @@ import { Metadata } from 'next';
 import { JsonLd } from '@/components/common/JsonLd';
 import PageHeader from '@/components/common/PageHeader';
 import SearchableNewsList from '@/components/features/SearchableNewsList';
-import { getNewsList } from '@/libs/microCMS';
+import { getNewsList, getTheme } from '@/libs/microCMS';
 import { NewsListData } from '@/types';
 
 const News = async () => {
-  const data: NewsListData = await getNewsList('all');
+  const [data, theme]: [NewsListData, Awaited<ReturnType<typeof getTheme>>] = await Promise.all([
+    getNewsList('all'),
+    getTheme(),
+  ]);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanabon.vercel.app/';
+  const fallbackOgp = theme.ogpImage?.url ?? `${siteUrl}/hanabonOGP2026.png`;
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -41,7 +45,7 @@ const News = async () => {
         '@type': 'NewsArticle',
         headline: post.title,
         url: `${siteUrl}/news/${post.id}`,
-        image: post.featuredImage?.url || `${siteUrl}/hanabonOGP2026.png`,
+        image: post.featuredImage?.url || fallbackOgp,
         datePublished: post.publishedAt,
       },
     })),
