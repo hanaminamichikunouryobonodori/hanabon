@@ -6,7 +6,7 @@ import { HomePageProps } from '@/types';
 
 import styles from './page.module.scss';
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

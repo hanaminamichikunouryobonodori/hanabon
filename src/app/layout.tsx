@@ -17,7 +17,7 @@ import { LightboxProvider } from '@/contexts/LightboxContext';
 import { client } from '@/libs/client';
 import { Theme } from '@/types/microCMS/theme-response';
 
-export const revalidate = 180;
+export const revalidate = 3600;
 
 export type Props = {
   children: ReactNode;
@@ -28,6 +28,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const montserrat = Montserrat({
   weight: ['400', '700'],
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-montserrat',
 });
 
@@ -49,6 +50,7 @@ async function getTheme(): Promise<Theme> {
   try {
     const themeData = await client.getObject<Theme>({
       endpoint: 'theme',
+      customRequestInit: { next: { revalidate: 3600 } },
     });
     return themeData;
   } catch (error) {
