@@ -1,8 +1,9 @@
-import React, { JSX, useContext } from 'react';
+import React, { JSX, useContext, useState } from 'react';
+
+import * as holidayJp from '@holiday-jp/holiday_jp';
 
 import Image from 'next/image';
 
-import AccordionComponent from '@/components/features/AccordionComponent';
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
@@ -12,6 +13,7 @@ import { groupConsecutiveBlocks } from '@/components/utils/groupContent';
 import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
+import AccordionComponent from '@/components/features/AccordionComponent';
 
 export type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
 export type NewsContentBlock = NonNullable<news<'get'>['content']>[number];
@@ -290,12 +292,39 @@ const ContentRenderer = ({ content, className }: Props) => {
             const firstDate = dates[0];
             const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
             const year = firstDate.getFullYear();
-            let largeDatePart = `.${firstDate.getMonth() + 1}.${firstDate.getDate()}(${weekdayFormatter.format(firstDate)})`;
 
-            for (let i = 1; i < dates.length; i++) {
-              const currentDate = dates[i];
-              largeDatePart += `・${currentDate.getDate()}(${weekdayFormatter.format(currentDate)})`;
-            }
+            const weekdayColor = (weekday: string) => {
+              switch (weekday) {
+                case '日':
+                  return 'var(--color-weekday-sun)';
+                case '月':
+                  return 'var(--color-weekday-mon)';
+                case '火':
+                  return 'var(--color-weekday-tue)';
+                case '水':
+                  return 'var(--color-weekday-wed)';
+                case '木':
+                  return 'var(--color-weekday-thu)';
+                case '金':
+                  return 'var(--color-weekday-fri)';
+                case '土':
+                  return 'var(--color-weekday-sat)';
+                default:
+                  return 'inherit';
+              }
+            };
+
+            const dateElements = dates.map((date, i) => {
+              const isHoliday = holidayJp.isHoliday(date);
+              const weekday = isHoliday ? '祝' : weekdayFormatter.format(date);
+              const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
+              return (
+                <React.Fragment key={i}>
+                  {i === 0 ? `.${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
+                  <span style={{ fontSize: '55%', color }}>({weekday})</span>
+                </React.Fragment>
+              );
+            });
 
             return (
               <React.Fragment key={key}>
@@ -318,7 +347,7 @@ const ContentRenderer = ({ content, className }: Props) => {
                     <strong>
                       <span>{year}</span>
                       <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
-                        {largeDatePart}
+                        {dateElements}
                       </span>
                     </strong>
                   </p>
@@ -330,21 +359,13 @@ const ContentRenderer = ({ content, className }: Props) => {
           // 13.　アコーディオン
           case 'accordion': {
             const content = block.accordion_content;
-            const type = block.accordion_type[0];
-            const className = type === 'Q&A' ? 'c-accordion c-accordion--qa' : 'c-accordion';
+            const type = block.accordion_type;
+            const className = type[0] === 'Q&A' ? 'c-accordion c-accordion--qa' : 'c-accordion';
 
             return (
               <React.Fragment key={key}>
-                {content.map((item, index) => {
-                  return (
-                    <AccordionComponent
-                      className={className}
-                      content={item.content}
-                      heading={item.title}
-                      index={index}
-                      key={index}
-                    />
-                  );
+                {block.map((item, index) => {
+                  return <AccordionComponent key={index} content={content} className={className} />;
                 })}
               </React.Fragment>
             );

@@ -29,6 +29,15 @@
   // エラー (Error) - 赤系
   --color-red: #dc3545; // 濃い赤
   --color-red-bg: #f8d7da; // 薄い赤
+  // 曜日カラー (sun=日, mon=月, tue=火, wed=水, thu=木, fri=金, sat=土, hol=祝)
+  --color-weekday-sun: #e03030; // 4.41:1
+  --color-weekday-mon: #737373; // 4.80:1 (#888は3.20:1で不足)
+  --color-weekday-tue: #e05000; // 3.85:1
+  --color-weekday-wed: #0088aa; // 3.75:1
+  --color-weekday-thu: #2d8a2d; // 3.96:1
+  --color-weekday-fri: #8a6400; // 5.25:1 (#b8860bは2.99:1で不足)
+  --color-weekday-sat: #4169e1; // 4.75:1
+  --color-weekday-hol: #e03030; // 4.41:1
 }
 
 // --- ダークモードの定義 ---
@@ -61,4 +70,8 @@ html[data-theme='dark'] {
   // エラー (Error) - 赤系
   --color-red: #f87171; // 明るい赤
   --color-red-bg: #4d1c23; // 暗い赤の背景
+  // 曜日カラー (ダークで調整が必要なもののみ上書き)
+  --color-weekday-mon: #aaaaaa; // 8.20:1 (ライトの#737373をダークで明るく)
+  --color-weekday-fri: #ffd700; // 13.0:1
+  --color-weekday-sat: #7b9ee8; // 7.13:1 (#4169e1はダークで3.80:1で暗め)
 }

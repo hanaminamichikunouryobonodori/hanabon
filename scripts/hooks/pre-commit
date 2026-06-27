@@ -1,0 +1,29 @@
+#!/bin/sh
+# バージョン更新チェック：package.json の version が前のコミットから変わっていなければブロック
+
+CURRENT=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('package.json','utf8')).version)")
+
+# 初回コミットは HEAD が存在しないのでスキップ
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+  exit 0
+fi
+
+PREV=$(git show HEAD:package.json 2>/dev/null \
+  | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{process.stdout.write(JSON.parse(d).version)}catch{process.stdout.write('0.0.0')}})")
+
+if [ "$CURRENT" = "$PREV" ]; then
+  echo ""
+  echo "  package.json のバージョンが更新されていません。"
+  echo "  前回: $PREV  /  現在: $CURRENT"
+  echo ""
+  echo "  バージョンを上げてから再度コミットしてください。"
+  echo "    npm version patch   # バグ修正"
+  echo "    npm version minor   # 新機能"
+  echo "    npm version major   # 破壊的変更"
+  echo ""
+  echo "  スキップする場合: git commit --no-verify"
+  echo ""
+  exit 1
+fi
+
+exit 0
