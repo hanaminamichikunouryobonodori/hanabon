@@ -358,15 +358,21 @@ const ContentRenderer = ({ content, className }: Props) => {
 
           // 13.　アコーディオン
           case 'accordion': {
-            const content = block.accordion_content;
+            const items = block.accordion_content;
             const type = block.accordion_type;
             const className = type[0] === 'Q&A' ? 'c-accordion c-accordion--qa' : 'c-accordion';
 
             return (
               <React.Fragment key={key}>
-                {block.map((item, index) => {
-                  return <AccordionComponent key={index} content={content} className={className} />;
-                })}
+                {items.map((item, index) => (
+                  <AccordionComponent
+                    className={className}
+                    content={item.content}
+                    heading={item.title}
+                    index={index}
+                    key={index}
+                  />
+                ))}
               </React.Fragment>
             );
           }
