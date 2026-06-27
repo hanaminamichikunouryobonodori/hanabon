@@ -55,15 +55,15 @@
 @keyframes heroLogoEntrance {
   0% {
     opacity: 0;
-    transform: scale(0.55) translateY(24px);
     filter: blur(14px) drop-shadow(0 0 0 rgba(255, 160, 40, 0));
+    transform: scale(0.55) translateY(24px);
   }
   65% {
     filter: blur(0) drop-shadow(0 0 32px rgba(255, 160, 40, 0.95));
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
     filter: blur(0) drop-shadow(0 0 14px rgba(255, 160, 40, 0.45));
+    transform: scale(1) translateY(0);
   }
 }

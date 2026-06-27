@@ -1,28 +1,19 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import react from 'eslint-plugin-react';
 import importPlugin from 'eslint-plugin-import';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+// eslint-config-next v16 exports flat config arrays directly
+import nextConfig from 'eslint-config-next';
 
 export default [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...nextConfig,
   ...tseslint.configs.recommended,
   js.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
-      react,
       import: importPlugin,
     },
     languageOptions: {
@@ -31,28 +22,22 @@ export default [
           jsx: true,
         },
         project: './tsconfig.json',
-        response: false,
-        rej: false,
       },
       globals: {
         ...globals.browser,
         ...globals.node,
         React: 'readonly',
         JSX: 'readonly',
-        response: 'readonly',
-        rej: 'readonly',
       },
     },
     rules: {
-      ...react.configs.recommended.rules,
       'react/jsx-sort-props': 'warn',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
-      'react/prop-types': 'off',
       'react/jsx-key': [
-        'error', // This severity level is correct and should now be properly applied
+        'error',
         {
           checkFragmentShorthand: true,
           warnOnDuplicates: true,
@@ -66,9 +51,10 @@ export default [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
-      'no-unused-vars': 'off', // Base ESLint rule off
+      'no-unused-vars': 'off',
 
-      // --- Other General Rules ---
+      'react-hooks/set-state-in-effect': 'warn',
+
       'no-irregular-whitespace': [
         'error',
         { skipStrings: true, skipComments: true, skipTemplates: true },
@@ -86,16 +72,10 @@ export default [
               group: 'external',
               position: 'before',
             },
-            {
-              pattern: '@material-ui/**',
-              group: 'external',
-              position: 'after',
-            },
           ],
           pathGroupsExcludedImportTypes: ['react'],
         },
       ],
-      'no-unused-vars': 'off',
     },
     settings: {
       react: { version: 'detect' },
@@ -107,6 +87,5 @@ export default [
     },
   },
 
-  // Prettierとの競合ルールを無効化（必ず最後に置く）
   eslintConfigPrettier,
 ];

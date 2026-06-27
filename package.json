@@ -1,13 +1,13 @@
 {
   "name": "hanabon-with-microcms",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "format": "prettier --write --ignore-path .gitignore .",
-    "lint": "next lint --fix",
+    "lint": "eslint src --fix",
     "lint:style": "stylelint \"**/*.{css,scss}\" --fix",
     "lint:all": "npm run lint && npm run lint:style",
     "check": "npm run format && npm run lint:all",

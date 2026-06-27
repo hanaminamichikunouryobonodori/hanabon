@@ -1,9 +1,9 @@
-import React, { JSX, useContext, useState } from 'react';
+import React, { JSX, useContext } from 'react';
 
 import * as holidayJp from '@holiday-jp/holiday_jp';
-
 import Image from 'next/image';
 
+import AccordionComponent from '@/components/features/AccordionComponent';
 import CardComponent from '@/components/ui/CardComponent';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
@@ -13,7 +13,6 @@ import { groupConsecutiveBlocks } from '@/components/utils/groupContent';
 import { LightboxContext } from '@/contexts/LightboxContext';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
-import AccordionComponent from '@/components/features/AccordionComponent';
 
 export type PagesContentBlock = NonNullable<pages<'get'>['content']>[number];
 export type NewsContentBlock = NonNullable<news<'get'>['content']>[number];

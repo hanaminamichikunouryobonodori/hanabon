@@ -5,11 +5,11 @@ import { FadeInComponent } from '@/components/animations/FadeIn';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
 
-const GallerySection = ({ data }: { data: PageData }) => {
-  const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {
-    ssr: false,
-  });
+const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {
+  ssr: false,
+});
 
+const GallerySection = ({ data }: { data: PageData }) => {
   return (
     <FadeInComponent>
       <div className='l-container l-section' id='gallerySection'>
