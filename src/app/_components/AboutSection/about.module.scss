@@ -40,10 +40,10 @@
 
 .decoTopLeft {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
+  top: 10px;
+  left: -10px;
+  width: 120px;
+  height: 120px;
   pointer-events: none;
   object-fit: contain;
   opacity: 0.55;
@@ -51,10 +51,10 @@
 
 .decoBottomRight {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 150px;
-  height: 150px;
+  right: -80px;
+  bottom: -10px;
+  width: 120px;
+  height: 120px;
   pointer-events: none;
   object-fit: contain;
   opacity: 0.55;
