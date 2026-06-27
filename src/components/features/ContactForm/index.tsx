@@ -42,12 +42,12 @@ export default function ContactForm() {
       email: data.email,
       message: data.message,
     };
-    const fetchData = async () => {
-      const response = await fetchSendData(formData);
-      return response;
-    };
-    fetchData().then((data) => {
-      if (data === 'Success') {
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), 30000)
+    );
+    try {
+      const response = await Promise.race([fetchSendData(formData), timeout]);
+      if (response === 'Success') {
         reset();
         alert(
           '送信が成功しました\n入力されたメールアドレスに送信完了通知が届いているかご確認ください。\n届いていない場合、メールアドレスが間違っていたりドメインが拒否されている場合がありますので設定を見直してから再度送信してください。'
@@ -55,7 +55,13 @@ export default function ContactForm() {
       } else {
         alert('送信が失敗しました\n何度も続く場合は、直接メールアドレスにお送りください。');
       }
-    });
+    } catch (error) {
+      if (error instanceof Error && error.message === 'timeout') {
+        alert('送信がタイムアウトしました\nしばらく時間をおいてから再度お試しください。');
+      } else {
+        alert('送信が失敗しました\n何度も続く場合は、直接メールアドレスにお送りください。');
+      }
+    }
   };
 
   return (
@@ -136,7 +142,14 @@ export default function ContactForm() {
         </div>
       </div>
       <button className='c-button c-button--primary' disabled={isSubmitting} type='submit'>
-        {isSubmitting ? '送信中...' : '送信する'}
+        {isSubmitting ? (
+          <>
+            <span aria-hidden className={styles.spinner} />
+            送信中...
+          </>
+        ) : (
+          '送信する'
+        )}
       </button>
     </form>
   );

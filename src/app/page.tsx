@@ -18,6 +18,7 @@ export default async function Home(props: Props) {
   const homepageData = await client.getObject<HomePageProps>({
     endpoint: 'homepage',
     queries: { draftKey: draftKey },
+    customRequestInit: { next: { revalidate: draftKey ? 0 : 3600 } },
   });
 
   const dataPromises = {

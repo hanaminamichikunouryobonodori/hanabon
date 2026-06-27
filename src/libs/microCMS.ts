@@ -1,3 +1,5 @@
+import { cache } from 'react';
+
 import { MicroCMSQueries } from 'microcms-js-sdk';
 
 import { NewsData, NewsListData, PageData } from '@/types';
@@ -5,7 +7,7 @@ import { Theme } from '@/types/microCMS/theme-response';
 
 import { client } from './client';
 
-export const getTheme = async (): Promise<Theme> => {
+export const getTheme = cache(async (): Promise<Theme> => {
   try {
     return await client.getObject<Theme>({
       endpoint: 'theme',
@@ -14,7 +16,7 @@ export const getTheme = async (): Promise<Theme> => {
   } catch {
     return { mainColor: '#0d4396', subColor: '#f19bc0' };
   }
-};
+});
 
 export const getHomeContentById = async (contentId: string, draftKey?: string) => {
   try {
@@ -22,6 +24,7 @@ export const getHomeContentById = async (contentId: string, draftKey?: string) =
       endpoint: 'pages',
       contentId: contentId,
       queries: { draftKey: draftKey },
+      customRequestInit: { next: { revalidate: draftKey ? 0 : 3600 } },
     });
 
     return data;
@@ -43,6 +46,7 @@ export const getNewsList = async (type: 'home' | 'all') => {
     const data: NewsListData = await client.get({
       endpoint: 'news',
       queries: queries,
+      customRequestInit: { next: { revalidate: 3600 } },
     });
 
     return data;
@@ -58,6 +62,7 @@ export const getNewsContentById = async (contentId: string, draftKey?: string) =
       endpoint: 'news',
       contentId,
       queries: { draftKey: draftKey },
+      customRequestInit: { next: { revalidate: draftKey ? 0 : 3600 } },
     });
     return data;
   } catch (error) {
