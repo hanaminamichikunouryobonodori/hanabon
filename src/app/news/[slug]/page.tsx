@@ -8,8 +8,6 @@ import { NewsData, NewsListData } from '@/types';
 
 import NewsArticle from './NewsArticle';
 
-export const dynamic = 'force-dynamic';
-
 type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
