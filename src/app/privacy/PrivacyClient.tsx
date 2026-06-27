@@ -34,7 +34,7 @@ export default function PrivacyClient({ data }: Props) {
     '@context': 'http://googleusercontent.com/schema.org/',
     '@type': 'Article',
     headline: data.title,
-    image: [`${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP.png`],
+    image: [`${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP2026.png`],
     datePublished: data.publishedAt,
     dateModified: data.revisedAt,
     author: {

@@ -21,7 +21,7 @@ export const defaultMetadata: Metadata = {
   ],
   twitter: {
     card: 'summary_large_image',
-    images: `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`,
+    images: `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`,
   },
   icons: [
     {
@@ -37,7 +37,7 @@ export const defaultMetadata: Metadata = {
     siteName: '花南地区納涼盆踊り',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`,
+        url: `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`,
         width: 1200,
         height: 630,
       },

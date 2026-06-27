@@ -66,7 +66,7 @@ export default async function NewsPage(props: Props) {
     '@type': 'NewsArticle',
     headline: currentPostData.title,
     image: [
-      currentPostData.featuredImage?.url || `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP.png`,
+      currentPostData.featuredImage?.url || `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP2026.png`,
     ],
     datePublished: currentPostData.publishedAt,
     dateModified: currentPostData.revisedAt,
@@ -105,7 +105,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const featuredImageUrl = data.featuredImage?.url;
   const ogpImageUrl = featuredImageUrl
     ? featuredImageUrl
-    : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP.png`;
+    : `${process.env.NEXT_PUBLIC_DOMAIN}/hanabonOGP2026.png`;
   const description = generatePlainText(data, 100);
 
   return {

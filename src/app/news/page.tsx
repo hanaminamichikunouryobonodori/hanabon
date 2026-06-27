@@ -41,7 +41,7 @@ const News = async () => {
         '@type': 'NewsArticle',
         headline: post.title,
         url: `${siteUrl}/news/${post.id}`,
-        image: post.featuredImage?.url || `${siteUrl}/hanabonOGP.png`,
+        image: post.featuredImage?.url || `${siteUrl}/hanabonOGP2026.png`,
         datePublished: post.publishedAt,
       },
     })),
