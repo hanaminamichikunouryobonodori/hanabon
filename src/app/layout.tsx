@@ -1,7 +1,7 @@
 import '@/styles/main.scss';
 import type { ReactNode } from 'react';
 
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Viewport } from 'next';
 import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
@@ -110,6 +110,9 @@ export default async function RootLayout({ children }: Props) {
         <AnchorLinkHandler />
       </body>
       {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}
+      {isProduction && process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   );
 }
