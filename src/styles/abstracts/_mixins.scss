@@ -5,12 +5,12 @@
     inset 0 -6px 32px color-mix(in srgb, #{$color} 18%, transparent),
     0 8px 24px rgba(0, 0, 0, 0.35);
   &::after {
-    content: '';
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     height: 3px;
+    content: '';
     background: linear-gradient(to right, transparent, #{$color}, transparent);
     border-radius: 0 0 inherit inherit;
   }
@@ -32,9 +32,9 @@
 
 @mixin stamp-card($color) {
   position: relative;
-  background: color-mix(in srgb, #{$color} 45%, var(--background));
   outline: 3px dashed color-mix(in srgb, #{$color} 70%, white);
   outline-offset: -6px;
+  background: color-mix(in srgb, #{$color} 45%, var(--background));
   box-shadow: 0 6px 20px color-mix(in srgb, #{$color} 30%, transparent);
 }
 

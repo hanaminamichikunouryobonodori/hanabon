@@ -1,7 +1,6 @@
 @use '@/styles/abstracts/variables' as var;
 @use '@/styles/abstracts/mixins' as mixins;
 
-
 %box-base {
   display: flex;
   align-items: flex-start;
@@ -69,8 +68,8 @@
   ol {
     padding: 0 !important;
     margin: 0;
-    list-style: none !important;
     text-align: center;
+    list-style: none !important;
 
     li {
       padding-block: 0.25em;

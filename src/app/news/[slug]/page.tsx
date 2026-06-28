@@ -67,9 +67,7 @@ export default async function NewsPage(props: Props) {
     '@context': 'http://googleusercontent.com/schema.org/',
     '@type': 'NewsArticle',
     headline: currentPostData.title,
-    image: [
-      currentPostData.featuredImage?.url || fallbackOgp,
-    ],
+    image: [currentPostData.featuredImage?.url || fallbackOgp],
     datePublished: currentPostData.publishedAt,
     dateModified: currentPostData.revisedAt,
     author: {

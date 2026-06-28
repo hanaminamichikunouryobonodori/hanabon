@@ -7,10 +7,7 @@ export const metadata = {
 };
 
 export default async function PrivacyPage() {
-  const [data, theme] = await Promise.all([
-    getHomeContentById('a37ykm12l'),
-    getTheme(),
-  ]);
+  const [data, theme] = await Promise.all([getHomeContentById('a37ykm12l'), getTheme()]);
   const ogpImageUrl =
     theme.ogpImage?.url ?? `${process.env.NEXT_PUBLIC_SITE_URL}/hanabonOGP2026.png`;
 
