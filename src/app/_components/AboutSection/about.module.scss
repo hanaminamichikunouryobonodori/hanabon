@@ -46,27 +46,19 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: -1;
   width: 120px;
   height: 120px;
   pointer-events: none;
   object-fit: contain;
   opacity: 0.45;
-
-  @media screen and (max-width: var.$breakpoint-md) {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: block;
-    margin-inline: auto;
-  }
 }
 
 .decoBottomRight {
   position: absolute;
   right: 0;
   bottom: -10px;
-  z-index: 0;
+  z-index: -1;
   width: 120px;
   height: 120px;
   pointer-events: none;

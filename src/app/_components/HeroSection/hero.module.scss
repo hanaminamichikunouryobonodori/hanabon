@@ -60,6 +60,13 @@
     max-width: 90vw;
     max-height: 90%;
   }
+  @media (max-width: var.$breakpoint-md) {
+    right: 0;
+    left: 0;
+    width: fit-content;
+    max-width: 85vw;
+    margin-inline: auto;
+  }
 }
 
 // 登場：小さくぼんやり → ポンッと弾けながら輝く
