@@ -12,7 +12,7 @@ const ContentRenderer = dynamic(() => import('@/components/common/ContentRendere
 const GallerySection = ({ data }: { data: PageData }) => {
   return (
     <FadeInComponent>
-      <div className='l-container l-section' id='gallerySection'>
+      <div className='l-container l-section' id='gallerySection' style={{ overflowX: 'hidden' }}>
         <MaruHeadingComponent id='gallery' level={2}>
           {data.title}
         </MaruHeadingComponent>

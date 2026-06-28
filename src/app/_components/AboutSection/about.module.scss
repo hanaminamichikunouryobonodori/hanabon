@@ -2,6 +2,8 @@
 
 .container {
   position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
   width: 100%;
   padding-inline: var.$spacing-sm;
   font-family: var.$font-family-serif;
@@ -9,6 +11,8 @@
   line-height: 2.4;
 
   p {
+    position: relative;
+    z-index: 1;
     margin-block-end: var.$spacing-lg;
     font-size: 1.2rem;
     white-space: nowrap;
@@ -40,22 +44,24 @@
 
 .decoTopLeft {
   position: absolute;
-  top: 10px;
-  left: -10px;
+  top: 0;
+  left: 0;
   width: 120px;
   height: 120px;
   pointer-events: none;
   object-fit: contain;
-  opacity: 0.55;
+  opacity: 0.45;
+  z-index: 0;
 }
 
 .decoBottomRight {
   position: absolute;
-  right: -80px;
+  right: 0;
   bottom: -10px;
   width: 120px;
   height: 120px;
   pointer-events: none;
   object-fit: contain;
-  opacity: 0.55;
+  opacity: 0.45;
+  z-index: 0;
 }
