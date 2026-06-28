@@ -52,6 +52,14 @@
   pointer-events: none;
   object-fit: contain;
   opacity: 0.45;
+
+  @media screen and (max-width: var.$breakpoint-md) {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: block;
+    margin-inline: auto;
+  }
 }
 
 .decoBottomRight {
