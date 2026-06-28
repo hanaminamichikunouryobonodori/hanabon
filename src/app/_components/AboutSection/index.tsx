@@ -23,6 +23,13 @@ const AboutSection = ({ data }: AboutSectionProps) => {
         return (
           <FadeInComponent key={section.id}>
             <div className={isAbout ? styles.container : ''} id={isProgram ? 'program' : ''}>
+              <MaruHeadingComponent
+                className={isProgram ? 'mt-3xl' : ''}
+                id={isAbout ? 'about' : isProgram ? 'program ' : ''}
+                level={2}
+              >
+                {section.title}
+              </MaruHeadingComponent>
               {isAbout && (
                 <Image
                   alt=''
@@ -33,13 +40,6 @@ const AboutSection = ({ data }: AboutSectionProps) => {
                   width={1024}
                 />
               )}
-              <MaruHeadingComponent
-                className={isProgram ? 'mt-3xl' : ''}
-                id={isAbout ? 'about' : isProgram ? 'program ' : ''}
-                level={2}
-              >
-                {section.title}
-              </MaruHeadingComponent>
               <ContentRenderer
                 className={`${isAbout ? 'u-text-subtle' : isProgram ? styles.staggeredContainer : ''}`}
                 content={section.content}
