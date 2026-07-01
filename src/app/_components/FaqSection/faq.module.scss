@@ -6,6 +6,12 @@
   margin-block-end: calc(-1 * var.$spacing-xxl) !important;
 }
 
+.lead {
+  margin-block-end: var.$spacing-sm;
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
 .box {
   width: 70vw;
   padding-block-start: var.$spacing-xxl;

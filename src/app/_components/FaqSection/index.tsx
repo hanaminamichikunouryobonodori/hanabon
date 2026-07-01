@@ -19,6 +19,7 @@ const FaqSection = ({ data }: FaqSectionProps) => {
       </MaruHeadingComponent>
       <div className={`${styles.box} l-container c-diagonal-box u-flex-left-column`}>
         <div className={styles.qaContent}>
+          <p className={styles.lead}>お問い合わせの前に、よくあるご質問をご確認ください。</p>
           <ContentRenderer content={data.content} />
           <hr />
           <p className={styles.contactNote}>
