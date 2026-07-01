@@ -26,11 +26,13 @@ function MultiSpyLink({ ids, label, closeMenu }: MultiSpyLinkProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) =>
-          e.isIntersecting ? activeSet.current.add(e.target.id) : activeSet.current.delete(e.target.id),
+          e.isIntersecting
+            ? activeSet.current.add(e.target.id)
+            : activeSet.current.delete(e.target.id)
         );
         setIsActive(activeSet.current.size > 0);
       },
-      { threshold: 0.3 },
+      { threshold: 0.3 }
     );
     ids.forEach((id) => {
       const el = document.getElementById(id);
@@ -77,7 +79,11 @@ const HeaderNav = () => {
     .map((item) => (
       <li key={item.to}>
         {isHomePage && item.to === 'faq' ? (
-          <MultiSpyLink ids={['faqSection', 'contactSection']} label={item.label} closeMenu={closeMenu} />
+          <MultiSpyLink
+            closeMenu={closeMenu}
+            ids={['faqSection', 'contactSection']}
+            label={item.label}
+          />
         ) : isHomePage ? (
           <ScrollLink
             activeClass={styles.active}
