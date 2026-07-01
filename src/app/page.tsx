@@ -29,6 +29,7 @@ export default async function Home(props: Props) {
     news: getNewsList('home'),
     joinCommittee: getNewsContentById(homepageData.joinCommittee.id, draftKey),
     access: getHomeContentById(homepageData.access.id, draftKey),
+    faq: getHomeContentById('9tfwu8ka4ay', draftKey),
     sponsorship: getHomeContentById(homepageData.sponsorship.id, draftKey),
   };
 

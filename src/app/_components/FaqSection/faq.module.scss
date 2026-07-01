@@ -1,0 +1,80 @@
+@use '@/styles/abstracts/variables' as var;
+
+.title {
+  position: relative;
+  z-index: 10;
+  margin-block-end: calc(-1 * var.$spacing-xxl) !important;
+}
+
+.box {
+  width: 70vw;
+  padding-block-start: var.$spacing-xxl;
+  padding-inline: var.$spacing-3xl;
+  margin: 2em 0;
+  border-radius: var.$border-radius-xxl;
+
+  @media (max-width: var.$breakpoint-lg) {
+    width: 100%;
+    padding-inline: var.$spacing-lg;
+  }
+}
+
+.qaContent {
+  width: 100%;
+
+  :global(ul) {
+    padding-inline-start: 0;
+    margin-block-end: 0;
+    list-style: none;
+  }
+
+  // Q（外側のli）
+  :global(ul > li) {
+    position: relative;
+    padding: 0.6em 0.6em 0.6em 1.8em;
+    margin-block-end: 0.25em;
+    font-weight: var.$font-weight-bold;
+
+    &:last-child {
+      padding-block-end: 0;
+      margin-block-end: 0;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0.25em;
+      left: 0;
+      font-weight: var.$font-weight-black;
+      color: var(--color-blue);
+      content: 'Q.';
+      font-size: 1.5rem;
+    }
+  }
+
+  // A（内側のli）
+  :global(ul > li > ul > li) {
+    position: relative;
+    padding: 0.4em 0.6em 0.8em 1.8em;
+    margin-block-end: var.$spacing-md;
+    font-weight: var.$font-weight-normal;
+
+    &::before {
+      position: absolute;
+      top: 0.25em;
+      left: 0;
+      color: var(--color-red);
+      content: 'A.';
+    }
+
+    &:last-child {
+      padding-block-end: 0;
+      margin-block-end: 0;
+    }
+  }
+}
+
+.contactNote {
+  margin-block-start: var.$spacing-md;
+  padding-block-start: var.$spacing-md;
+  font-size: 0.95rem;
+}

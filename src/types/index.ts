@@ -13,6 +13,7 @@ export type HomePageProps = {
   news: NewsListData;
   joinCommittee: NewsData;
   access: PageData;
+  faq: PageData;
   sponsorship: PageData;
   contact?: null;
 };

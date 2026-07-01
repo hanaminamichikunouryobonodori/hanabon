@@ -319,7 +319,7 @@ const ContentRenderer = ({ content, className }: Props) => {
               const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
               return (
                 <React.Fragment key={i}>
-                  {i === 0 ? `.${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
+                  {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
                   <span style={{ fontSize: '55%', color }}>({weekday})</span>
                 </React.Fragment>
               );
@@ -344,7 +344,6 @@ const ContentRenderer = ({ content, className }: Props) => {
                     style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
                   >
                     <strong>
-                      <span>{year}</span>
                       <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
                         {dateElements}
                       </span>

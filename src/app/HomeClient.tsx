@@ -7,6 +7,7 @@ import AboutSection from '@/app/_components/AboutSection';
 import AccessSection from '@/app/_components/AccessSection';
 import ContactSection from '@/app/_components/ContactSection';
 import EventDateSection from '@/app/_components/EventDateSection';
+import FaqSection from '@/app/_components/FaqSection';
 import GallerySection from '@/app/_components/GallerySection';
 import NewsSection from '@/app/_components/NewsSection';
 import SponsorshipSection from '@/app/_components/SponsorshipSection';
@@ -50,6 +51,7 @@ const HomeClient = ({ pages }: { pages: HomePageProps }) => {
       component: <NewsSection joinCommittee={pages.joinCommittee} news={pages.news} />,
     },
     { id: 'access', component: <AccessSection data={pages.access} /> },
+    { id: 'faq', component: <FaqSection data={pages.faq} /> },
     { id: 'contact', component: <ContactSection data={pages.eventDate} /> },
     {
       id: 'sponsorship',

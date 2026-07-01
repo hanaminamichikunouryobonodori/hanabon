@@ -6,10 +6,13 @@ export const menuItems = [
   { to: 'news', label: 'お知らせ' },
   { to: 'joinCommittee', label: 'サポーター募集' },
   { to: 'access', label: 'アクセス' },
-  { to: 'contact', label: '問い合わせ' },
+  { to: 'faq', label: '問い合わせ' },
   { to: 'sponsorship', label: '主催・協賛' },
 ];
 
-export const footerLinks = [{ to: '/privacy', label: 'プライバシーポリシー' }];
+export const footerLinks = [
+  { to: 'faq', label: 'よくある質問' },
+  { to: '/privacy', label: 'プライバシーポリシー' },
+];
 
 export const newsCategories = [{ to: 'news', label: 'お知らせ一覧' }];
