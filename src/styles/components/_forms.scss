@@ -18,3 +18,21 @@
 .c-search-input {
   @extend %form-control-base;
 }
+
+.search-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--foreground);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .c-search-input {
+    padding-left: 2.25rem;
+  }
+}

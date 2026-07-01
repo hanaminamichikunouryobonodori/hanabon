@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react';
 
 import Fuse, { type IFuseOptions } from 'fuse.js';
+import { FaSearch } from 'react-icons/fa';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
 import NewsList from '@/components/features/NewsList';
@@ -57,14 +58,17 @@ const SearchableNewsList = ({ allNews }: Props) => {
     <FadeInComponent>
       <div className='l-container l-grid l-grid--half px-lg'>
         <Breadcrumbs />
-        <div className='search-form-container  u-flex-right'>
-          <input
-            className='c-search-input my-sm'
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder='&#x1f50e;お知らせを検索...'
-            type='search'
-            value={searchQuery}
-          />
+        <div className='search-form-container u-flex-right'>
+          <div className='search-input-wrapper'>
+            <FaSearch className='search-icon' />
+            <input
+              className='c-search-input my-sm'
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder='お知らせを検索...'
+              type='search'
+              value={searchQuery}
+            />
+          </div>
         </div>
       </div>
       <div className='l-container u-min-h-screen py-lg px-lg'>

@@ -1,0 +1,34 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  pointer-events: none;
+}
+
+.lantern {
+  position: absolute;
+  top: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 8px rgba(255, 160, 40, 0.35))
+    drop-shadow(0 0 18px rgba(255, 120, 0, 0.2));
+  transform-origin: top center;
+  animation: lanternSway 3.5s ease-in-out infinite;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@keyframes lanternSway {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(6deg);
+  }
+}

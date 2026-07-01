@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
+import Lanterns from '@/components/ui/Lanterns';
+
 import styles from './hero.module.scss';
 
 type ImageProps = {
@@ -62,6 +64,7 @@ const HeroCarouselComponent = ({
           </SwiperSlide>
         ))}
       </Swiper>
+      <Lanterns />
       <Image
         alt='花南地区納涼盆踊り'
         className={styles.heroLogoImage}

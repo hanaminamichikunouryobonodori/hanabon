@@ -38,8 +38,8 @@
 .c-card:has(.c-card__link) {
   @media (hover: hover) {
     &:hover {
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      transform: translateY(-6px) rotate(1.5deg);
       .c-card__title {
         text-decoration: underline;
         text-decoration-thickness: 3px;
@@ -50,6 +50,14 @@
   &:active {
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
+  }
+}
+
+.c-card:nth-child(even):has(.c-card__link) {
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-6px) rotate(-1.5deg);
+    }
   }
 }
 
