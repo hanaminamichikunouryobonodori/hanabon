@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { containsHtml } from '@/libs/utils';
 
+import PublishedDate from '../PublishedDate';
 import SafeHtmlRenderer from '../SafeHtmlRenderer';
 
 interface CardDataProps {
@@ -13,6 +14,7 @@ interface CardDataProps {
   description: string;
   link?: string;
   buttonText?: string;
+  publishedAt?: string;
   priority?: boolean;
 }
 
@@ -28,6 +30,7 @@ const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
         width={cardData.image.width || 600}
       />
       <div className='c-card__body'>
+        {cardData.publishedAt && <PublishedDate dateString={cardData.publishedAt} />}
         <h3 className='c-card__title'>{cardData.title}</h3>
         {cardData.description &&
           (containsHtml(cardData.description) ? (

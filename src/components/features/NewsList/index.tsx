@@ -76,19 +76,13 @@ const NewsList = ({ data, isSimple }: Props) => {
     <div className='l-grid l-grid--grid-auto-fit'>
       {data.contents.map((content, index) => {
         const description = generatePlainText(content, 50);
-        const date = new Date(content.publishedAt);
-        const formatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
-          era: 'long',
-          year: 'numeric',
-        });
-        const buttonText = formatter.format(date);
 
         const cardData = {
           title: content.title,
           image: content.featuredImage,
           description: description,
           link: `/news/${content.id}`,
-          buttonText: buttonText,
+          publishedAt: content.publishedAt,
           priority: index === 0,
         };
         return (
