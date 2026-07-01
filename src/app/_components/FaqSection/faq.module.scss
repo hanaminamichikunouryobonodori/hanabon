@@ -60,7 +60,7 @@
   // A（内側のli）
   :global(ul > li > ul > li) {
     position: relative;
-    padding: 0.4em 0.6em 0.8em 1.8em;
+    padding: 0.4em 0.6em 0.8em 1rem;
     margin-block-end: var.$spacing-md;
     font-weight: var.$font-weight-normal;
 
