@@ -76,3 +76,55 @@
 @mixin apply-animation($name, $duration: 0.5s) {
   animation: $name $duration ease-out forwards;
 }
+
+.c-staggeredContainer {
+  > *:nth-child(odd) {
+    animation: staggerSlideLeft 0.7s ease-out both;
+    animation-play-state: paused;
+  }
+
+  > *:nth-child(even) {
+    animation: staggerSlideRight 0.7s ease-out both;
+    animation-play-state: paused;
+  }
+
+  @for $i from 1 through 6 {
+    > *:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.15}s;
+    }
+  }
+}
+
+.u-fade-in-on-scroll:has(.c-staggeredContainer) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.u-fade-in-on-scroll.is-visible .c-staggeredContainer > * {
+  animation-play-state: running;
+}
+
+@keyframes staggerSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes staggerSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

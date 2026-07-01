@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
+import { useEffect, useRef, useState } from 'react';
+import { Link as ScrollLink, scroller } from 'react-scroll';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +11,49 @@ import { ThemeSwitcher } from '@/components/features/ThemeSwitcher';
 import { menuItems } from '@/libs/navigation';
 
 import styles from './header.module.scss';
+
+type MultiSpyLinkProps = {
+  ids: string[];
+  label: string;
+  closeMenu: () => void;
+};
+
+function MultiSpyLink({ ids, label, closeMenu }: MultiSpyLinkProps) {
+  const [isActive, setIsActive] = useState(false);
+  const activeSet = useRef(new Set<string>());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) =>
+          e.isIntersecting ? activeSet.current.add(e.target.id) : activeSet.current.delete(e.target.id),
+        );
+        setIsActive(activeSet.current.size > 0);
+      },
+      { threshold: 0.3 },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleClick = () => {
+    scroller.scrollTo(ids[0], { duration: 800, smooth: true, offset: -120 });
+    closeMenu();
+  };
+
+  return (
+    <a
+      className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
+    >
+      {label}
+    </a>
+  );
+}
 
 const HeaderNav = () => {
   const pathname = usePathname();
@@ -33,10 +76,8 @@ const HeaderNav = () => {
     .filter((item) => item.to !== 'sponsorship')
     .map((item) => (
       <li key={item.to}>
-        {item.to === 'news' ? (
-          <Link className={styles.navLink} href='/news' onClick={closeMenu}>
-            {item.label}
-          </Link>
+        {isHomePage && item.to === 'faq' ? (
+          <MultiSpyLink ids={['faqSection', 'contactSection']} label={item.label} closeMenu={closeMenu} />
         ) : isHomePage ? (
           <ScrollLink
             activeClass={styles.active}

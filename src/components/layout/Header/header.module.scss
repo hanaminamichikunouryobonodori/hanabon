@@ -17,6 +17,10 @@
   transition:
     color 0.3s ease,
     border-bottom-color 0.3s ease;
+
+  html[data-theme='dark'] & {
+    background-color: rgb(26 26 26 / 70%);
+  }
 }
 
 /* --- .headerNav --- */
@@ -47,10 +51,22 @@
     -1px 0 0 rgb(247 247 247 / 30%),
     1px 0 0 rgb(247 247 247 / 30%);
   list-style: none;
+
+  html[data-theme='dark'] & {
+    text-shadow:
+      1px 1px 0 rgb(26 26 26 / 40%),
+      -1px -1px 0 rgb(26 26 26 / 40%),
+      -1px 1px 0 rgb(26 26 26 / 40%),
+      1px -1px 0 rgb(26 26 26 / 40%),
+      0 1px 0 rgb(26 26 26 / 40%),
+      0 -1px 0 rgb(26 26 26 / 40%),
+      -1px 0 0 rgb(26 26 26 / 40%),
+      1px 0 0 rgb(26 26 26 / 40%);
+  }
 }
 
 .navLink {
-  color: #333;
+  color: var(--foreground);
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
@@ -61,14 +77,14 @@
     }
   }
   &:visited {
-    color: #333;
+    color: var(--foreground);
     text-decoration: none;
   }
 }
 
 /* --- .active --- */
 .active {
-  color: color-mix(in srgb, var(--sub-color) 60%, #333 40%) !important;
+  color: color-mix(in srgb, var(--sub-color) 60%, var(--foreground) 40%) !important;
   @media (max-width: var.$breakpoint-lg) {
     color: inherit;
   }
@@ -82,6 +98,13 @@
 /* --- .mobileLogo --- */
 .mobileLogo {
   display: none;
+}
+
+/* --- .blurredLogo --- */
+.blurredLogo {
+  html[data-theme='dark'] & {
+    filter: invert(100%);
+  }
 }
 
 /* =======================================
@@ -144,12 +167,6 @@
       &:nth-child(3) {
         top: 20px;
       }
-    }
-  }
-
-  .blurredLogo {
-    html[data-theme='dark'] & {
-      filter: invert(100%) !important;
     }
   }
 
