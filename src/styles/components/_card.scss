@@ -22,7 +22,14 @@
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
   .c-tags {
+    margin-top: 0;
+
     .c-tag {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      color: var(--foreground);
+      text-shadow: none;
       background-color: var(--sub-color);
     }
   }
@@ -67,30 +74,42 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  gap: 0.5rem;
   padding: 16px;
   font-family: var.$font-family-sans;
+
+  // 背景色に溶け込まないよう、テキスト全体を白系で統一
+  color: white;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 40%);
+
+  p,
+  small,
+  time {
+    color: inherit;
+    text-shadow: inherit;
+  }
 }
 
 .c-card__title {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-family: var.$font-family-serif;
   font-size: 1.2rem;
   font-weight: var.$font-weight-bold;
-  color: var(--foreground) !important;
+  color: white !important;
 }
 
 .c-card__description {
   flex-grow: 1;
   font-size: 0.9rem;
   font-weight: var.$font-weight-normal;
-  line-height: 1.2 !important;
-  color: var(--foreground) !important;
+  line-height: 1.4 !important;
+  color: rgb(255 255 255 / 85%) !important;
   line-break: anywhere;
   word-break: break-all;
   p {
     font-size: 0.9rem;
-    line-height: 1.2 !important;
+    line-height: 1.4 !important;
   }
 }
 .c-card__link {

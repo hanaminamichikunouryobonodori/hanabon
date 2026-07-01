@@ -14,12 +14,22 @@ const PublishedDate = ({ dateString, className, id }: Props) => {
     day: 'numeric',
     timeZone: 'Asia/Tokyo',
   });
+
   if (id === 'updated') {
     return (
       <span className='u-inline-flex-center-y'>
         <small>
           <time dateTime={dateString}>{formattedDate}</time>
         </small>
+      </span>
+    );
+  }
+
+  if (id === 'tag') {
+    return (
+      <span className={`u-inline-flex-center-y ${className ?? ''}`}>
+        <FaCalendarAlt className='mr-sm' />
+        <time dateTime={dateString}>{formattedDate}</time>
       </span>
     );
   }

@@ -30,7 +30,11 @@ const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
         width={cardData.image.width || 600}
       />
       <div className='c-card__body'>
-        {cardData.publishedAt && <PublishedDate dateString={cardData.publishedAt} />}
+        {cardData.publishedAt && (
+          <div className='c-tags'>
+            <PublishedDate className='c-tag' dateString={cardData.publishedAt} id='tag' />
+          </div>
+        )}
         <h3 className='c-card__title'>{cardData.title}</h3>
         {cardData.description &&
           (containsHtml(cardData.description) ? (
