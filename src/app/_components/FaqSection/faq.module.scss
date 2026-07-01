@@ -31,7 +31,7 @@
   :global(ul) {
     padding-inline-start: 0;
     margin-block-end: 0;
-    list-style: none;
+    list-style: none !important;
   }
 
   // Q（外側のli）
