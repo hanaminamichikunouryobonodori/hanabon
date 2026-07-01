@@ -50,10 +50,10 @@
       position: absolute;
       top: 0.25em;
       left: 0;
+      font-size: 1.5rem;
       font-weight: var.$font-weight-black;
       color: var(--color-blue);
       content: 'Q.';
-      font-size: 1.5rem;
     }
   }
 
@@ -80,7 +80,7 @@
 }
 
 .contactNote {
-  margin-block-start: var.$spacing-md;
   padding-block-start: var.$spacing-md;
+  margin-block-start: var.$spacing-md;
   font-size: 0.95rem;
 }

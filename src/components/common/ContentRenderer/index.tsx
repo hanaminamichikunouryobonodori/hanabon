@@ -290,7 +290,6 @@ const ContentRenderer = ({ content, className }: Props) => {
 
             const firstDate = dates[0];
             const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
-            const year = firstDate.getFullYear();
 
             const weekdayColor = (weekday: string) => {
               switch (weekday) {

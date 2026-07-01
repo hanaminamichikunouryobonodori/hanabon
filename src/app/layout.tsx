@@ -95,9 +95,7 @@ export default async function RootLayout({ children }: Props) {
         <AnchorLinkHandler />
       </body>
       {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}
-      {isProduction && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? 'G-QSRVNZL9CF'} />
-      )}
+      {isProduction && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? 'G-QSRVNZL9CF'} />}
     </html>
   );
 }
