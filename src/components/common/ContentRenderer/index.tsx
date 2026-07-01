@@ -338,12 +338,15 @@ const ContentRenderer = ({ content, className }: Props) => {
                 )}
                 <div style={{ textAlign: 'center' }}>
                   <h3>{header}</h3>
-                  <p
-                    className='mt-0 mb-xxl'
-                    style={{ fontSize: '200%', fontWeight: 'bold', lineHeight: '1' }}
-                  >
+                  <p className='mt-0 mb-xxl' style={{ fontWeight: 'bold', lineHeight: '1' }}>
                     <strong>
-                      <span style={{ fontSize: '150%', fontWeight: 'bold', lineHeight: '1' }}>
+                      <span
+                        style={{
+                          fontSize: 'clamp(2.4rem, 10vw, 10rem)',
+                          fontWeight: 'bold',
+                          lineHeight: '1',
+                        }}
+                      >
                         {dateElements}
                       </span>
                     </strong>
