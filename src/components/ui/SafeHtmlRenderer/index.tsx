@@ -167,6 +167,14 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         {parse(htmlContent, options)}
       </div>
     );
+  } else if (id === 'cancelled_note') {
+    return (
+      <div
+        className={`${style.container} ${className ? className : ''} ${eventDateStyles.cancelledNote}`}
+      >
+        {parse(htmlContent, options)}
+      </div>
+    );
   }
 
   return (
