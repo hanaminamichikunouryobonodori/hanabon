@@ -60,13 +60,13 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
       if (!(domNode instanceof Element)) return;
 
       if (domNode.name === 'a') {
-        const { href, target } = domNode.attribs;
+        const { href, target, class: className } = domNode.attribs;
 
         if (!href) return <>{domToReact(domNode.children as DOMNode[], options)}</>;
 
         if (target === '_blank') {
           return (
-            <a href={href} rel='noopener noreferrer' target='_blank'>
+            <a className={className} href={href} rel='noopener noreferrer' target='_blank'>
               {domToReact(domNode.children as DOMNode[], options)}
             </a>
           );
@@ -77,6 +77,7 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
           if (pathname === '/') {
             return (
               <ScrollLink
+                className={className}
                 duration={500}
                 offset={-80}
                 smooth={true}
@@ -89,6 +90,7 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
           } else {
             return (
               <a
+                className={className}
                 onClick={() => {
                   sessionStorage.setItem('scrollTo', targetId);
                   router.push('/');
@@ -100,7 +102,11 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
             );
           }
         }
-        return <Link href={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>;
+        return (
+          <Link className={className} href={href}>
+            {domToReact(domNode.children as DOMNode[], options)}
+          </Link>
+        );
       }
       if (domNode.name === 'img') {
         const { src, alt, width, height } = domNode.attribs;
