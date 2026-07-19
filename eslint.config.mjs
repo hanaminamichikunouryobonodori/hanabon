@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import importPlugin from 'eslint-plugin-import';
+import importPlugin from 'eslint-plugin-import-x';
 
 // eslint-config-next v16 exports flat config arrays directly
 import nextConfig from 'eslint-config-next';
@@ -14,7 +14,7 @@ export default [
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
-      import: importPlugin,
+      'import-x': importPlugin,
     },
     languageOptions: {
       parserOptions: {
@@ -60,7 +60,7 @@ export default [
         { skipStrings: true, skipComments: true, skipTemplates: true },
       ],
 
-      'import/order': [
+      'import-x/order': [
         'warn',
         {
           groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
@@ -79,11 +79,11 @@ export default [
     },
     settings: {
       react: { version: 'detect' },
-      'import/resolver': {
+      'import-x/resolver': {
         node: true,
         typescript: true,
       },
-      'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+      'import-x/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
     },
   },
 
