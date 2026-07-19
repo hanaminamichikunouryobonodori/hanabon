@@ -1,9 +1,9 @@
 // app/api/indexing/route.js (最終手段バージョン)
 
-import { createHmac } from 'crypto';
-
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
+
+import { verifyMicrocmsSignature } from '@/libs/microcmsWebhook';
 
 // URLを構築するロジック（ご自身のサイト構成に合わせて変更してください）
 function constructUrl(microcmsPayload) {
@@ -23,12 +23,8 @@ export async function POST(request) {
   // microCMSの署名検証
   const signature = request.headers.get('x-microcms-signature');
   const secret = process.env.MICROCMS_WEBHOOK_SECRET;
-  if (!signature || !secret) {
-    return NextResponse.json({ error: 'Signature or secret is missing.' }, { status: 401 });
-  }
   const body = await request.text();
-  const expectedSignature = createHmac('sha256', secret).update(body).digest('hex');
-  if (signature !== expectedSignature) {
+  if (!verifyMicrocmsSignature(signature, secret, body)) {
     return NextResponse.json({ error: 'Invalid signature.' }, { status: 401 });
   }
 
