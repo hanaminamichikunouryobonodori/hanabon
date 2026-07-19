@@ -43,6 +43,10 @@ const ContentRenderer = ({ content, className }: Props) => {
   if (!content) {
     return null;
   }
+
+  const hasCancelledEventDate = content.some(
+    (block) => block.fieldId === 'event_dates' && block.event_dates?.some((d) => d.is_cancelled)
+  );
   const Wrapper = className ? 'div' : React.Fragment;
   const wrapperProps = className ? { className: className } : {};
 
@@ -54,6 +58,10 @@ const ContentRenderer = ({ content, className }: Props) => {
         switch (block.fieldId) {
           // 1. リッチテキスト
           case 'rich_text': {
+            if (block.content_id === 'cancelled_note' && !hasCancelledEventDate) {
+              return null;
+            }
+
             const alignClass =
               block.align?.[0] === '中央揃え'
                 ? 'u-flex-center-column'
@@ -321,7 +329,11 @@ const ContentRenderer = ({ content, className }: Props) => {
               const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
               return (
                 <React.Fragment key={i}>
-                  <span style={isCancelled ? { textDecoration: 'line-through', opacity: 0.5 } : undefined}>
+                  <span
+                    style={
+                      isCancelled ? { textDecoration: 'line-through', opacity: 0.5 } : undefined
+                    }
+                  >
                     {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
                     <span style={{ fontSize: '55%', color }}>({weekday})</span>
                   </span>
