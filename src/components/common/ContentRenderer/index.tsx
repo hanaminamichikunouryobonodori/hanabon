@@ -269,11 +269,14 @@ const ContentRenderer = ({ content, className }: Props) => {
             }
 
             const dates = eventDate
-              .map((item) => new Date(item.date))
-              .sort((a, b) => a.getTime() - b.getTime());
+              .map((item) => ({
+                date: new Date(item.date),
+                isCancelled: !!item.is_cancelled,
+              }))
+              .sort((a, b) => a.date.getTime() - b.date.getTime());
 
             const now = new Date();
-            const lastDate = dates[dates.length - 1];
+            const lastDate = dates[dates.length - 1].date;
             const endOfEvent = new Date(lastDate);
             endOfEvent.setDate(endOfEvent.getDate() + 1);
             endOfEvent.setHours(0, 0, 0, 0);
@@ -288,7 +291,7 @@ const ContentRenderer = ({ content, className }: Props) => {
               weekday: 'short',
             });
 
-            const firstDate = dates[0];
+            const firstDate = dates[0].date;
             const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
 
             const weekdayColor = (weekday: string) => {
@@ -312,14 +315,28 @@ const ContentRenderer = ({ content, className }: Props) => {
               }
             };
 
-            const dateElements = dates.map((date, i) => {
+            const dateElements = dates.map(({ date, isCancelled }, i) => {
               const isHoliday = holidayJp.isHoliday(date);
               const weekday = isHoliday ? '祝' : weekdayFormatter.format(date);
               const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
               return (
                 <React.Fragment key={i}>
-                  {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
-                  <span style={{ fontSize: '55%', color }}>({weekday})</span>
+                  <span style={isCancelled ? { textDecoration: 'line-through', opacity: 0.5 } : undefined}>
+                    {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
+                    <span style={{ fontSize: '55%', color }}>({weekday})</span>
+                  </span>
+                  {isCancelled && (
+                    <span
+                      style={{
+                        fontSize: '30%',
+                        fontWeight: 'bold',
+                        color: 'var(--color-red)',
+                        marginInlineStart: '0.2em',
+                      }}
+                    >
+                      中止
+                    </span>
+                  )}
                 </React.Fragment>
               );
             });

@@ -198,6 +198,10 @@ interface pages_date {
    * 日付
    */
   date: string;
+  /**
+   * 中止
+   */
+  is_cancelled?: boolean;
 }
 interface pages_event_dates {
   fieldId: 'event_dates';
