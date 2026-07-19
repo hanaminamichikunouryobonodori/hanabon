@@ -44,9 +44,18 @@ const ContentRenderer = ({ content, className }: Props) => {
     return null;
   }
 
-  const hasCancelledEventDate = content.some(
-    (block) => block.fieldId === 'event_dates' && block.event_dates?.some((d) => d.is_cancelled)
-  );
+  const cancelledDays: number[] = [];
+  for (const block of content) {
+    if (block.fieldId === 'event_dates') {
+      for (const item of block.event_dates ?? []) {
+        if (item.is_cancelled) {
+          cancelledDays.push(new Date(item.date).getDate());
+        }
+      }
+    }
+  }
+  const hasCancelledEventDate = cancelledDays.length > 0;
+  const cancelledDatesText = `${cancelledDays.join('・')}日`;
   const Wrapper = className ? 'div' : React.Fragment;
   const wrapperProps = className ? { className: className } : {};
 
@@ -69,11 +78,19 @@ const ContentRenderer = ({ content, className }: Props) => {
                   ? 'u-flex-right-column'
                   : 'u-flex-left-column';
 
+            const richTextContent =
+              block.content_id === 'cancelled_note' && typeof block.rich_text === 'string'
+                ? block.rich_text.replaceAll('{中止日時}', cancelledDatesText)
+                : block.rich_text;
+
+            const richTextClass =
+              block.content_id === 'cancelled_note' ? 'c-alert-box mt-0' : alignClass;
+
             return (
               <React.Fragment key={key}>
                 <SafeHtmlRenderer
-                  className={alignClass}
-                  htmlContent={block.rich_text}
+                  className={richTextClass}
+                  htmlContent={richTextContent}
                   id={block.content_id}
                 />
               </React.Fragment>
@@ -329,12 +346,11 @@ const ContentRenderer = ({ content, className }: Props) => {
               const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
               return (
                 <React.Fragment key={i}>
-                  <span
-                    style={
-                      isCancelled ? { textDecoration: 'line-through', opacity: 0.5 } : undefined
-                    }
-                  >
-                    {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `・${date.getDate()}`}
+                  <span style={isCancelled ? { opacity: 0.5 } : undefined}>
+                    {i !== 0 && '・'}
+                    <span style={isCancelled ? { textDecoration: 'line-through' } : undefined}>
+                      {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `${date.getDate()}`}
+                    </span>
                     <span style={{ fontSize: '55%', color }}>({weekday})</span>
                   </span>
                   {isCancelled && (
