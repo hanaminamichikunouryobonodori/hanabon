@@ -1,6 +1,5 @@
 'use client';
-import React, { useContext, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import React, { useContext } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
@@ -22,14 +21,9 @@ interface Props {
 }
 
 const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
-  const [hasMounted, setHasMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const { openLightbox } = useContext(LightboxContext);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   if (!htmlContent) {
     return null;
@@ -143,10 +137,7 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         const tableElement = (
           <table {...domNode.attribs}>{domToReact(domNode.children as DOMNode[], options)}</table>
         );
-        if (hasMounted && isMobile) {
-          return <ScrollHintWrapper>{tableElement}</ScrollHintWrapper>;
-        }
-        return <div className='table-wrapper'>{tableElement}</div>;
+        return <ScrollHintWrapper className='table-wrapper'>{tableElement}</ScrollHintWrapper>;
       }
     },
   };

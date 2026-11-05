@@ -1,8 +1,9 @@
-import { draftMode } from 'next/headers';
+import { cookies, draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { client } from '@/libs/client';
+import { DRAFT_KEY_COOKIE } from '@/libs/draft';
 import { homepage } from '@/types/microCMS/homepage-types';
 
 export async function GET(req: NextRequest) {
@@ -52,6 +53,13 @@ export async function GET(req: NextRequest) {
   const draft = await draftMode();
   draft.enable();
 
-  // ★ 正しい順序 (パス + クエリ + アンカー) でURLを組み立ててリダイレクト
-  redirect(`${redirectPath}?draftKey=${draftKey}${anchor}`);
+  // draftKey は Cookie で渡す（searchParams を使うとページが常に動的描画になるため）
+  (await cookies()).set(DRAFT_KEY_COOKIE, draftKey, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+  });
+
+  redirect(`${redirectPath}${anchor}`);
 }

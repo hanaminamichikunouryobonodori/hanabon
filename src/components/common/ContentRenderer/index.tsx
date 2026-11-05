@@ -1,7 +1,5 @@
 import React, { JSX, useContext } from 'react';
 
-import * as holidayJp from '@holiday-jp/holiday_jp';
-
 import AccordionComponent from '@/components/features/AccordionComponent';
 import CardComponent from '@/components/ui/CardComponent';
 import Image from '@/components/ui/CmsImage';
@@ -11,6 +9,7 @@ import OverlappingBox from '@/components/ui/OverlappingBox';
 import SafeHtmlRenderer from '@/components/ui/SafeHtmlRenderer';
 import { groupConsecutiveBlocks } from '@/components/utils/groupContent';
 import { LightboxContext } from '@/contexts/LightboxContext';
+import { formatJstEraYear, toJstParts } from '@/libs/jstDate';
 import { news } from '@/types/microCMS/news-types';
 import { pages } from '@/types/microCMS/pages-types';
 
@@ -49,7 +48,7 @@ const ContentRenderer = ({ content, className }: Props) => {
     if (block.fieldId === 'event_dates') {
       for (const item of block.event_dates ?? []) {
         if (item.is_cancelled) {
-          cancelledDays.push(new Date(item.date).getDate());
+          cancelledDays.push(toJstParts(new Date(item.date)).day);
         }
       }
     }
@@ -293,31 +292,25 @@ const ContentRenderer = ({ content, className }: Props) => {
               return null;
             }
 
+            // 日付・曜日はすべて日本時間で計算する（サーバーは UTC で動くため）
             const dates = eventDate
-              .map((item) => ({
-                date: new Date(item.date),
-                isCancelled: !!item.is_cancelled,
-              }))
+              .map((item) => {
+                const date = new Date(item.date);
+                return {
+                  date,
+                  jst: toJstParts(date),
+                  isCancelled: !!item.is_cancelled,
+                  // 祝日かどうかはサーバー側で付与済み（libs/microCMS.ts の annotateHolidays）
+                  isHoliday: !!(item as { is_holiday?: boolean }).is_holiday,
+                };
+              })
               .sort((a, b) => a.date.getTime() - b.date.getTime());
 
-            const now = new Date();
-            const lastDate = dates[dates.length - 1].date;
-            const endOfEvent = new Date(lastDate);
-            endOfEvent.setDate(endOfEvent.getDate() + 1);
-            endOfEvent.setHours(0, 0, 0, 0);
+            // 最終日の翌日（日本時間）になったら終了とみなす
+            const isEndOfEvent = toJstParts(new Date()).ymd > dates[dates.length - 1].jst.ymd;
 
-            const isEndOfEvent = now >= endOfEvent;
-
-            const eraFormatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
-              era: 'long',
-              year: 'numeric',
-            });
-            const weekdayFormatter = new Intl.DateTimeFormat('ja-JP', {
-              weekday: 'short',
-            });
-
-            const firstDate = dates[0].date;
-            const header = `${eraFormatter.format(firstDate).split('年')[0]}年開催日程は`;
+            const eraYear = formatJstEraYear(dates[0].date);
+            const header = `${eraYear}年開催日程は`;
 
             const weekdayColor = (weekday: string) => {
               switch (weekday) {
@@ -340,16 +333,15 @@ const ContentRenderer = ({ content, className }: Props) => {
               }
             };
 
-            const dateElements = dates.map(({ date, isCancelled }, i) => {
-              const isHoliday = holidayJp.isHoliday(date);
-              const weekday = isHoliday ? '祝' : weekdayFormatter.format(date);
+            const dateElements = dates.map(({ jst, isCancelled, isHoliday }, i) => {
+              const weekday = isHoliday ? '祝' : jst.weekday;
               const color = isHoliday ? 'var(--color-weekday-hol)' : weekdayColor(weekday);
               return (
                 <React.Fragment key={i}>
                   <span style={isCancelled ? { opacity: 0.5 } : undefined}>
                     {i !== 0 && '・'}
                     <span style={isCancelled ? { textDecoration: 'line-through' } : undefined}>
-                      {i === 0 ? `${date.getMonth() + 1}.${date.getDate()}` : `${date.getDate()}`}
+                      {i === 0 ? `${jst.month}.${jst.day}` : `${jst.day}`}
                     </span>
                     <span style={{ fontSize: '55%', color }}>({weekday})</span>
                   </span>
@@ -374,7 +366,7 @@ const ContentRenderer = ({ content, className }: Props) => {
                 {isEndOfEvent && (
                   <div className='c-info-box' style={{ maxWidth: '700px' }}>
                     <p style={{ margin: 0, lineHeight: '1.5' }}>
-                      {eraFormatter.format(firstDate).split('年')[0]}
+                      {eraYear}
                       年の納涼盆踊りは、盛況のうちに全日程を終了いたしました。
                       <wbr />
                       ご来場いただきました皆様に、心より御礼申し上げます。
