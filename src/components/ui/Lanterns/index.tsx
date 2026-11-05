@@ -32,13 +32,23 @@ const LanternSvg = ({ color }: { color: string }) => (
   </svg>
 );
 
+// ヒーローのロゴの登場アニメーションが終わる時刻（秒）。
+// hero.module.scss の heroLogoEntrance（0.5s 待ってから 1.4s）に合わせる。
+const LOGO_ENTRANCE_END = 1.9;
+
 const Lanterns = () => (
   <div aria-hidden='true' className={styles.wrapper}>
     {LANTERNS.map((l, i) => (
       <div
         className={styles.lantern}
         key={i}
-        style={{ left: l.left, width: l.size as string, animationDelay: `${l.delay}s` }}
+        style={
+          {
+            left: l.left,
+            width: l.size as string,
+            '--lantern-delay': `${LOGO_ENTRANCE_END + l.delay}s`,
+          } as React.CSSProperties
+        }
       >
         <LanternSvg color={l.color} />
       </div>

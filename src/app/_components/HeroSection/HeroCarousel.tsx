@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -22,23 +22,19 @@ type ImageProps = {
 const HeroCarouselComponent = ({
   heroData,
   logoData,
+  firstBlurDataUrl,
 }: {
   heroData: ImageProps[];
   logoData: ImageProps;
+  /** 1枚目の画像が届くまで表示する、ぼかした画像（data URI） */
+  firstBlurDataUrl?: string;
 }) => {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsInitialLoad(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
   if (!heroData || heroData.length === 0 || !logoData || !logoData.url) {
     return null;
   }
 
   return (
-    <div className={`${styles.carouselContainer}${isInitialLoad ? ` ${styles.initialLoad}` : ''}`}>
+    <div className={styles.carouselContainer}>
       <Swiper
         autoplay={{
           delay: 8000,
@@ -54,8 +50,10 @@ const HeroCarouselComponent = ({
           <SwiperSlide key={index}>
             <Image
               alt={`Hero Background ${index + 1}`}
+              blurDataURL={index === 0 ? firstBlurDataUrl : undefined}
               className={styles.carouselImage}
               fill
+              placeholder={index === 0 && firstBlurDataUrl ? 'blur' : 'empty'}
               priority={index === 0}
               sizes='100vw'
               src={data.url}
