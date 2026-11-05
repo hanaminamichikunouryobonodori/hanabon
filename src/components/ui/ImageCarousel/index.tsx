@@ -1,7 +1,6 @@
 'use client';
 import React, { useContext } from 'react';
 
-import Image from 'next/image';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import Image from '@/components/ui/CmsImage';
 import { LightboxContext } from '@/contexts/LightboxContext';
 
 import styles from './imageCarousel.module.scss';

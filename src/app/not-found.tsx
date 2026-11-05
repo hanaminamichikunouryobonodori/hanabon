@@ -21,7 +21,7 @@ const NotFound = async () => {
           <Image alt='404' height={1080} src='/images/404NotFound.png' width={1920} />
           <p>一時的にアクセスできない状況にあるか、移動もしくは削除された可能性があります。</p>
           <span className='u-w-full u-h-full py-xxl u-flex-right'>
-            <Link href='/'>
+            <Link href='/' prefetch={false}>
               <button className='c-button c-button--primary'>
                 <span className='u-inline-flex-center-y'>
                   <HiHome />

@@ -1,10 +1,10 @@
 import React, { JSX, useContext } from 'react';
 
 import * as holidayJp from '@holiday-jp/holiday_jp';
-import Image from 'next/image';
 
 import AccordionComponent from '@/components/features/AccordionComponent';
 import CardComponent from '@/components/ui/CardComponent';
+import Image from '@/components/ui/CmsImage';
 import ImageCarousel from '@/components/ui/ImageCarousel';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import OverlappingBox from '@/components/ui/OverlappingBox';

@@ -4,11 +4,11 @@ import { isMobile } from 'react-device-detect';
 import { Link as ScrollLink } from 'react-scroll';
 
 import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import eventDateStyles from '@/app/_components/EventDateSection/eventDate.module.scss';
+import Image from '@/components/ui/CmsImage';
 import { LightboxContext } from '@/contexts/LightboxContext';
 
 import ScrollHintWrapper from '../ScrollHint';
@@ -103,7 +103,7 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
           }
         }
         return (
-          <Link className={className} href={href}>
+          <Link className={className} href={href} prefetch={false}>
             {domToReact(domNode.children as DOMNode[], options)}
           </Link>
         );

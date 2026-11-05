@@ -45,7 +45,7 @@ const NewsList = ({ data, isSimple }: Props) => {
                 <li>
                   <div className={styles.listText}>
                     <div className={styles.listMeta}>
-                      <Link className='c-tag c-tag--revert px-sm' href='/news'>
+                      <Link className='c-tag c-tag--revert px-sm' href='/news' prefetch={false}>
                         お知らせ
                       </Link>
                       <PublishedDate
@@ -55,7 +55,7 @@ const NewsList = ({ data, isSimple }: Props) => {
                       />
                     </div>
                     <div className={styles.listTitle}>
-                      <Link href={`/news/${content.id}`}>
+                      <Link href={`/news/${content.id}`} prefetch={false}>
                         <h5>{content.title}</h5>
                       </Link>
                       {isNew && <span className={styles.newBadge}>New!!</span>}

@@ -25,7 +25,9 @@ const FaqSection = ({ data }: FaqSectionProps) => {
           <p className={styles.contactNote}>
             上記で解決しない場合は、お気軽にお問い合わせください。
             <br />
-            <Link href='/#contactSection'>お問い合わせフォームはこちら →</Link>
+            <Link href='/#contactSection' prefetch={false}>
+              お問い合わせフォームはこちら →
+            </Link>
           </p>
         </div>
       </div>

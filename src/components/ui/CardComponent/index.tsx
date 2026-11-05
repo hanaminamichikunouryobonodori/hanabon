@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
+import Image from '@/components/ui/CmsImage';
 import { containsHtml } from '@/libs/utils';
 
 import PublishedDate from '../PublishedDate';
@@ -56,7 +56,9 @@ const CardComponent = ({ cardData }: { cardData: CardDataProps }) => {
           </div>
         )}
       </div>
-      {cardData.link && <Link className='c-card__link' href={cardData.link}></Link>}
+      {cardData.link && (
+        <Link className='c-card__link' href={cardData.link} prefetch={false}></Link>
+      )}
     </div>
   );
 };

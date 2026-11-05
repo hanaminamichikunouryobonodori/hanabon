@@ -148,7 +148,9 @@ const HeaderNav = () => {
                 {logoImage}
               </ScrollLink>
             ) : (
-              <Link href='/'>{logoImage}</Link>
+              <Link href='/' prefetch={false}>
+                {logoImage}
+              </Link>
             )}
           </li>
           {menuList}
