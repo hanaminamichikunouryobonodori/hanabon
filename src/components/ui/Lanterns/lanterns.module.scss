@@ -13,12 +13,26 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 8px rgba(255, 160, 40, 0.35))
     drop-shadow(0 0 18px rgba(255, 120, 0, 0.2));
   transform-origin: top center;
-  animation: lanternSway 3.5s ease-in-out infinite;
+  // 最初は静止 → ロゴの登場が終わってから（--lantern-delay 秒後）ゆっくり傾き始め、
+  // そのまま左右の揺れにつなげる
+  animation:
+    lanternStart 0.9s ease-in-out var(--lantern-delay, 0s) both,
+    lanternSway 3.5s ease-in-out calc(var(--lantern-delay, 0s) + 0.9s) infinite;
 
   svg {
     display: block;
     width: 100%;
     height: auto;
+  }
+}
+
+@keyframes lanternStart {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-6deg);
   }
 }
 
