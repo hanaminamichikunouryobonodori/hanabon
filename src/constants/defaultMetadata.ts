@@ -26,7 +26,7 @@ export const defaultMetadata: Metadata = {
   icons: [
     {
       type: 'image/svg+xml',
-      url: `${process.env.NEXT_PUBLIC_DOMAIN}/icon.ico`,
+      url: `${process.env.NEXT_PUBLIC_DOMAIN}/icon.svg`,
     },
   ],
   openGraph: {
