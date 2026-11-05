@@ -1,6 +1,7 @@
 import Hero from '@/app/_components/HeroSection';
 import HomeClient from '@/app/HomeClient';
 import { client } from '@/libs/client';
+import { getDraftKey } from '@/libs/draft';
 import { getHomeContentById, getNewsContentById, getNewsList } from '@/libs/microCMS';
 import { HomePageProps } from '@/types';
 
@@ -8,12 +9,8 @@ import styles from './page.module.scss';
 
 export const revalidate = 300;
 
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
-
-export default async function Home(props: Props) {
-  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
+export default async function Home() {
+  const draftKey = await getDraftKey();
 
   const homepageData = await client.getObject<HomePageProps>({
     endpoint: 'homepage',

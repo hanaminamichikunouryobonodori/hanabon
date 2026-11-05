@@ -1,13 +1,8 @@
 'use client';
-import dynamic from 'next/dynamic';
-
 import { FadeInComponent } from '@/components/animations/FadeIn';
+import ContentRenderer from '@/components/common/ContentRenderer';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
-
-const ContentRenderer = dynamic(() => import('@/components/common/ContentRenderer'), {
-  ssr: false,
-});
 
 const GallerySection = ({ data }: { data: PageData }) => {
   return (

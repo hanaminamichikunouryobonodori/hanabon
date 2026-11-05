@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { JsonLd } from '@/components/common/JsonLd';
+import { getDraftKey } from '@/libs/draft';
 import { getNewsContentById, getNewsList, getTheme } from '@/libs/microCMS';
 import { generatePlainText } from '@/libs/plainText';
 import { NewsData, NewsListData } from '@/types';
@@ -10,7 +11,6 @@ import NewsArticle from './NewsArticle';
 
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const revalidate = 60;
@@ -27,7 +27,7 @@ async function getPostData(slug: string, draftKey?: string) {
 
 export default async function NewsPage(props: Props) {
   const params = await props.params;
-  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
+  const draftKey = await getDraftKey();
   const [currentPostData, theme] = await Promise.all([
     getPostData(params.slug, draftKey),
     getTheme(),
@@ -96,7 +96,7 @@ export default async function NewsPage(props: Props) {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const draftKey = (await props.searchParams)?.draftKey as string | undefined;
+  const draftKey = await getDraftKey();
   const data = await getPostData(params.slug, draftKey);
 
   if (!data) {

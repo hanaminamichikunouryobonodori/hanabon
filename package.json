@@ -1,6 +1,6 @@
 {
   "name": "hanabon-with-microcms",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -27,7 +27,6 @@
     "nodemailer": "^10.2.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.2.7",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.80.0",
     "react-icons": "^5.7.0",
