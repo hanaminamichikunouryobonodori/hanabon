@@ -3,7 +3,6 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  typescript: { ignoreBuildErrors: true },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 
   poweredByHeader: false,
@@ -64,18 +63,5 @@ const nextConfig = {
     ];
   },
 };
-
-const cspPolicies = `
-  default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' data: images.microcms-assets.io;
-  font-src 'self' fonts.gstatic.com;
-  object-src 'none';
-  base-uri 'self';
-  form-action 'self';
-  frame-ancestors 'none';
-  upgrade-insecure-requests;
-`;
 
 module.exports = nextConfig;
