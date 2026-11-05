@@ -2,7 +2,13 @@
 import React, { useContext } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 
-import parse, { domToReact, HTMLReactParserOptions, Element, DOMNode } from 'html-react-parser';
+import parse, {
+  attributesToProps,
+  domToReact,
+  HTMLReactParserOptions,
+  Element,
+  DOMNode,
+} from 'html-react-parser';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -52,6 +58,11 @@ const SafeHtmlRenderer: React.FC<Props> = ({ htmlContent, className, id }) => {
         );
       }
       if (!(domNode instanceof Element)) return;
+
+      // 埋め込み（Google マップなど）は、画面に近づいてから読み込む
+      if (domNode.name === 'iframe') {
+        return <iframe {...attributesToProps(domNode.attribs)} loading='lazy' />;
+      }
 
       if (domNode.name === 'a') {
         const { href, target, class: className } = domNode.attribs;

@@ -1,20 +1,28 @@
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { Link as ScrollLink } from 'react-scroll';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import { FadeInComponent } from '@/components/animations/FadeIn';
-import ContactForm from '@/components/features/ContactForm';
 import MaruHeadingComponent from '@/components/ui/MaruHeading';
 import { PageData } from '@/types';
 
 import styles from './contact.module.scss';
+
+// フォーム（react-hook-form など）は、画面に近づいてから読み込む（最初のページ読み込みを軽くするため）
+const ContactForm = dynamic(() => import('@/components/features/ContactForm'), { ssr: false });
 
 type ContentBlock = PageData['content'][number];
 type PagesEventDates = Extract<ContentBlock, { fieldId: 'event_dates' }>;
 
 const ContactSection = ({ data }: { data: PageData }) => {
   const [isEventPeriod, setIsEventPeriod] = useState(false);
+  const { ref: formRef, inView: isFormNear } = useInView({
+    rootMargin: '600px 0px',
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     const eventDateBlock = data.content.find(
@@ -91,8 +99,9 @@ const ContactSection = ({ data }: { data: PageData }) => {
           </div>
         )}
         <div className='l-grid l-grid--half px-lg '>
-          <div>
-            <ContactForm />
+          {/* 読み込むまでは同じくらいの高さを確保して、表示時にページがずれないようにする */}
+          <div ref={formRef} style={isFormNear ? undefined : { minHeight: '480px' }}>
+            {isFormNear && <ContactForm />}
           </div>
           <div>
             <p>フォームより、お気軽にお問い合わせください。</p>
