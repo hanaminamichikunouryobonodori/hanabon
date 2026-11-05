@@ -59,7 +59,7 @@ export const Footer = () => {
             <h4 className={styles.sitemapTitle}>記事</h4>
             <ul className={styles.sitemapList}>
               <li>
-                <Link className={styles.sitemapLink} href='/news'>
+                <Link className={styles.sitemapLink} href='/news' prefetch={false}>
                   お知らせ一覧
                 </Link>
               </li>
@@ -73,7 +73,7 @@ export const Footer = () => {
             <ul className={styles.sitemapList}>
               {footerLinks.map((link) => (
                 <li key={link.to}>
-                  <Link className={styles.sitemapLink} href={link.to}>
+                  <Link className={styles.sitemapLink} href={link.to} prefetch={false}>
                     {link.label}
                   </Link>
                 </li>
@@ -88,8 +88,11 @@ export const Footer = () => {
       </div>
       <div className={styles.copyright}>
         <p className={styles.copyrightText}>
-          Copyright © 2019 - {year} <Link href=''>花南地区納涼盆踊り</Link> – by
-          花南地区納涼盆踊り実行委員会
+          Copyright © 2019 - {year}{' '}
+          <Link href='' prefetch={false}>
+            花南地区納涼盆踊り
+          </Link>{' '}
+          – by 花南地区納涼盆踊り実行委員会
         </p>
         <ScrollToTopButton />
       </div>

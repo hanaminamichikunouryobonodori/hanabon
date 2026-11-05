@@ -2,9 +2,7 @@ import '@/styles/main.scss';
 import type { ReactNode } from 'react';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
-import { Montserrat, Zen_Kaku_Gothic_New, Zen_Maru_Gothic } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -24,26 +22,10 @@ export type Props = {
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const montserrat = Montserrat({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-montserrat',
-});
-
-const ZenKakuGothic = Zen_Kaku_Gothic_New({
-  weight: ['400', '700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-zen-kaku-gothic-new',
-});
-
-const ZenMaruGothic = Zen_Maru_Gothic({
-  weight: ['700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-zen-maru-gothic',
-});
+// フォントは Google Fonts から直接配信する（Vercel の CDN リクエスト数を節約するため）。
+// next/font だと日本語フォントの分割ファイルを数百件 Vercel から配信してしまう。
+const GOOGLE_FONTS_URL =
+  'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap';
 
 export default async function RootLayout({ children }: Props) {
   const theme = await getTheme();
@@ -56,10 +38,12 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang='ja' suppressHydrationWarning>
-      <body
-        className={`${montserrat.variable} ${ZenKakuGothic.variable} ${ZenMaruGothic.variable}`}
-        id='top'
-      >
+      <head>
+        <link href='https://fonts.googleapis.com' rel='preconnect' />
+        <link crossOrigin='' href='https://fonts.gstatic.com' rel='preconnect' />
+        <link href={GOOGLE_FONTS_URL} rel='stylesheet' />
+      </head>
+      <body id='top'>
         <ThemeProvider>
           <LightboxProvider>
             <Header />
@@ -82,6 +66,7 @@ export default async function RootLayout({ children }: Props) {
                 現在プレビューモードで表示しています。{' '}
                 <Link
                   href='/api/disable-preview'
+                  prefetch={false}
                   style={{ color: 'cyan', textDecoration: 'underline' }}
                 >
                   プレビューを終了
@@ -91,7 +76,6 @@ export default async function RootLayout({ children }: Props) {
             <Footer />
           </LightboxProvider>
         </ThemeProvider>
-        <SpeedInsights />
         <AnchorLinkHandler />
       </body>
       {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}

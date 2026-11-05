@@ -132,7 +132,7 @@ export default function ContactForm() {
             })}
           />
           <label className={styles.checkboxLabel} htmlFor='policy'>
-            <Link href='/privacy' target='_blank'>
+            <Link href='/privacy' prefetch={false} target='_blank'>
               プライバシーポリシー
             </Link>
             に同意する

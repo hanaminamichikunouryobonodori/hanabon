@@ -19,7 +19,7 @@ const PostNavigation = ({ allPosts, currentPost }: Props) => {
     <div className={`l-grid l-grid--half ${styles.postNavigation}`}>
       <div className={styles.navItem}>
         {prevPost && (
-          <Link className={styles.prevLink} href={`/news/${prevPost.id}`}>
+          <Link className={styles.prevLink} href={`/news/${prevPost.id}`} prefetch={false}>
             <span className={styles.label}>&laquo; 前の記事へ</span>
             <span className={styles.title}>{prevPost.title}</span>
           </Link>
@@ -27,7 +27,7 @@ const PostNavigation = ({ allPosts, currentPost }: Props) => {
       </div>
       <div className={styles.navItem}>
         {nextPost && (
-          <Link className={styles.nextLink} href={`/news/${nextPost.id}`}>
+          <Link className={styles.nextLink} href={`/news/${nextPost.id}`} prefetch={false}>
             <span className={styles.label}>次の記事へ &raquo;</span>
             <span className={styles.title}>{nextPost.title}</span>
           </Link>

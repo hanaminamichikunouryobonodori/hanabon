@@ -63,7 +63,9 @@ const Breadcrumbs = ({ title }: Props) => {
           {items.map((item, index) => (
             <li className={styles.breadcrumbItem} key={item.href}>
               {index < items.length - 1 ? (
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href} prefetch={false}>
+                  {item.label}
+                </Link>
               ) : (
                 <span aria-current='page'>{item.label}</span>
               )}

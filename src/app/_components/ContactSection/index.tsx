@@ -114,7 +114,10 @@ const ContactSection = ({ data }: { data: PageData }) => {
               <ul className={styles.notesList}>
                 <li>
                   ご入力いただいた個人情報は、ご本人の同意なく花南盆踊り実行委員会メンバー以外の第三者に提供することはございません。詳細は
-                  <Link href='/privacy'>プライバシーポリシー</Link>をご確認ください。
+                  <Link href='/privacy' prefetch={false}>
+                    プライバシーポリシー
+                  </Link>
+                  をご確認ください。
                 </li>
                 <li>未成年の方のお問い合わせは、保護者の方の許可を得た上で送信してください。</li>
                 <li>

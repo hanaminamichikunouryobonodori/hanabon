@@ -15,6 +15,7 @@ const nextConfig = {
         hostname: 'images.microcms-assets.io',
       },
     ],
+    minimumCacheTTL: 2592000,
   },
 
   sassOptions: {
@@ -52,7 +53,8 @@ const nextConfig = {
               "default-src 'self'; " +
               "script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google-analytics.com maps.googleapis.com; " +
               "style-src 'self' 'unsafe-inline' fonts.googleapis.com; " +
-              "img-src 'self' data: kb147.web.fc2.com maps.gstatic.com *.googleapis.com *.ggpht.com; " +
+              "font-src 'self' fonts.gstatic.com; " +
+              "img-src 'self' data: images.microcms-assets.io kb147.web.fc2.com maps.gstatic.com *.googleapis.com *.ggpht.com; " +
               "connect-src 'self' www.google-analytics.com *.googleapis.com; " +
               'frame-src https://www.google.com https://maps.google.com;',
           },

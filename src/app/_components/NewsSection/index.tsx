@@ -24,7 +24,7 @@ const NewsSection = ({ news, joinCommittee }: { news: NewsListData; joinCommitte
         >
           <NewsList data={news} isSimple={true} />
           <div className='u-flex-center'>
-            <Link href='/news'>
+            <Link href='/news' prefetch={false}>
               <button className='c-button c-button--outline'>過去の記事を読む</button>
             </Link>
           </div>
