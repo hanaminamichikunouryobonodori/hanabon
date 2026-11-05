@@ -1,7 +1,7 @@
 import '@/styles/main.scss';
 import type { ReactNode } from 'react';
 
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
@@ -31,10 +31,6 @@ export default async function RootLayout({ children }: Props) {
   const theme = await getTheme();
   const { mainColor, subColor } = theme;
   const { isEnabled } = await draftMode();
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  if (!gtmId) {
-    throw new Error('GTM_ID is not defined');
-  }
 
   return (
     <html lang='ja' suppressHydrationWarning>
@@ -78,7 +74,6 @@ export default async function RootLayout({ children }: Props) {
         </ThemeProvider>
         <AnchorLinkHandler />
       </body>
-      {isProduction && gtmId && <GoogleTagManager gtmId={gtmId as string} />}
       {isProduction && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? 'G-QSRVNZL9CF'} />}
     </html>
   );
